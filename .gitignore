@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Chroma & local data
+.chroma/
+docs/*.pdf
+docs/*.docx
+docs/*.xlsx
+
+# Ollama / models / caches
+*.gguf
+models/
+.ollama/
+*.bin
+
+# Env & secrets
+.env
+*.env
+
+# Editor
+.vscode/
+.idea/
