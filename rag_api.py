@@ -36,9 +36,10 @@ except Exception:
 
 # ========= prompting =========
 PROMPT_TEMPLATE = (
-    "You are a careful assistant. Answer ONLY using the provided context.\n"
-    "If the answer is not fully supported by the context, reply exactly: Not in docs.\n\n"
-    "{context}\n\n"
+    "You must answer using ONLY the text in Context.\n"
+    "If the answer is present, return it CONCISELY and VERBATIM if possible.\n"
+    "If it is not present, reply exactly: Not in docs.\n\n"
+    "Context:\n{context}\n\n"
     "Question: {q}\n\n"
     "Answer:"
 )
@@ -68,7 +69,12 @@ def ollama_complete(prompt: str, max_tokens: int) -> str:
         json={
             "model": OLLAMA_MODEL,
             "prompt": prompt,
-            "options": {"num_predict": max_tokens},
+            "options": {
+                "num_predict": max_tokens,
+                "temperature": 0,       # be literal
+                "top_p": 0.9,
+                "repeat_penalty": 1.1
+            },
             "stream": False,
         },
         timeout=HTTP_TIMEOUT,
