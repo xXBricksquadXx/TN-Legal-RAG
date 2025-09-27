@@ -1,40 +1,39 @@
-version: 1
-milestones:
-  - id: m1-curation
-    title: "TN official sources seeded"
-    items:
-      - id: sunshine-oorc
-        desc: "OORC: best practices, schedule of reasonable charges, model policy"
-        done: false
-      - id: regs-key-chapters
-        desc: "1360-04-01, 1360-01-02, 0020-01-01 summaries"
-        done: false
-      - id: code-pra
-        desc: "T.C.A. § 10-7-503 summary + short excerpt"
-        done: false
-    exit_criteria:
-      - "eval score >= 80% on sunshine/regs smoke set"
-  - id: m2-productize
-    title: "Docs + eval + CI basics"
-    items:
-      - id: readme-sync
-        desc: "README reflects endpoints & config"
-        done: false
-      - id: eval-harness
-        desc: "jsonl eval + script"
-        done: false
-      - id: pr-template
-        desc: "PR template enforces doc & milestone updates"
-        done: false
-  - id: m3-deploy
-    title: "Dell deployment"
-    items:
-      - id: systemd-service
-        desc: "ragapi systemd unit (uvicorn on 127.0.0.1:8000)"
-        done: false
-      - id: caddy-reverse-proxy
-        desc: "Caddy + basic auth + TLS"
-        done: false
-      - id: backup-policy
-        desc: "Back up docs/ regularly (exclude .chroma/)"
-        done: false
+phases:
+  - id: ingest-baseline
+    title: Baseline TN Sunshine ingest
+    done: true
+    notes:
+      - seeded TPRA, OORC guidelines, quickref, regs
+      - vector store rebuilt
+
+  - id: ingest-fees
+    title: Fee schedule (OORC) & QA anchors
+    done: true
+    deliverables:
+      - oorc-schedule-of-reasonable-charges.md with Q&A anchors
+
+  - id: retrieval-tuning
+    title: Retrieval scoring tune for fee Q&A
+    done: true
+    params:
+      TOP_K: 24
+      MAX_DISTANCE: 0.90
+      HYBRID_ALPHA: 1.0
+
+  - id: herdocs
+    title: HerDocs county/city policy set
+    done: false
+    plan:
+      - import selected city/county policies (HTML/PDF) via tools/import_url.py
+      - normalize front-matter (topic: sunshine, jurisdiction: TN)
+      - add high-signal Q&A anchors per doc
+      - reindex + smoke tests
+
+  - id: deploy
+    title: Caddy reverse-proxy + systemd
+    done: false
+    plan:
+      - systemd unit for uvicorn
+      - Caddyfile: TLS, /health, /docs (if exposed)
+      - Allow only LAN / VPN if needed
+

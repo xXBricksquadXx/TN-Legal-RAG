@@ -1,108 +1,112 @@
-import os, glob, re, json
+import os
+import glob
 from pathlib import Path
-from typing import List, Tuple, Dict
+from typing import Dict, Tuple, List
 
 import chromadb
-from chromadb.utils import embedding_functions
+from sentence_transformers import SentenceTransformer
 
-# -------- config (env-overridable)
-DATA_DIR   = os.getenv("DATA_DIR", "docs")
-CHROMA_DIR = os.getenv("CHROMA_DIR", ".chroma")
-COLLECTION = os.getenv("CHROMA_COLLECTION", "tn_legal")
-EMB_MODEL  = os.getenv("EMBED_MODEL", "all-MiniLM-L6-v2")  # sentence-transformers
 
-# simple text splitter: paragraph blocks with a soft max char count
-def split_into_chunks(text: str, max_chars: int = 900) -> List[str]:
-    paras = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
-    chunks: List[str] = []
-    buf: List[str] = []
-    size = 0
-    for p in paras:
-        if size + len(p) + 2 <= max_chars:
-            buf.append(p); size += len(p) + 2
-        else:
-            if buf: chunks.append("\n\n".join(buf))
-            buf, size = [p], len(p)
-    if buf: chunks.append("\n\n".join(buf))
-    return chunks
+# ---- config (env) ----
+CHROMA_DIR   = os.environ.get("CHROMA_DIR", ".chroma")
+COLLECTION   = os.environ.get("CHROMA_COLLECTION", "tn_legal")
+EMBED_MODEL  = os.environ.get("EMBED_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 
-def parse_front_matter(txt: str) -> Dict:
-    """
-    Supports simple YAML-style front-matter fenced by --- ... --- at the top.
-    We parse it with a minimal regex to avoid adding a YAML dependency.
-    """
-    m = re.match(r"^---\s*\n(.*?)\n---\s*\n", txt, re.S)
-    meta = {}
-    if m:
-        block = m.group(1)
-        for line in block.splitlines():
-            if ":" in line:
-                k, v = line.split(":", 1)
-                meta[k.strip()] = v.strip().strip('"').strip("'")
-    return meta
+DOC_GLOB     = os.environ.get("DOC_GLOB", "docs/**/*.md")
+MAX_CHARS    = int(os.environ.get("INDEX_MAX_CHARS", "900"))   # chunk size
+OVERLAP      = int(os.environ.get("INDEX_OVERLAP",   "150"))   # overlap chars
 
-def load_files(root: str) -> List[str]:
-    exts = (".txt", ".md")
-    paths = []
-    for p in glob.glob(os.path.join(root, "**", "*"), recursive=True):
-        if os.path.isfile(p) and p.lower().endswith(exts):
-            paths.append(p)
-    return sorted(paths)
 
-def build_payload(paths: List[str]) -> Tuple[List[str], List[str], List[Dict]]:
-    ids, docs, metas = [], [], []
-    for path in paths:
-        try:
-            txt = Path(path).read_text(encoding="utf-8", errors="ignore").strip()
-        except Exception:
-            continue
-        if not txt:
-            continue
-
-        fm = parse_front_matter(txt)
-        chunks = split_into_chunks(txt, max_chars=900)
-        for i, ch in enumerate(chunks):
-            cid = f"{path}::chunk{i:04d}"
-            ids.append(cid)
-            docs.append(ch)
-            metas.append({
-                "source": path,
-                "chunk": i,
-                "n_chunks": len(chunks),
-                # helpful filters:
-                "topic": fm.get("topic", ""),
-                "jurisdiction": fm.get("jurisdiction", ""),
-                "version_date": fm.get("version_date", fm.get("accessed", "")),
-            })
-    return ids, docs, metas
-
-def main():
-    os.makedirs(CHROMA_DIR, exist_ok=True)
-    client = chromadb.PersistentClient(path=CHROMA_DIR)
-
-    # (re)create the collection for clean builds
+# ---- helpers ----
+def recreate_collection(client: chromadb.Client) -> chromadb.api.models.Collection.Collection:
+    """Rebuild the collection with explicit cosine metric to match ST embeddings."""
     try:
         client.delete_collection(COLLECTION)
     except Exception:
         pass
+    return client.create_collection(name=COLLECTION, metadata={"hnsw:space": "cosine"})
 
-    ef = embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name=EMB_MODEL, device=None
-    )
-    col = client.create_collection(COLLECTION, embedding_function=ef)
 
-    files = load_files(DATA_DIR)
-    if not files:
-        print(f"No .txt/.md in ./{DATA_DIR}. Add files and re-run.")
-        return
+def parse_frontmatter(text: str) -> Tuple[Dict[str, str], str]:
+    """Very small front-matter parser (YAML-ish, key: value)."""
+    if text.startswith("---"):
+        end = text.find("\n---", 4)
+        if end != -1:
+            meta: Dict[str, str] = {}
+            for line in text[4:end].splitlines():
+                if ":" in line:
+                    k, v = line.split(":", 1)
+                    meta[k.strip()] = v.strip().strip('"')
+            body = text[end + 4 :].strip()
+            return meta, body
+    return {}, text
 
-    ids, docs, metas = build_payload(files)
-    if not ids:
-        print("Nothing to index (empty files?)")
-        return
 
-    col.add(ids=ids, documents=docs, metadatas=metas)
-    print(f"Indexed {len(ids)} chunks from {len(files)} files → ./{CHROMA_DIR}")
+def chunk_text(text: str, max_chars: int, overlap: int) -> List[str]:
+    """Chunk with character overlap, trying not to cut words too awkwardly."""
+    out: List[str] = []
+    i = 0
+    n = len(text)
+    if n <= max_chars:
+        return [text.strip()] if text.strip() else []
+
+    while i < n:
+        j = min(n, i + max_chars)
+        if j < n:
+            # try to break at last whitespace before j
+            k = text.rfind(" ", i + int(max_chars * 0.6), j)
+            if k != -1:
+                j = k
+        out.append(text[i:j].strip())
+        if j >= n:
+            break
+        i = max(0, j - overlap)
+    return [c for c in out if c]
+
+
+def main() -> None:
+    print(f"Embedding model: {EMBED_MODEL}")
+    embedder = SentenceTransformer(EMBED_MODEL)
+
+    client = chromadb.PersistentClient(path=CHROMA_DIR)
+    coll = recreate_collection(client)
+
+    files = sorted(glob.glob(DOC_GLOB, recursive=True))
+    total_chunks = 0
+
+    for path in files:
+        p = Path(path)
+        raw = p.read_text(encoding="utf-8", errors="replace")
+        meta, body = parse_frontmatter(raw)
+        if not body.strip():
+            continue
+
+        chunks = chunk_text(body, MAX_CHARS, OVERLAP)
+        if not chunks:
+            continue
+
+        embeddings = embedder.encode(chunks, normalize_embeddings=True)
+
+        n = len(chunks)
+        ids = [f"{path}::chunk{idx:04d}" for idx in range(n)]
+        metadatas = []
+        for idx in range(n):
+            m = {
+                "source": path,
+                "chunk": idx,
+                "n_chunks": n,
+            }
+            # carry selected front-matter into metadata
+            for k in ("jurisdiction", "topic", "version_date", "doc_id", "citation", "source_url"):
+                if k in meta:
+                    m[k] = meta[k]
+            metadatas.append(m)
+
+        coll.add(ids=ids, documents=chunks, embeddings=embeddings, metadatas=metadatas)
+        total_chunks += n
+
+    print(f"Indexed {total_chunks} chunks from {len(files)} files -> {CHROMA_DIR}")
+
 
 if __name__ == "__main__":
     main()
