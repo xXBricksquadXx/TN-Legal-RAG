@@ -19,9 +19,11 @@ EMB_MODEL    = os.getenv("EMBED_MODEL", "all-MiniLM-L6-v2")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5:1.5b-instruct")
 OLLAMA_HOST  = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
 OLLAMA_URL   = f"{OLLAMA_HOST}/api/generate"
-HTTP_TIMEOUT = 180  # a bit longer for small CPU boxes
 
-# warm cache for local embed model (avoids first-call slowness)
+HTTP_TIMEOUT = int(os.getenv("HTTP_TIMEOUT", "120"))
+MAX_DISTANCE = float(os.getenv("MAX_DISTANCE", "0.35"))  # filter weak matches
+
+# warm cache for embeddings
 _ = SentenceTransformer(EMB_MODEL)
 
 # ========= chroma =========
@@ -36,28 +38,29 @@ except Exception:
 
 # ========= prompting =========
 PROMPT_TEMPLATE = (
-    "You must answer using ONLY the text in Context.\n"
-    "If the answer is present, return it CONCISELY and VERBATIM if possible.\n"
-    "If it is not present, reply exactly: Not in docs.\n\n"
-    "Context:\n{context}\n\n"
+    "You are a careful assistant. Answer ONLY using the provided context.\n"
+    "If the answer is not fully supported by the context, reply exactly: Not in docs.\n\n"
+    "{context}\n\n"
     "Question: {q}\n\n"
     "Answer:"
 )
 
-def format_context(docs: List[str], metas: List[Dict], k: int) -> str:
+def format_context(docs: List[str], metas: List[Dict], dists: List[float], k: int) -> str:
     blocks = []
     for i in range(min(k, len(docs))):
+        if dists and i < len(dists) and dists[i] > MAX_DISTANCE:
+            continue
         src = (metas[i] or {}).get("source", "unknown")
         tag = Path(src).name
-        blocks.append(f"[Source: {tag}]\n{docs[i]}")
-    return "\n\n---\n\n".join(blocks) if blocks else "(no context)"
+        dist_str = f"{dists[i]:.2f}" if dists and i < len(dists) else "?"
+        blocks.append(f"[Source: {tag} | dist={dist_str}]\n{docs[i]}")
+    return "\n\n---\n\n".join(blocks) if blocks else ""
 
 def unique_sources(metas: List[Dict], ids: List[str]) -> List[str]:
-    out: List[str] = []
+    out = []
     for i, m in enumerate(metas):
         s = (m or {}).get("source")
         if not s and i < len(ids):
-            # best-effort fallback to file stem from id
             s = ids[i].split("::", 1)[0]
         if s and s not in out:
             out.append(s)
@@ -69,12 +72,7 @@ def ollama_complete(prompt: str, max_tokens: int) -> str:
         json={
             "model": OLLAMA_MODEL,
             "prompt": prompt,
-            "options": {
-                "num_predict": max_tokens,
-                "temperature": 0,       # be literal
-                "top_p": 0.9,
-                "repeat_penalty": 1.1
-            },
+            "options": {"num_predict": max_tokens, "temperature": 0.1},
             "stream": False,
         },
         timeout=HTTP_TIMEOUT,
@@ -83,14 +81,14 @@ def ollama_complete(prompt: str, max_tokens: int) -> str:
     return (r.json() or {}).get("response", "").strip()
 
 # ========= fastapi =========
-app = FastAPI(title="TN-Legal-RAG", version="0.3")
+app = FastAPI(title="TN-Legal-RAG", version="0.4")
 
 class Query(BaseModel):
     q: str
     k: int = 4
     max_tokens: int = 256
 
-# simple splitter (same as indexer) for upload-time chunking
+# upload splitter
 def split_into_chunks(text: str, max_chars: int = 900):
     paras = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
     chunks = []
@@ -106,36 +104,15 @@ def split_into_chunks(text: str, max_chars: int = 900):
 
 @app.get("/health")
 def health():
-    return {"ok": True, "model": OLLAMA_MODEL, "embed": EMB_MODEL}
+    return {
+        "ok": True,
+        "model": OLLAMA_MODEL,
+        "embed": EMB_MODEL,
+        "max_distance": MAX_DISTANCE,
+    }
 
 @app.post("/query")
 def query(body: Query):
-    try:
-        res = collection.query(
-            query_texts=[body.q],
-            n_results=body.k,
-            include=["documents", "metadatas", "distances"],  # do NOT ask for "ids"
-        )
-        docs  = (res.get("documents")  or [[]])[0]
-        metas = (res.get("metadatas")  or [[]])[0]
-        # ids may or may not be returned; handle gracefully
-        ids   = (res.get("ids")        or [[]])[0] if isinstance(res.get("ids"), list) else []
-
-        ctx    = format_context(docs, metas, body.k)
-        prompt = PROMPT_TEMPLATE.format(context=ctx, q=body.q)
-        answer = ollama_complete(prompt, body.max_tokens)
-        return {
-            "answer": answer,
-            "retrieved_docs_count": len(docs),
-            "sources": unique_sources(metas, ids),
-            "model": OLLAMA_MODEL,
-        }
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"query failed: {e}")
-
-@app.post("/debug_query")
-def debug_query(body: Query):
-    """Returns raw Chroma results + the final prompt (for dev only)."""
     res = collection.query(
         query_texts=[body.q],
         n_results=body.k,
@@ -144,16 +121,44 @@ def debug_query(body: Query):
     docs  = (res.get("documents")  or [[]])[0]
     metas = (res.get("metadatas")  or [[]])[0]
     ids   = (res.get("ids")        or [[]])[0] if isinstance(res.get("ids"), list) else []
-    ctx   = format_context(docs, metas, body.k)
+    dists = (res.get("distances")  or [[]])[0]
+
+    ctx = format_context(docs, metas, dists, body.k)
+    if not ctx:
+        return {"answer": "Not in docs.", "sources": [], "model": OLLAMA_MODEL}
+
+    prompt = PROMPT_TEMPLATE.format(context=ctx, q=body.q)
+    answer = ollama_complete(prompt, body.max_tokens)
+    return {
+        "answer": answer,
+        "retrieved_docs_count": len(docs),
+        "sources": unique_sources(metas, ids),
+        "model": OLLAMA_MODEL,
+        "best_distance": (min(dists) if dists else None),
+    }
+
+@app.post("/debug_query")
+def debug_query(body: Query):
+    res = collection.query(
+        query_texts=[body.q],
+        n_results=body.k,
+        include=["documents", "metadatas", "distances"],
+    )
+    docs  = (res.get("documents")  or [[]])[0]
+    metas = (res.get("metadatas")  or [[]])[0]
+    ids   = (res.get("ids")        or [[]])[0] if isinstance(res.get("ids"), list) else []
+    dists = (res.get("distances")  or [[]])[0]
+    ctx   = format_context(docs, metas, dists, body.k)
     return {
         "raw": res,
         "prompt": PROMPT_TEMPLATE.format(context=ctx, q=body.q),
         "sources": unique_sources(metas, ids),
+        "distances": dists,
+        "threshold": MAX_DISTANCE,
     }
 
 @app.post("/upload")
 async def upload(file: UploadFile = File(...)):
-    """Save to ./docs and add chunked records with metadata."""
     os.makedirs(DATA_DIR, exist_ok=True)
     path = os.path.join(DATA_DIR, file.filename)
     content = await file.read()
@@ -162,7 +167,7 @@ async def upload(file: UploadFile = File(...)):
         return {"ok": False, "error": "Empty/unsupported file"}
     Path(path).write_text(text, encoding="utf-8", errors="ignore")
 
-    chunks = split_into_chunks(text, max_chars=900)
+    chunks = split_into_chunks(text)
     ids, docs, metas = [], [], []
     for i, ch in enumerate(chunks):
         ids.append(f"{path}::chunk{i:04d}")
@@ -175,18 +180,13 @@ async def upload(file: UploadFile = File(...)):
 
 @app.post("/forget")
 def forget(doc_id: str = Form(...)):
-    """doc_id can be the file path OR a specific chunk id."""
     try:
         if "::" not in doc_id:
-            # delete all chunks for that file via metadata filter
             res = collection.get(where={"source": doc_id}, include=["ids"])
             ids = res.get("ids") or []
             if ids:
                 collection.delete(ids=ids)
-            try:
-                Path(doc_id).unlink(missing_ok=True)
-            except Exception:
-                pass
+            Path(doc_id).unlink(missing_ok=True)
             return {"ok": True, "deleted": {"file": doc_id, "chunks": len(ids)}}
         else:
             collection.delete(ids=[doc_id])
@@ -194,34 +194,41 @@ def forget(doc_id: str = Form(...)):
     except Exception as e:
         return {"ok": False, "error": str(e)}
 
+# ========= minimal HTML UI =========
 INDEX_HTML = """<!doctype html>
 <html><head><meta charset="utf-8"><title>Private RAG</title>
 <style>
-body{font:16px system-ui;margin:24px;max-width:800px}
-input,button,textarea{font:inherit}
+body{font:16px system-ui;margin:24px;max-width:880px}
+input,button{font:inherit}
 #answer{white-space:pre-wrap;padding:12px;border:1px solid #ddd;border-radius:8px;margin-top:8px}
 #sources{font-size:14px;color:#555;margin-top:4px}
 .small{font-size:12px;color:#777}
+button{padding:8px 14px;border-radius:8px;border:1px solid #bbb;background:#f8f8f8;cursor:pointer}
+input[type=text]{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc}
+hr{margin:20px 0}
 </style></head><body>
 <h1>Private RAG</h1>
 <form id="ask">
-  <input id="q" placeholder="Ask your docs…" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc">
+  <input id="q" type="text" placeholder="Ask your docs…">
   <button style="margin-top:10px">Ask</button>
 </form>
-<div id="answer"></div><div id="sources" class="small"></div>
+<div id="answer"></div>
+<div id="sources" class="small"></div>
 <hr>
 <h3>Upload .txt/.md</h3>
 <input type="file" id="file"><button id="up">Upload</button>
 <pre id="upres" class="small"></pre>
 <hr>
 <h3>Forget a doc</h3>
-<input id="docid" placeholder="docs/filename.txt or docs/file.txt::chunk0003" style="width:100%">
+<input id="docid" type="text" placeholder="docs/filename.txt or docs/file.txt::chunk0003">
 <button id="del">Delete</button>
+
 <script>
 function postJSON(url, data){
   return fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
-    .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); });
+   .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); });
 }
+
 (function(){
   var form = document.getElementById('ask');
   var qEl  = document.getElementById('q');
@@ -237,7 +244,7 @@ function postJSON(url, data){
     postJSON('/query', {q:q, k:4, max_tokens:256})
       .then(function(j){
         ans.textContent = (j && j.answer) ? j.answer : "(no answer)";
-        if(j && j.sources && j.sources.length){ srcs.textContent = "sources: " + j.sources.join(", "); }
+        if(j && j.sources && j.sources.length){ srcs.textContent = "sources: " + j.sources.join(', '); }
       })
       .catch(function(err){ ans.textContent = "Error: " + err.message; });
   });
