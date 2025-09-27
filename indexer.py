@@ -1,65 +1,84 @@
-import os, glob, math
+# indexer.py
+import os, glob, re
+from pathlib import Path
+from typing import List, Tuple, Dict
+
 import chromadb
 from chromadb.utils import embedding_functions
-from typing import List, Tuple
 
-EMB_MODEL = "all-MiniLM-L6-v2"
-CHUNK_SIZE = 800
-CHUNK_OVERLAP = 120
+# -------- config
+DATA_DIR = "docs"
+CHROMA_DIR = ".chroma"
+COLLECTION = "personal"
+EMB_MODEL = "all-MiniLM-L6-v2"  # sentence-transformers short model
 
-def _chunk_text(t: str, size=CHUNK_SIZE, overlap=CHUNK_OVERLAP) -> List[str]:
-    t = " ".join(t.split())  # normalize whitespace
-    if len(t) <= size:
-        return [t]
-    chunks = []
-    start = 0
-    while start < len(t):
-        end = min(len(t), start + size)
-        chunks.append(t[start:end])
-        if end == len(t):
-            break
-        start = max(0, end - overlap)
+# simple text splitter: paragraph blocks with a soft max char count
+def split_into_chunks(text: str, max_chars: int = 900) -> List[str]:
+    paras = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+    chunks: List[str] = []
+    buf: List[str] = []
+    size = 0
+    for p in paras:
+        if size + len(p) + 2 <= max_chars:
+            buf.append(p); size += len(p) + 2
+        else:
+            if buf: chunks.append("\n\n".join(buf))
+            buf, size = [p], len(p)
+    if buf: chunks.append("\n\n".join(buf))
     return chunks
 
-def _load_and_chunk(root="docs") -> Tuple[List[str], List[str], List[dict]]:
-    ids, docs, metas = [], [], []
+def load_files(root: str) -> List[str]:
+    exts = (".txt", ".md")
+    paths = []
     for p in glob.glob(os.path.join(root, "**", "*"), recursive=True):
-        if not os.path.isfile(p):
-            continue
+        if os.path.isfile(p) and p.lower().endswith(exts):
+            paths.append(p)
+    return sorted(paths)
+
+def build_payload(paths: List[str]) -> Tuple[List[str], List[str], List[Dict]]:
+    ids, docs, metas = [], [], []
+    for path in paths:
         try:
-            with open(p, "r", encoding="utf-8", errors="ignore") as f:
-                txt = f.read().strip()
+            txt = Path(path).read_text(encoding="utf-8", errors="ignore").strip()
         except Exception:
             continue
         if not txt:
             continue
-        chs = _chunk_text(txt)
-        for i, ch in enumerate(chs):
-            cid = f"{p}#chunk-{i:04d}"
+        chunks = split_into_chunks(txt, max_chars=900)
+        for i, ch in enumerate(chunks):
+            cid = f"{path}::chunk{i:04d}"
             ids.append(cid)
             docs.append(ch)
-            metas.append({"source": p, "chunk": i})
+            metas.append({"source": path, "chunk": i, "n_chunks": len(chunks)})
     return ids, docs, metas
 
 def main():
-    os.makedirs(".chroma", exist_ok=True)
-    client = chromadb.PersistentClient(path=".chroma")
+    os.makedirs(CHROMA_DIR, exist_ok=True)
+    client = chromadb.PersistentClient(path=CHROMA_DIR)
 
-    # reset collection idempotently
+    # (re)create the collection
     try:
-        client.delete_collection("personal")
+        client.delete_collection(COLLECTION)
     except Exception:
         pass
 
-    ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name=EMB_MODEL, device=None)
-    col = client.create_collection("personal", embedding_function=ef)
+    ef = embedding_functions.SentenceTransformerEmbeddingFunction(
+        model_name=EMB_MODEL, device=None
+    )
+    col = client.create_collection(COLLECTION, embedding_function=ef)
 
-    ids, docs, metas = _load_and_chunk("docs")
-    if not ids:
-        print("No files found in ./docs. Add some .txt/.md and re-run.")
+    files = load_files(DATA_DIR)
+    if not files:
+        print(f"No .txt/.md in ./{DATA_DIR}. Add files and re-run.")
         return
+
+    ids, docs, metas = build_payload(files)
+    if not ids:
+        print("Nothing to index (empty files?)")
+        return
+
     col.add(ids=ids, documents=docs, metadatas=metas)
-    print(f"Indexed {len(ids)} chunks from {len(set(m['source'] for m in metas))} files → ./.chroma")
+    print(f"Indexed {len(ids)} chunks from {len(files)} files → ./{CHROMA_DIR}")
 
 if __name__ == "__main__":
     main()
