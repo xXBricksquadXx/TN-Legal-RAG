@@ -1,8 +1,7 @@
-# rag_api.py
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-from typing import Dict, List
+from typing import Dict, List, Optional
 from pathlib import Path
 import os, re, requests
 
@@ -11,9 +10,9 @@ from chromadb.utils import embedding_functions
 from sentence_transformers import SentenceTransformer
 
 # ========= config =========
-DATA_DIR     = "docs"
-CHROMA_DIR   = ".chroma"
-COLLECTION   = "personal"
+DATA_DIR     = os.getenv("DATA_DIR", "docs")
+CHROMA_DIR   = os.getenv("CHROMA_DIR", ".chroma")
+COLLECTION   = os.getenv("CHROMA_COLLECTION", "tn_legal")  # was "personal"
 EMB_MODEL    = os.getenv("EMBED_MODEL", "all-MiniLM-L6-v2")
 
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5:1.5b-instruct")
@@ -21,9 +20,9 @@ OLLAMA_HOST  = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
 OLLAMA_URL   = f"{OLLAMA_HOST}/api/generate"
 
 HTTP_TIMEOUT = int(os.getenv("HTTP_TIMEOUT", "120"))
-MAX_DISTANCE = float(os.getenv("MAX_DISTANCE", "0.35"))  # filter weak matches
+MAX_DISTANCE = float(os.getenv("MAX_DISTANCE", "0.75"))  # tightened default
 
-# warm cache for embeddings
+# warm cache for embeddings (helps the first request)
 _ = SentenceTransformer(EMB_MODEL)
 
 # ========= chroma =========
@@ -72,7 +71,7 @@ def ollama_complete(prompt: str, max_tokens: int) -> str:
         json={
             "model": OLLAMA_MODEL,
             "prompt": prompt,
-            "options": {"num_predict": max_tokens, "temperature": 0.1},
+            "options": {"num_predict": max_tokens, "temperature": 0.1, "repeat_penalty": 1.1},
             "stream": False,
         },
         timeout=HTTP_TIMEOUT,
@@ -81,12 +80,14 @@ def ollama_complete(prompt: str, max_tokens: int) -> str:
     return (r.json() or {}).get("response", "").strip()
 
 # ========= fastapi =========
-app = FastAPI(title="TN-Legal-RAG", version="0.4")
+app = FastAPI(title="TN-Legal-RAG", version="0.5")
 
 class Query(BaseModel):
     q: str
-    k: int = 4
+    k: int = 6
     max_tokens: int = 256
+    topic: Optional[str] = None
+    jurisdiction: Optional[str] = None
 
 # upload splitter
 def split_into_chunks(text: str, max_chars: int = 900):
@@ -106,55 +107,68 @@ def split_into_chunks(text: str, max_chars: int = 900):
 def health():
     return {
         "ok": True,
+        "collection": COLLECTION,
         "model": OLLAMA_MODEL,
         "embed": EMB_MODEL,
         "max_distance": MAX_DISTANCE,
     }
 
-@app.post("/query")
-def query(body: Query):
+def _retrieve(q: str, k: int, topic: Optional[str], jurisdiction: Optional[str]):
+    where = {}
+    if topic: where["topic"] = topic
+    if jurisdiction: where["jurisdiction"] = jurisdiction
     res = collection.query(
-        query_texts=[body.q],
-        n_results=body.k,
-        include=["documents", "metadatas", "distances"],
+        query_texts=[q],
+        n_results=k,
+        include=["documents", "metadatas", "distances", "ids"],
+        where=where or None,
     )
     docs  = (res.get("documents")  or [[]])[0]
     metas = (res.get("metadatas")  or [[]])[0]
     ids   = (res.get("ids")        or [[]])[0] if isinstance(res.get("ids"), list) else []
     dists = (res.get("distances")  or [[]])[0]
+    return docs, metas, ids, dists
 
+@app.post("/query")
+def query(body: Query):
+    docs, metas, ids, dists = _retrieve(body.q, body.k, body.topic, body.jurisdiction)
     ctx = format_context(docs, metas, dists, body.k)
     if not ctx:
-        return {"answer": "Not in docs.", "sources": [], "model": OLLAMA_MODEL}
+        return {"answer": "Not in docs", "sources": [], "model": OLLAMA_MODEL, "threshold": MAX_DISTANCE}
 
     prompt = PROMPT_TEMPLATE.format(context=ctx, q=body.q)
-    answer = ollama_complete(prompt, body.max_tokens)
+    try:
+        answer = ollama_complete(prompt, body.max_tokens)
+    except Exception:
+        return {
+            "answer": "Not in docs (LLM offline).",
+            "sources": unique_sources(metas, ids),
+            "model": OLLAMA_MODEL,
+            "threshold": MAX_DISTANCE,
+        }
+
+    answer = answer.strip() or "Not in docs"
     return {
         "answer": answer,
-        "retrieved_docs_count": len(docs),
+        "retrieved_docs_count": sum(1 for d in dists if d <= MAX_DISTANCE),
         "sources": unique_sources(metas, ids),
         "model": OLLAMA_MODEL,
         "best_distance": (min(dists) if dists else None),
+        "threshold": MAX_DISTANCE,
     }
 
 @app.post("/debug_query")
 def debug_query(body: Query):
-    res = collection.query(
-        query_texts=[body.q],
-        n_results=body.k,
-        include=["documents", "metadatas", "distances"],
-    )
-    docs  = (res.get("documents")  or [[]])[0]
-    metas = (res.get("metadatas")  or [[]])[0]
-    ids   = (res.get("ids")        or [[]])[0] if isinstance(res.get("ids"), list) else []
-    dists = (res.get("distances")  or [[]])[0]
+    docs, metas, ids, dists = _retrieve(body.q, body.k, body.topic, body.jurisdiction)
     ctx   = format_context(docs, metas, dists, body.k)
     return {
-        "raw": res,
+        "query": body.q,
+        "filters": {"topic": body.topic, "jurisdiction": body.jurisdiction},
+        "raw_distances": dists,
+        "threshold": MAX_DISTANCE,
         "prompt": PROMPT_TEMPLATE.format(context=ctx, q=body.q),
         "sources": unique_sources(metas, ids),
-        "distances": dists,
-        "threshold": MAX_DISTANCE,
+        "raw": {"documents": docs, "metadatas": metas, "ids": ids},
     }
 
 @app.post("/upload")
@@ -196,7 +210,7 @@ def forget(doc_id: str = Form(...)):
 
 # ========= minimal HTML UI =========
 INDEX_HTML = """<!doctype html>
-<html><head><meta charset="utf-8"><title>Private RAG</title>
+<html><head><meta charset="utf-8"><title>TN Legal RAG</title>
 <style>
 body{font:16px system-ui;margin:24px;max-width:880px}
 input,button{font:inherit}
@@ -207,9 +221,9 @@ button{padding:8px 14px;border-radius:8px;border:1px solid #bbb;background:#f8f8
 input[type=text]{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc}
 hr{margin:20px 0}
 </style></head><body>
-<h1>Private RAG</h1>
+<h1>TN Legal RAG</h1>
 <form id="ask">
-  <input id="q" type="text" placeholder="Ask your docs…">
+  <input id="q" type="text" placeholder="Ask TN regs / sunshine / budgets…">
   <button style="margin-top:10px">Ask</button>
 </form>
 <div id="answer"></div>
@@ -220,7 +234,7 @@ hr{margin:20px 0}
 <pre id="upres" class="small"></pre>
 <hr>
 <h3>Forget a doc</h3>
-<input id="docid" type="text" placeholder="docs/filename.txt or docs/file.txt::chunk0003">
+<input id="docid" type="text" placeholder="docs/filename.md or docs/file.md::chunk0003">
 <button id="del">Delete</button>
 
 <script>
@@ -241,7 +255,7 @@ function postJSON(url, data){
     if(!q){ ans.textContent="(enter a question)"; return; }
     ans.textContent = "Thinking…";
     srcs.textContent = "";
-    postJSON('/query', {q:q, k:4, max_tokens:256})
+    postJSON('/query', {q:q, k:6, max_tokens:256})
       .then(function(j){
         ans.textContent = (j && j.answer) ? j.answer : "(no answer)";
         if(j && j.sources && j.sources.length){ srcs.textContent = "sources: " + j.sources.join(', '); }
