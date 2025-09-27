@@ -1,0 +1,40 @@
+version: 1
+milestones:
+  - id: m1-curation
+    title: "TN official sources seeded"
+    items:
+      - id: sunshine-oorc
+        desc: "OORC: best practices, schedule of reasonable charges, model policy"
+        done: false
+      - id: regs-key-chapters
+        desc: "1360-04-01, 1360-01-02, 0020-01-01 summaries"
+        done: false
+      - id: code-pra
+        desc: "T.C.A. § 10-7-503 summary + short excerpt"
+        done: false
+    exit_criteria:
+      - "eval score >= 80% on sunshine/regs smoke set"
+  - id: m2-productize
+    title: "Docs + eval + CI basics"
+    items:
+      - id: readme-sync
+        desc: "README reflects endpoints & config"
+        done: false
+      - id: eval-harness
+        desc: "jsonl eval + script"
+        done: false
+      - id: pr-template
+        desc: "PR template enforces doc & milestone updates"
+        done: false
+  - id: m3-deploy
+    title: "Dell deployment"
+    items:
+      - id: systemd-service
+        desc: "ragapi systemd unit (uvicorn on 127.0.0.1:8000)"
+        done: false
+      - id: caddy-reverse-proxy
+        desc: "Caddy + basic auth + TLS"
+        done: false
+      - id: backup-policy
+        desc: "Back up docs/ regularly (exclude .chroma/)"
+        done: false
