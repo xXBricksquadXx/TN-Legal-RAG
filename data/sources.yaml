@@ -1,0 +1,21 @@
+- url: https://www.tn.gov/safety/publicsafety/openrecords.html
+  title: "TN Dept. of Safety \u2014 Open Records (TPRA)"
+  topic: sunshine
+  jurisdiction: TN
+  citation: "T.C.A. \xA7 10-7-503 et seq.; Dept. of Safety policy info"
+  path: docs/tn/sunshine/tdos-open-records.md
+  version_date: ''
+- url: https://www.comptroller.tn.gov/content/dam/cot/orc/documents/oorc/policies-and-guidelines/ScheduleofReasonableCharges.pdf
+  title: TN Schedule of Reasonable Charges (TPRA fees)
+  topic: sunshine
+  jurisdiction: TN
+  citation: OORC Schedule of Reasonable Charges
+  path: docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md
+  version_date: '2017-01-20'
+- url: https://comptroller.tn.gov/office-functions/open-records-counsel/office-of-open-records-counsel/policies---guidelines.html
+  title: OORC Best Practices & Guidelines (TPRA)
+  topic: sunshine
+  jurisdiction: TN
+  citation: OORC Best Practices & Guidelines
+  path: docs/tn/sunshine/oorc-best-practices-and-guidelines-2022-09-19.md
+  version_date: '2017-01-20'
