@@ -1,0 +1,52 @@
+- id: tpra-eligibility
+  q: Who can request records under the TPRA?
+  topic: sunshine
+  expect_sources_any:
+  - docs/tn/code/tca-10-7-503-public-records-act.md
+  expect_contains_any:
+  - TN citizen
+  - Tennessee citizen
+- id: tdos-portal
+  q: Where do I submit a TPRA request to TDOS?
+  topic: sunshine
+  expect_contains: Safety.OpenRecords@tn.gov
+  expect_sources_any:
+  - docs/tn/sunshine/tdos-open-records.md
+- id: tpra-fees
+  q: What are copy charges and when is labor charged for TPRA requests?
+  topic: sunshine
+  expect_contains: $0.15
+  expect_sources_any:
+  - docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md
+- id: ev-404b
+  q: What must a Tennessee court find to admit 404(b) other-acts evidence?
+  topic: bar
+  expect_contains: '403'
+  expect_sources_any:
+  - docs/tn/bar/distinctions/evidence/tn-v-mbe-evidence-404b.md
+- id: tpra-eligibility
+  q: Who can request records under the TPRA?
+  topic: sunshine
+  expect_sources_any:
+  - docs/tn/code/tca-10-7-503-public-records-act.md
+  expect_contains_any:
+  - TN citizen
+  - Tennessee citizen
+- id: tdos-portal
+  q: Where do I submit a TPRA request to TDOS?
+  topic: sunshine
+  expect_contains: Safety.OpenRecords@tn.gov
+  expect_sources_any:
+  - docs/tn/sunshine/tdos-open-records.md
+- id: tpra-fees
+  q: What are copy charges and when is labor charged for TPRA requests?
+  topic: sunshine
+  expect_contains: $0.15
+  expect_sources_any:
+  - docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md
+- id: ev-404b
+  q: What must a Tennessee court find to admit 404(b) other-acts evidence?
+  topic: bar
+  expect_contains: '403'
+  expect_sources_any:
+  - docs/tn/bar/distinctions/evidence/tn-v-mbe-evidence-404b.md
