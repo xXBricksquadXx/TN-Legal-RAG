@@ -1,7 +1,7 @@
 ---
 title: "TN Schedule of Reasonable Charges (TPRA fees)"
 jurisdiction: "TN"
-topic: "sunshine"     # sunshine | regs | budget | atty | code
+topic: "sunshine"
 source_url: "https://www.comptroller.tn.gov/content/dam/cot/orc/documents/oorc/policies-and-guidelines/ScheduleofReasonableCharges.pdf"
 citation: "Office of Open Records Counsel, Schedule of Reasonable Charges (Effective Jan. 20, 2017)"
 doc_id: "tn-sunshine-schedule-of-reasonable-charges-20170120"
@@ -56,3 +56,11 @@ The OORC Schedule sets default, statewide fee guidelines for responding to Tenne
 **A:** **$0.15/page (B/W)**, **$0.50/page (color)**; **labor after the first hour** (labor threshold), with itemized time and the **lowest-paid qualified employee**.
 
 **Keywords:** TPRA fees, copy charges, per-page, $0.15, $0.50, labor threshold, first hour free, estimate, Schedule of Reasonable Charges, OORC
+
+### Q&A (anchor)
+**Q:** What are copy charges and when is labor charged?
+**A:** **$0.15/page B/W**, **$0.50/page color**. **Labor may be charged after the first hour**, using the **lowest-paid qualified employee**, with time **itemized**. (OORC Schedule of Reasonable Charges)
+
+### Q&A (anchor)
+**Q:** What are copy charges and when is labor charged?
+**A:** **$0.15/page B/W**, **$0.50/page color**. **Labor may be charged after the first hour**, using the **lowest-paid qualified employee**, with time **itemized**. (OORC Schedule of Reasonable Charges)
