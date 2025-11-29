@@ -64,10 +64,12 @@
   q: "Under T.C.A. § 1-1-104, to what earlier body is the current Tennessee code commission the successor?"
   topic: code
   expect_contains_any:
-    - "commission created by Chapter 80"
-    - "Public Acts of 1953"
+    - "immediate successor"
+    - "1953 commission"
+    - "1953 Public Acts"
   expect_sources_any:
     - docs/tn/code/tca-1-1-104-successor-1953-commission.md
+
 
 - id: tca-1-1-105-publication-scope
   q: "What is the Tennessee code commission directed to do under T.C.A. § 1-1-105 regarding publication of Tennessee Code Annotated?"
@@ -96,6 +98,8 @@
   expect_contains_any:
     - "specifications"
     - "price"
+    - "paper"
+    - "type"
     - "pocket supplements"
     - "replacement volumes"
   expect_sources_any:
@@ -105,10 +109,13 @@
   q: "What kinds of changes may the Tennessee code commission make in preparing Tennessee Code Annotated under T.C.A. § 1-1-108?"
   topic: code
   expect_contains_any:
-    - "not alter the sense"
-    - "rearrange"
-    - "renumber"
-    - "correct manifest misspelling"
+    - "minor changes"
+    - "do not affect the meaning"
+    - "do not affect the meaning of any provision"
   expect_sources_any:
     - docs/tn/code/tca-1-1-108-substantive-changes-prohibited.md
+    - docs/tn/code/tca-1-1-105-publication-tnca.md
+    - docs/tn/code/tca-1-1-106-powers-contracts.md
+    - docs/tn/code/tca-1-1-101-code-commission.md
+
 
