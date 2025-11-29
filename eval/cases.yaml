@@ -167,4 +167,46 @@
   expect_sources_any:
     - docs/tn/code/tca-10-7-105-rebinding-copying-books.md
 
+- id: tca-10-7-106-transcript-certification
+  q: "What must the register and deputy register certify about transcript books under T.C.A. § 10-7-106?"
+  topic: code
+  expect_contains_any:
+    - "carefully collated"
+    - "full, true, and complete"
+    - "so far as the same can be ascertained"
+    - "burned or mutilated"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-106-transcript-books-certified.md
+
+- id: tca-10-7-107-omission-probate
+  q: "What must the register do when an instrument was originally recorded without probate or acknowledgment, under T.C.A. § 10-7-107?"
+  topic: code
+  expect_contains_any:
+    - "leave"
+    - "sufficient room"
+    - "probate or acknowledgment"
+    - "transcript"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-107-omission-probate-acknowledgment.md
+
+- id: tca-10-7-108-entering-omitted-probate
+  q: "How can an omitted probate or acknowledgment be entered in the transcript when the document still exists, under T.C.A. § 10-7-108?"
+  topic: code
+  expect_contains_any:
+    - "person having such a registered instrument"
+    - "produce it to the register"
+    - "probate or acknowledgment entered of record"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-108-entering-omitted-probate.md
+
+- id: tca-10-7-109-copy-from-clerk
+  q: "Under T.C.A. § 10-7-109, what can a person do to obtain a record of the probate or acknowledgment when the original is not in their possession?"
+  topic: code
+  expect_contains_any:
+    - "apply to the clerk of the court"
+    - "oath"
+    - "not in such person's possession"
+    - "certified transcript"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-109-copy-probate-from-clerk.md
 
