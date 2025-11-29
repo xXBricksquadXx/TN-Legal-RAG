@@ -44,45 +44,6 @@ PROMPT_TEMPLATE = (
     "Answer:"
 )
 
-def format_context(docs: List[str], metas: List[Dict], dists: List[float], k: int) -> str:
-    blocks = []
-    for i in range(min(k, len(docs))):
-        try:
-            dist_ok = (dists is None) or (i >= len(dists)) or (dists[i] <= MAX_DISTANCE)
-        except Exception:
-            dist_ok = True
-        if not dist_ok:
-            continue
-        src = (metas[i] or {}).get("source", "unknown") if i < len(metas) else "unknown"
-        tag = Path(src).name
-        dist_str = f"{dists[i]:.2f}" if (dists and i < len(dists)) else "?"
-        blocks.append(f"[Source: {tag} | dist={dist_str}]\n{docs[i]}")
-    return "\n\n---\n\n".join(blocks) if blocks else ""
-
-def unique_sources(metas: List[Dict], ids: List[str]) -> List[str]:
-    out = []
-    for i, m in enumerate(metas or []):
-        s = (m or {}).get("source")
-        if not s and ids and i < len(ids):
-            s = ids[i].split("::", 1)[0]
-        if s and s not in out:
-            out.append(s)
-    return out
-
-def ollama_complete(prompt: str, max_tokens: int) -> str:
-    r = requests.post(
-        OLLAMA_URL,
-        json={
-            "model": OLLAMA_MODEL,
-            "prompt": prompt,
-            "options": {"num_predict": max_tokens, "temperature": 0.1, "repeat_penalty": 1.1},
-            "stream": False,
-        },
-        timeout=HTTP_TIMEOUT,
-    )
-    r.raise_for_status()
-    return (r.json() or {}).get("response", "").strip()
-
 def safe_list(x) -> List:
     # Cope with Chroma returning None / [] / [ [] ] / etc.
     if x is None:
@@ -103,6 +64,69 @@ def normalize_query_result(res) -> Tuple[List[str], List[Dict], List[str], List[
     dists = safe_list(dists_ll[0]) if dists_ll else []
     return docs, metas, ids, dists
 
+def format_context(docs: List[str], metas: List[Dict], dists: List[float], k: int) -> str:
+    """
+    Build a context block for the LLM.
+
+    1. Try to include only docs within MAX_DISTANCE.
+    2. If that yields nothing, fall back to the top-k docs ignoring distance.
+    """
+    if not docs:
+        return ""
+
+    limit = min(k, len(docs))
+
+    def add_block(blocks: List[str], i: int):
+        src = (metas[i] or {}).get("source", "unknown") if i < len(metas) else "unknown"
+        tag = Path(src).name
+        dist_str = "?"
+        if dists and i < len(dists) and isinstance(dists[i], (int, float)):
+            dist_str = f"{dists[i]:.2f}"
+        blocks.append(f"[Source: {tag} | dist={dist_str}]\n{docs[i]}")
+
+    # pass 1: respect MAX_DISTANCE
+    blocks: List[str] = []
+    for i in range(limit):
+        if dists and i < len(dists) and isinstance(dists[i], (int, float)):
+            if dists[i] > MAX_DISTANCE:
+                continue
+        add_block(blocks, i)
+
+    # fallback: ignore distance if we got nothing
+    if not blocks:
+        for i in range(limit):
+            add_block(blocks, i)
+
+    return "\n\n---\n\n".join(blocks)
+
+def unique_sources(metas: List[Dict], ids: List[str]) -> List[str]:
+    out = []
+    for i, m in enumerate(metas or []):
+        s = (m or {}).get("source")
+        if not s and ids and i < len(ids):
+            s = ids[i].split("::", 1)[0]
+        if s and s not in out:
+            out.append(s)
+    return out
+
+def ollama_complete(prompt: str, max_tokens: int) -> str:
+    r = requests.post(
+        OLLAMA_URL,
+        json={
+            "model": OLLAMA_MODEL,
+            "prompt": prompt,
+            "options": {
+                "num_predict": max_tokens,
+                "temperature": 0.1,
+                "repeat_penalty": 1.1,
+            },
+            "stream": False,
+        },
+        timeout=HTTP_TIMEOUT,
+    )
+    r.raise_for_status()
+    return (r.json() or {}).get("response", "").strip()
+
 # ========= app =========
 app = FastAPI(title="TN-Legal-RAG", version="0.5.1")
 
@@ -110,8 +134,8 @@ class Query(BaseModel):
     q: str
     k: int = 6
     max_tokens: int = 256
-    topic: Optional[str] = None
-    jurisdiction: Optional[str] = None
+    topic: Optional[str] = None          # kept for future use
+    jurisdiction: Optional[str] = None   # kept for future use
 
 @app.get("/health")
 def health():
@@ -124,27 +148,56 @@ def health():
     }
 
 def _retrieve(q: str, k: int, topic: Optional[str], jurisdiction: Optional[str]):
-    where = {}
-    if topic: where["topic"] = topic
-    if jurisdiction: where["jurisdiction"] = jurisdiction
-    res = collection.query(
-        query_texts=[q],
-        n_results=max(1, int(k)),
-        include=["documents", "metadatas", "distances"],
-        where=where or None,
-    )
-    return normalize_query_result(res)
+    """
+    Baseline retrieval: always take the top-k docs, ignoring metadata filters.
+    If vector search returns nothing (shouldn't happen), fall back to any docs.
+    """
+    try:
+        res = collection.query(
+            query_texts=[q],
+            n_results=max(1, int(k)),
+            include=["documents", "metadatas", "distances",],
+            where=None,
+        )
+        docs, metas, ids, dists = normalize_query_result(res)
+    except Exception:
+        docs, metas, ids, dists = [], [], [], []
+
+    # Fallback: if query returned no docs, pull whatever is in the collection
+    if not docs:
+        try:
+            all_res = collection.get(include=["documents", "metadatas", "ids"])
+            docs_all = safe_list(all_res.get("documents"))
+            metas_all = safe_list(all_res.get("metadatas"))
+            ids_all = safe_list(all_res.get("ids"))
+            if docs_all:
+                docs = docs_all[:k]
+                metas = metas_all[:k] if metas_all else [{}] * len(docs)
+                ids = ids_all[:k] if ids_all else ["" for _ in docs]
+                dists = [0.0] * len(docs)
+        except Exception:
+            docs, metas, ids, dists = [], [], [], []
+
+    return docs, metas, ids, dists
 
 @app.post("/query")
 def query(body: Query):
     try:
         docs, metas, ids, dists = _retrieve(body.q, body.k, body.topic, body.jurisdiction)
     except Exception as e:
-        return JSONResponse({"answer": "Not in docs", "error": f"retrieve failed: {e}"}, status_code=200)
+        return JSONResponse(
+            {"answer": "Not in docs", "error": f"retrieve failed: {e}"},
+            status_code=200,
+        )
 
     ctx = format_context(docs, metas, dists, body.k)
     if not ctx:
-        return {"answer": "Not in docs", "sources": [], "model": OLLAMA_MODEL, "threshold": MAX_DISTANCE}
+        return {
+            "answer": "Not in docs",
+            "sources": [],
+            "model": OLLAMA_MODEL,
+            "threshold": MAX_DISTANCE,
+        }
 
     prompt = PROMPT_TEMPLATE.format(context=ctx, q=body.q)
     try:
@@ -160,10 +213,12 @@ def query(body: Query):
     answer = answer.strip() or "Not in docs"
     return {
         "answer": answer,
-        "retrieved_docs_count": sum(1 for d in dists if isinstance(d, (int, float)) and d <= MAX_DISTANCE),
+        "retrieved_docs_count": len(docs),
         "sources": unique_sources(metas, ids),
         "model": OLLAMA_MODEL,
-        "best_distance": (min([d for d in dists if isinstance(d, (int, float))]) if dists else None),
+        "best_distance": (
+            min([d for d in dists if isinstance(d, (int, float))]) if dists else None
+        ),
         "threshold": MAX_DISTANCE,
     }
 
@@ -183,7 +238,6 @@ def debug_query(body: Query):
             "raw": {"documents": docs, "metadatas": metas, "ids": ids},
         }
     except Exception as e:
-        # Never 500: surface the error as JSON for quick diagnosis
         return JSONResponse(
             {
                 "ok": False,

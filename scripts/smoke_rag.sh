@@ -7,15 +7,15 @@ curl -s "$BASE/health" | jq
 
 echo "Eligibility:"
 curl -s -X POST "$BASE/query" -H 'content-type: application/json' \
-  -d '{"q":"Who can request records under the TPRA?","topic":"sunshine"}' \
+  -d '{"q":"Who can request records under the TPRA?"}' \
   | jq '.answer,.sources'
 
 echo "TDOS:"
 curl -s -X POST "$BASE/query" -H 'content-type: application/json' \
-  -d '{"q":"Where do I submit a TPRA request to TDOS?","topic":"sunshine"}' \
+  -d '{"q":"Where do I submit a TPRA request to TDOS?"}' \
   | jq '.answer,.sources'
 
 echo "Fees:"
 curl -s -X POST "$BASE/query" -H 'content-type: application/json' \
-  -d '{"q":"What are copy charges and when is labor charged for TPRA requests?","topic":"sunshine"}' \
+  -d '{"q":"What are copy charges and when is labor charged for TPRA requests?"}' \
   | jq '.answer,.sources'

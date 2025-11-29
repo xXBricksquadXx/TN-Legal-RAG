@@ -80,16 +80,20 @@ def main():
     os.makedirs(CHROMA_DIR, exist_ok=True)
     client = chromadb.PersistentClient(path=CHROMA_DIR)
 
-    # (re)create the collection for clean builds
-    try:
-        client.delete_collection(COLLECTION)
-    except Exception:
-        pass
-
     ef = embedding_functions.SentenceTransformerEmbeddingFunction(
         model_name=EMB_MODEL, device=None
     )
-    col = client.create_collection(COLLECTION, embedding_function=ef)
+
+    # Get existing collection if it exists; otherwise create it
+    try:
+        col = client.get_collection(COLLECTION, embedding_function=ef)
+        # Clear existing docs but keep the same collection id
+        try:
+            col.delete(where={})  # delete all docs
+        except Exception:
+            pass
+    except Exception:
+        col = client.create_collection(COLLECTION, embedding_function=ef)
 
     files = load_files(DATA_DIR)
     if not files:
@@ -104,5 +108,7 @@ def main():
     col.add(ids=ids, documents=docs, metadatas=metas)
     print(f"Indexed {len(ids)} chunks from {len(files)} files → ./{CHROMA_DIR}")
 
+
 if __name__ == "__main__":
     main()
+
