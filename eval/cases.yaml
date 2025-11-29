@@ -31,3 +31,84 @@
   expect_sources_any:
     - docs/tn/bar/distinctions/evidence/tn-v-mbe-evidence-404b.md
 
+    - id: tca-1-1-101-members
+  q: "Who are the members of the Tennessee code commission under T.C.A. § 1-1-101?"
+  topic: code
+  expect_contains_any:
+    - "five"
+    - "chief justice"
+    - "attorney general"
+    - "director of the office of legal services"
+  expect_sources_any:
+    - docs/tn/code/tca-1-1-101-code-commission.md
+
+- id: tca-1-1-102-chair-secretary
+  q: "Who serves as chair and as executive secretary of the Tennessee code commission under T.C.A. § 1-1-102?"
+  topic: code
+  expect_contains_any:
+    - "chief justice"
+    - "revisor of statutes"
+  expect_sources_any:
+    - docs/tn/code/tca-1-1-102-code-commission-officers.md
+
+- id: tca-1-1-103-staff-services
+  q: "Who provides staff services for the Tennessee code commission under T.C.A. § 1-1-103?"
+  topic: code
+  expect_contains_any:
+    - "office of legal services"
+    - "general assembly"
+  expect_sources_any:
+    - docs/tn/code/tca-1-1-103-staff-services.md
+
+- id: tca-1-1-104-successor
+  q: "Under T.C.A. § 1-1-104, to what earlier body is the current Tennessee code commission the successor?"
+  topic: code
+  expect_contains_any:
+    - "commission created by Chapter 80"
+    - "Public Acts of 1953"
+  expect_sources_any:
+    - docs/tn/code/tca-1-1-104-successor-1953-commission.md
+
+- id: tca-1-1-105-publication-scope
+  q: "What is the Tennessee code commission directed to do under T.C.A. § 1-1-105 regarding publication of Tennessee Code Annotated?"
+  topic: code
+  expect_contains_any:
+    - "official compilation"
+    - "statutes"
+    - "electronically searchable"
+    - "database"
+  expect_sources_any:
+    - docs/tn/code/tca-1-1-105-publication-tnca.md
+
+- id: tca-1-1-106-powers-contracts
+  q: "What contracting authority does the Tennessee code commission have under T.C.A. § 1-1-106?"
+  topic: code
+  expect_contains_any:
+    - "full power and authority"
+    - "contracts"
+    - "law book publisher"
+  expect_sources_any:
+    - docs/tn/code/tca-1-1-106-powers-contracts.md
+
+- id: tca-1-1-107-specs-price
+  q: "What must commission contracts with law book publishers cover under T.C.A. § 1-1-107?"
+  topic: code
+  expect_contains_any:
+    - "specifications"
+    - "price"
+    - "pocket supplements"
+    - "replacement volumes"
+  expect_sources_any:
+    - docs/tn/code/tca-1-1-107-specifications-price.md
+
+- id: tca-1-1-108-substantive-changes
+  q: "What kinds of changes may the Tennessee code commission make in preparing Tennessee Code Annotated under T.C.A. § 1-1-108?"
+  topic: code
+  expect_contains_any:
+    - "not alter the sense"
+    - "rearrange"
+    - "renumber"
+    - "correct manifest misspelling"
+  expect_sources_any:
+    - docs/tn/code/tca-1-1-108-substantive-changes-prohibited.md
+

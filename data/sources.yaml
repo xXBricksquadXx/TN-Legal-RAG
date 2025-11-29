@@ -19,3 +19,68 @@
   citation: OORC Best Practices & Guidelines
   path: docs/tn/sunshine/oorc-best-practices-and-guidelines-2022-09-19.md
   version_date: '2017-01-20'
+
+  - url: ""  # optional: paste the Lexis or official TN code URL
+  title: "Tenn. Code Ann. § 1-1-101 — Composition of commission; vacancies"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 1-1-101"
+  path: docs/tn/code/tca-1-1-101-code-commission.md
+  version_date: "2025-01-01"
+
+- url: ""
+  title: "Tenn. Code Ann. § 1-1-102 — Chair; executive secretary"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 1-1-102"
+  path: docs/tn/code/tca-1-1-102-code-commission-officers.md
+  version_date: "2025-01-01"
+
+- url: ""
+  title: "Tenn. Code Ann. § 1-1-103 — Staff services for commission"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 1-1-103"
+  path: docs/tn/code/tca-1-1-103-staff-services.md
+  version_date: "2025-01-01"
+
+- url: ""
+  title: "Tenn. Code Ann. § 1-1-104 — Successor to 1953 commission"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 1-1-104"
+  path: docs/tn/code/tca-1-1-104-successor-1953-commission.md
+  version_date: "2025-01-01"
+
+- url: ""
+  title: "Tenn. Code Ann. § 1-1-105 — Publication of Tennessee Code Annotated"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 1-1-105"
+  path: docs/tn/code/tca-1-1-105-publication-tnca.md
+  version_date: "2025-01-01"
+
+- url: ""
+  title: "Tenn. Code Ann. § 1-1-106 — Powers of commission; contracts"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 1-1-106"
+  path: docs/tn/code/tca-1-1-106-powers-contracts.md
+  version_date: "2025-01-01"
+
+- url: ""
+  title: "Tenn. Code Ann. § 1-1-107 — Specifications in contract; price of supplements and replacement volumes"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 1-1-107"
+  path: docs/tn/code/tca-1-1-107-specifications-price.md
+  version_date: "2025-01-01"
+
+- url: ""
+  title: "Tenn. Code Ann. § 1-1-108 — Substantive changes in text prohibited; authorized changes; effect of enrollment error"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 1-1-108"
+  path: docs/tn/code/tca-1-1-108-substantive-changes-prohibited.md
+  version_date: "2025-01-01"
+

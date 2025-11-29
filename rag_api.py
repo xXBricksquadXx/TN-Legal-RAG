@@ -64,40 +64,39 @@ def normalize_query_result(res) -> Tuple[List[str], List[Dict], List[str], List[
     dists = safe_list(dists_ll[0]) if dists_ll else []
     return docs, metas, ids, dists
 
-def format_context(docs: List[str], metas: List[Dict], dists: List[float], k: int) -> str:
+def format_context(
+    docs: List[str], metas: List[Dict], dists: List[float], k: int
+) -> str:
     """
-    Build a context block for the LLM.
+    Build a context string from retrieved docs.
 
-    1. Try to include only docs within MAX_DISTANCE.
-    2. If that yields nothing, fall back to the top-k docs ignoring distance.
+    1. Prefer docs within MAX_DISTANCE.
+    2. If none are within threshold, fall back to the top-k docs anyway.
     """
-    if not docs:
-        return ""
+    blocks: List[str] = []
+    close_idxs: List[int] = []
 
-    limit = min(k, len(docs))
+    # First pass: collect indices within the distance threshold
+    for i in range(min(k, len(docs))):
+        try:
+            dist_ok = (dists is None) or (i >= len(dists)) or (dists[i] <= MAX_DISTANCE)
+        except Exception:
+            dist_ok = True
+        if dist_ok:
+            close_idxs.append(i)
 
-    def add_block(blocks: List[str], i: int):
+    # If nothing is within the threshold, fall back to the first k docs
+    if not close_idxs:
+        close_idxs = list(range(min(k, len(docs))))
+
+    for i in close_idxs:
         src = (metas[i] or {}).get("source", "unknown") if i < len(metas) else "unknown"
         tag = Path(src).name
-        dist_str = "?"
-        if dists and i < len(dists) and isinstance(dists[i], (int, float)):
-            dist_str = f"{dists[i]:.2f}"
+        dist_str = f"{dists[i]:.2f}" if (dists and i < len(dists)) else "?"
         blocks.append(f"[Source: {tag} | dist={dist_str}]\n{docs[i]}")
 
-    # pass 1: respect MAX_DISTANCE
-    blocks: List[str] = []
-    for i in range(limit):
-        if dists and i < len(dists) and isinstance(dists[i], (int, float)):
-            if dists[i] > MAX_DISTANCE:
-                continue
-        add_block(blocks, i)
+    return "\n\n---\n\n".join(blocks) if blocks else ""
 
-    # fallback: ignore distance if we got nothing
-    if not blocks:
-        for i in range(limit):
-            add_block(blocks, i)
-
-    return "\n\n---\n\n".join(blocks)
 
 def unique_sources(metas: List[Dict], ids: List[str]) -> List[str]:
     out = []
@@ -149,36 +148,23 @@ def health():
 
 def _retrieve(q: str, k: int, topic: Optional[str], jurisdiction: Optional[str]):
     """
-    Baseline retrieval: always take the top-k docs, ignoring metadata filters.
-    If vector search returns nothing (shouldn't happen), fall back to any docs.
+    Retrieval with optional metadata filters.
+    If topic/jurisdiction are provided, restrict to those; otherwise search all docs.
     """
-    try:
-        res = collection.query(
-            query_texts=[q],
-            n_results=max(1, int(k)),
-            include=["documents", "metadatas", "distances",],
-            where=None,
-        )
-        docs, metas, ids, dists = normalize_query_result(res)
-    except Exception:
-        docs, metas, ids, dists = [], [], [], []
+    where = {}
+    if topic:
+        where["topic"] = topic
+    if jurisdiction:
+        where["jurisdiction"] = jurisdiction
 
-    # Fallback: if query returned no docs, pull whatever is in the collection
-    if not docs:
-        try:
-            all_res = collection.get(include=["documents", "metadatas", "ids"])
-            docs_all = safe_list(all_res.get("documents"))
-            metas_all = safe_list(all_res.get("metadatas"))
-            ids_all = safe_list(all_res.get("ids"))
-            if docs_all:
-                docs = docs_all[:k]
-                metas = metas_all[:k] if metas_all else [{}] * len(docs)
-                ids = ids_all[:k] if ids_all else ["" for _ in docs]
-                dists = [0.0] * len(docs)
-        except Exception:
-            docs, metas, ids, dists = [], [], [], []
+    res = collection.query(
+        query_texts=[q],
+        n_results=max(1, int(k)),
+        include=["documents", "metadatas", "distances"],
+        where=where or None,
+    )
+    return normalize_query_result(res)
 
-    return docs, metas, ids, dists
 
 @app.post("/query")
 def query(body: Query):
