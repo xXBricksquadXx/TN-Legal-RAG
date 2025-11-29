@@ -118,4 +118,53 @@
     - docs/tn/code/tca-1-1-106-powers-contracts.md
     - docs/tn/code/tca-1-1-101-code-commission.md
 
+- id: tca-10-7-101-definition-records
+  q: "How does T.C.A. § 10-7-101 define “records” for Part 1 of the public records chapter?"
+  topic: code
+  expect_contains_any:
+    - "county legislative body"
+    - "common law"
+    - "circuit"
+    - "criminal"
+    - "chancery"
+    - "register's books"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-101-records-construed.md
+
+- id: tca-10-7-102-books-register
+  q: "Under T.C.A. § 10-7-102, who must furnish record books for the register's office and how are they paid for?"
+  topic: code
+  expect_contains_any:
+    - "county legislative body"
+    - "trustee"
+    - "county mayor"
+    - "register"
+    - "affidavit"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-102-books-register-office.md
+
+- id: tca-10-7-104-mutilated-records
+  q: "What must be done with mutilated or damaged record books under T.C.A. § 10-7-104?"
+  topic: code
+  expect_contains_any:
+    - "transcribed"
+    - "well-bound book"
+    - "original book and page"
+    - "destroyed"
+    - "mutilated"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-104-mutilated-records-transcribed.md
+
+- id: tca-10-7-105-rebinding-copying
+  q: "What duty does T.C.A. § 10-7-105 place on county registers and county legislative bodies regarding worn record books?"
+  topic: code
+  expect_contains_any:
+    - "duty"
+    - "copied"
+    - "rebinding"
+    - "expense of the county"
+    - "appropriations"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-105-rebinding-copying-books.md
+
 
