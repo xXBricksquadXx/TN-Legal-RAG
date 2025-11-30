@@ -147,34 +147,20 @@ def health():
     }
 
 def _retrieve(q: str, k: int, topic: Optional[str], jurisdiction: Optional[str]):
-    """
-    Retrieval with soft metadata filters:
-    - First, try with topic/jurisdiction filters if provided.
-    - If that returns nothing, fall back to an unfiltered search.
-    """
-    where: Dict[str, str] = {}
+    where = {}
     if topic:
         where["topic"] = topic
     if jurisdiction:
         where["jurisdiction"] = jurisdiction
 
-    def do_query(where_clause):
-        res = collection.query(
-            query_texts=[q],
-            n_results=max(1, int(k)),
-            include=["documents", "metadatas", "distances"],
-            where=where_clause,
-        )
-        return normalize_query_result(res)
+    res = collection.query(
+        query_texts=[q],
+        n_results=max(1, int(k)),
+        include=["documents", "metadatas", "distances"],
+        where=where or None,
+    )
+    return normalize_query_result(res)
 
-    # First attempt: with filters (if any)
-    docs, metas, ids, dists = do_query(where or None)
-
-    # Fallback: if filters yielded nothing, drop them
-    if not docs and where:
-        docs, metas, ids, dists = do_query(None)
-
-    return docs, metas, ids, dists
 
 
 @app.post("/query")
