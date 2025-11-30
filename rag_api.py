@@ -177,7 +177,6 @@ def _retrieve(q: str, k: int, topic: Optional[str], jurisdiction: Optional[str])
     return docs, metas, ids, dists
 
 
-
 @app.post("/query")
 def query(body: Query):
     try:
