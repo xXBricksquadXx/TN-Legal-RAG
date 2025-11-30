@@ -210,3 +210,129 @@
   expect_sources_any:
     - docs/tn/code/tca-10-7-109-copy-probate-from-clerk.md
 
+- id: tca-10-7-110-entry-transcript
+  q: "Under T.C.A. § 10-7-110, what must the register do with a certified probate or acknowledgment in the transcript book?"
+  topic: code
+  expect_contains_any:
+    - "insert"
+    - "probate"
+    - "acknowledgment"
+    - "foot of the deed"
+    - "as if the original deed had been produced"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-110-entry-transcript-book.md
+
+- id: tca-10-7-112-index-transcript-books
+  q: "What indexing duty does T.C.A. § 10-7-112 place on the register regarding transcript books?"
+  topic: code
+  expect_contains_any:
+    - "properly index"
+    - "index such transcript book"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-112-register-index-transcript-books.md
+
+- id: tca-10-7-113-special-deputies
+  q: "What authority does T.C.A. § 10-7-113 give the register concerning deputies for transcript work?"
+  topic: code
+  expect_contains_any:
+    - "appoint as many deputies"
+    - "necessary"
+    - "completion of such transcripts"
+    - "earliest time practicable"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-113-special-deputies-transcripts.md
+
+- id: tca-10-7-114-register-fees
+  q: "What fee is the register entitled to for making transcripts, collation, and index under T.C.A. § 10-7-114, and who pays it?"
+  topic: code
+  expect_contains_any:
+    - "one dollar"
+    - "per one hundred"
+    - "100"
+    - "words"
+    - "paid by the county"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-114-register-fees-transcript.md
+
+- id: tca-10-7-115-original-deposited
+  q: "According to T.C.A. § 10-7-115, where must the original record books be deposited after transcripts are made?"
+  topic: code
+  expect_contains_any:
+    - "deposited"
+    - "clerk's office"
+    - "of the county"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-115-original-records-deposited-clerk.md
+
+- id: tca-10-7-116-copy-original-evidence
+  q: "Under T.C.A. § 10-7-116, when is a transcript from the original record admissible instead of the register's transcript?"
+  topic: code
+  expect_contains_any:
+    - "dissatisfied with the transcript"
+    - "access to the original"
+    - "varies from the original"
+    - "alters the meaning and substance"
+    - "deed or title in litigation"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-116-copy-from-original-evidence.md
+
+- id: tca-10-7-118-transcribed-records-evidence
+  q: "What does T.C.A. § 10-7-118 say about the evidentiary status of certified copies from transcribed records?"
+  topic: code
+  expect_contains_any:
+    - "certified copy"
+    - "transcribed records"
+    - "admissible as evidence"
+    - "same validity"
+    - "subject to § 10-7-116"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-118-copies-transcribed-records-evidence.md
+
+- id: tca-10-7-119-rebinding-authority
+  q: "What authority does T.C.A. § 10-7-119 give county legislative bodies regarding rebinding record books?"
+  topic: code
+  expect_contains_any:
+    - "ascertain that any of the books of record"
+    - "need to be rebound"
+    - "county legislative body"
+    - "chair"
+    - "bookbinding firm"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-119-county-rebind-record-books.md
+
+- id: tca-10-7-120-liability-suspended
+  q: "According to T.C.A. § 10-7-120, what happens to the liability of the register and clerks while record books are out for rebinding?"
+  topic: code
+  expect_contains_any:
+    - "released and held harmless"
+    - "free from all liability"
+    - "official bond"
+    - "during the time the record book"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-120-liability-suspended-rebinding.md
+
+- id: tca-10-7-121-computer-records
+  q: "What conditions must be met under T.C.A. § 10-7-121 for government records to be kept on computer or removable storage media?"
+  topic: code
+  expect_contains_any:
+    - "available for public inspection"
+    - "due care is taken"
+    - "daily data"
+    - "copied to computer storage media"
+    - "stored at a location other than"
+    - "provide a paper copy"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-121-records-on-computer-media.md
+
+- id: tca-10-7-123-remote-access
+  q: "Under T.C.A. § 10-7-123, when may county officials charge fees for remote electronic access to records, and what limits apply?"
+  topic: code
+  expect_contains_any:
+    - "reasonable amount sufficient to recover the costs"
+    - "for no other access services"
+    - "not include the cost of storage and maintenance"
+    - "no fee"
+    - "records that are viewed"
+    - "at the locations where they are maintained"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-123-electronic-access-county-info.md
