@@ -336,3 +336,104 @@
     - "at the locations where they are maintained"
   expect_sources_any:
     - docs/tn/code/tca-10-7-123-electronic-access-county-info.md
+
+- id: tca-10-7-505-judicial-remedy
+  q: >
+    If a Tennessee county denies a citizen's public records request, what court
+    remedies are available under § 10-7-505, and who has the burden of proof?
+  topic: code
+  expect_contains_any: >
+    Should explain that the citizen can file a petition in chancery or circuit
+    court (or other equity court) in the appropriate county; that the court
+    proceeds on an expedited basis with show-cause; that the government has the
+    burden to justify nondisclosure by a preponderance of the evidence; that
+    the statute is to be broadly construed to give fullest possible access; and
+    that courts may award attorney's fees when a governmental entity knew the
+    record was public and willfully refused to disclose it.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-505-denial-of-access-remedy.md
+
+- id: tca-10-7-506-commercial-gis-fees
+  q: >
+    When a Tennessee local government provides computer-generated parcel maps
+    or GIS data that have commercial value, what extra fees may it charge and
+    who is exempt from those fees?
+  topic: code  
+  expect_contains_any: >
+    Should describe that, in addition to ordinary reproduction costs, the
+    agency may charge reasonable development cost recovery fees tied to labor,
+    design/development/testing/training, and costs to keep the data accurate
+    and current, generally capped at 10% of total development costs (with a
+    process for approval up to 20%). It should mention that these extra fees
+    cannot be charged to individuals for non-business use or to the news media
+    for news gathering, who pay only reproduction cost.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-506-inspection-and-commercial-value.md
+
+- id: tca-10-7-507-conviction-records
+  q: >
+    Does a Tennessee clerk have to provide copies of conviction records for
+    traffic offenses, and can they charge for them?
+  topic: code  
+  expect_contains_any: >
+    Should state that any official with custody of conviction records for
+    traffic violations or other public offenses must provide copies to any
+    citizen upon request during regular hours, and may charge a reasonable fee
+    per copy to defray the cost of producing and delivering the copies.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-507-traffic-conviction-records.md
+
+- id: tca-10-7-508-archival-access
+  q: >
+    Who in Tennessee state government is allowed to examine confidential public
+    records to determine archival value, and what happens if records are
+    wrongly labeled confidential?
+  topic: code  
+  expect_contains_any: >
+    Should explain that the secretary of state, the state librarian and
+    archivist (or their designees), and the comptroller (for audit) can access
+    public records, including confidential ones, while maintaining
+    confidentiality. It should note that the state librarian/archivist and
+    secretary of state, in consultation with the agency head, may review
+    confidential records for archival value and correct misclassification; open
+    records mis-labeled as confidential must be refiled under the correct
+    access level, and non-archival confidential records are disposed of under
+    approved records disposition authorizations.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-508-archival-access-and-retention.md
+
+- id: tca-10-7-509-rda-requirement
+  q: >
+    Can a Tennessee state agency destroy or transfer records without an
+    approved records disposition authorization?
+  topic: code  
+  expect_contains_any: >
+    Should answer no, explaining that all state records may be disposed of only
+    through an approved records disposition authorization, and that records
+    authorized for destruction must be disposed of according to that
+    authorization and cannot be given to unauthorized persons, transferred to
+    another agency or political subdivision, or given to private or semiprivate
+    institutions.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-509-state-records-disposition.md
+
+- id: tca-10-7-510-historical-criminal-records
+  q: >
+    Under Tennessee law, when may original criminal case records and physical
+    evidence be transferred to a university or museum for historical purposes?
+  topic: code  
+  expect_contains_any: >
+    Should describe that the district attorney general (or, if in the sole
+    custody of the criminal court clerk, the clerk with DA approval) may
+    permanently transfer original records, documents, and evidence from a case
+    or investigation to a qualifying university, museum, library, or other
+    not-for-profit with a historical mission when: the institution formally
+    requests them; the DA believes they are of historical significance and will
+    aid public understanding; the materials have become public records; and the
+    DA or clerk duplicates or photographs all documents and records in a manner
+    approved by the public records commission. It should mention that
+    “historical significance” is defined as events at least 20 years before
+    April 18, 1994, and that confidential records cannot be transferred under
+    this section.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-510-transfer-criminal-records-historical.md
