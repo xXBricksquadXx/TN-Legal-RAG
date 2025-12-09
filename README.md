@@ -222,7 +222,6 @@ curl -X POST "http://127.0.0.1:8000/query" \
   -H "Content-Type: application/json" \
   -d '{"q":"When was rule 0020-01-.08 most recently amended?","k":3}'
 ```
-<img width="1919" height="1195" alt="TN-Legal-Rag" src="https://github.com/user-attachments/assets/8b145fbd-830e-418f-a99a-3c8d2367e675" />
 
 ---
 
@@ -241,13 +240,15 @@ export EMBED_MODEL="sentence-transformers/all-MiniLM-L12-v2"
 ---
 
 ## 🧪 Good queries to try
-List all amendment dates you can find for Chapter 0020-01.”
+"List all amendment dates you can find for Chapter 0020-01.”
 
 “When was rule 0020-01-.08 most recently amended?”
 
 “Summarize the changes mentioned for 0020-02-.02 in 2016 and 2024.”
 
-Tip: Add your own curated .md notes per rule to improve retrieval quality.
+<img width="1919" height="1195" alt="TN-Legal-Rag" src="https://github.com/user-attachments/assets/8b145fbd-830e-418f-a99a-3c8d2367e675" />
+
+>Tip: Add your own curated .md notes per rule to improve retrieval quality.
 ---
 
 ## 🛠 Troubleshooting
