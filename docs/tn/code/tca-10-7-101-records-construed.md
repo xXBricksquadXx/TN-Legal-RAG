@@ -14,9 +14,9 @@ accessed: '2025-11-29'
 This definition provision tells you what “records” means in Part 1 of the public records chapter.
 It includes:
 
-- records of the county legislative body,
-- records of the common law, circuit, criminal, and chancery courts,
-- the register’s books, and
+- records of the county legislative body;
+- records of the common law, circuit, criminal, and chancery courts;
+- the register’s books; and
 - the surveyor’s and entry taker’s books,
 
 plus all other public records that the law requires to be kept in the courts of Tennessee.

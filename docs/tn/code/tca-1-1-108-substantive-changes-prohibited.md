@@ -13,7 +13,7 @@ accessed: '2025-11-29'
 
 This is the “no substantive edits” rule for codification.
 
-The commission cannot change the substance of acts when preparing T.C.A., but it **can**:
+The commission cannot change the substance of acts when preparing T.C.A., but it can:
 
 - renumber and rearrange sections;
 - update cross-references and headings;
@@ -27,7 +27,7 @@ If there is a proven enrollment error (the enrolled act differs from the bill ac
 
 - Courts and practitioners can rely on T.C.A. not to have changed the substantive law during codification.
 - Enrollment errors are flagged with compiler’s notes rather than silently “fixed.”
-- The long list of allowed changes is a checklist for what the commission may adjust without altering substance.
+- The list of allowed changes is a checklist for what the commission may adjust without altering substance.
 
 ## Statutory text
 

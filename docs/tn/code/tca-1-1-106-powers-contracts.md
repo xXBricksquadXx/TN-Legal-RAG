@@ -13,7 +13,7 @@ accessed: '2025-11-29'
 
 This section gives the Tennessee code commission broad authority to do whatever is needed to produce and publish the revised compilation of Tennessee statutes, including:
 
-- negotiating and executing contracts with law book publishers, and
+- negotiating and executing contracts with law book publishers; and
 - arranging for editing, annotation, indexing, printing, binding, sale, and distribution, including electronic databases.
 
 Existing contracts for these purposes are preserved and not impaired.

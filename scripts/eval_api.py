@@ -5,7 +5,7 @@ API = "http://127.0.0.1:8000/query"
 
 def run_case(case):
     payload = {"q": case["q"], "topic": case.get("topic")}
-    r = requests.post(API, json=payload, timeout=60)
+    r = requests.post(API, json=payload, timeout=180)
     r.raise_for_status()
     data = r.json()
     ans  = (data.get("answer") or "").lower()

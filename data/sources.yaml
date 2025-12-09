@@ -1,8 +1,9 @@
+# eval/sources.yaml
 - url: https://www.tn.gov/safety/publicsafety/openrecords.html
-  title: "TN Dept. of Safety \u2014 Open Records (TPRA)"
+  title: TN Dept. of Safety — Open Records (TPRA)
   topic: sunshine
   jurisdiction: TN
-  citation: "T.C.A. \xA7 10-7-503 et seq.; Dept. of Safety policy info"
+  citation: T.C.A. § 10-7-503 et seq.; Dept. of Safety policy info
   path: docs/tn/sunshine/tdos-open-records.md
   version_date: ''
 - url: https://www.comptroller.tn.gov/content/dam/cot/orc/documents/oorc/policies-and-guidelines/ScheduleofReasonableCharges.pdf
@@ -19,15 +20,13 @@
   citation: OORC Best Practices & Guidelines
   path: docs/tn/sunshine/oorc-best-practices-and-guidelines-2022-09-19.md
   version_date: '2017-01-20'
-
-  - url: ""  # optional: paste the Lexis or official TN code URL
+- url: ""
   title: "Tenn. Code Ann. § 1-1-101 — Composition of commission; vacancies"
   topic: code
   jurisdiction: TN
   citation: "Tenn. Code Ann. § 1-1-101"
   path: docs/tn/code/tca-1-1-101-code-commission.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 1-1-102 — Chair; executive secretary"
   topic: code
@@ -35,7 +34,6 @@
   citation: "Tenn. Code Ann. § 1-1-102"
   path: docs/tn/code/tca-1-1-102-code-commission-officers.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 1-1-103 — Staff services for commission"
   topic: code
@@ -43,7 +41,6 @@
   citation: "Tenn. Code Ann. § 1-1-103"
   path: docs/tn/code/tca-1-1-103-staff-services.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 1-1-104 — Successor to 1953 commission"
   topic: code
@@ -51,7 +48,6 @@
   citation: "Tenn. Code Ann. § 1-1-104"
   path: docs/tn/code/tca-1-1-104-successor-1953-commission.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 1-1-105 — Publication of Tennessee Code Annotated"
   topic: code
@@ -59,7 +55,6 @@
   citation: "Tenn. Code Ann. § 1-1-105"
   path: docs/tn/code/tca-1-1-105-publication-tnca.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 1-1-106 — Powers of commission; contracts"
   topic: code
@@ -67,7 +62,6 @@
   citation: "Tenn. Code Ann. § 1-1-106"
   path: docs/tn/code/tca-1-1-106-powers-contracts.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 1-1-107 — Specifications in contract; price of supplements and replacement volumes"
   topic: code
@@ -75,7 +69,6 @@
   citation: "Tenn. Code Ann. § 1-1-107"
   path: docs/tn/code/tca-1-1-107-specifications-price.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 1-1-108 — Substantive changes in text prohibited; authorized changes; effect of enrollment error"
   topic: code
@@ -83,7 +76,6 @@
   citation: "Tenn. Code Ann. § 1-1-108"
   path: docs/tn/code/tca-1-1-108-substantive-changes-prohibited.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-101 — “Records” construed"
   topic: code
@@ -91,7 +83,6 @@
   citation: "Tenn. Code Ann. § 10-7-101"
   path: docs/tn/code/tca-10-7-101-records-construed.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-102 — Books for register's office to be furnished by county"
   topic: code
@@ -99,7 +90,6 @@
   citation: "Tenn. Code Ann. § 10-7-102"
   path: docs/tn/code/tca-10-7-102-books-register-office.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-104 — Mutilated records to be transcribed; incomplete copies"
   topic: code
@@ -107,7 +97,6 @@
   citation: "Tenn. Code Ann. § 10-7-104"
   path: docs/tn/code/tca-10-7-104-mutilated-records-transcribed.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-105 — Rebinding or copying books at expense of county"
   topic: code
@@ -115,7 +104,6 @@
   citation: "Tenn. Code Ann. § 10-7-105"
   path: docs/tn/code/tca-10-7-105-rebinding-copying-books.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-106 — Transcript books to be collated and certified to by register and deputy register"
   topic: code
@@ -123,7 +111,6 @@
   citation: "Tenn. Code Ann. § 10-7-106"
   path: docs/tn/code/tca-10-7-106-transcript-books-certified.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-107 — Omission of probate or acknowledgment"
   topic: code
@@ -131,7 +118,6 @@
   citation: "Tenn. Code Ann. § 10-7-107"
   path: docs/tn/code/tca-10-7-107-omission-probate-acknowledgment.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-108 — Entering omitted probate or acknowledgment in transcript where document in existence"
   topic: code
@@ -139,7 +125,6 @@
   citation: "Tenn. Code Ann. § 10-7-108"
   path: docs/tn/code/tca-10-7-108-entering-omitted-probate.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-109 — Copy of probate or acknowledgment made by clerk of court on demand"
   topic: code
@@ -147,7 +132,6 @@
   citation: "Tenn. Code Ann. § 10-7-109"
   path: docs/tn/code/tca-10-7-109-copy-probate-from-clerk.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-110 — Entry in transcript book"
   topic: code
@@ -155,7 +139,6 @@
   citation: "Tenn. Code Ann. § 10-7-110"
   path: docs/tn/code/tca-10-7-110-entry-transcript-book.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-112 — Register to index transcript book or books"
   topic: code
@@ -163,7 +146,6 @@
   citation: "Tenn. Code Ann. § 10-7-112"
   path: docs/tn/code/tca-10-7-112-register-index-transcript-books.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-113 — Special deputies; appointment by register necessitated"
   topic: code
@@ -171,7 +153,6 @@
   citation: "Tenn. Code Ann. § 10-7-113"
   path: docs/tn/code/tca-10-7-113-special-deputies-transcripts.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-114 — Register's fees"
   topic: code
@@ -179,7 +160,6 @@
   citation: "Tenn. Code Ann. § 10-7-114"
   path: docs/tn/code/tca-10-7-114-register-fees-transcript.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-115 — Original deposited in clerk's office"
   topic: code
@@ -187,7 +167,6 @@
   citation: "Tenn. Code Ann. § 10-7-115"
   path: docs/tn/code/tca-10-7-115-original-records-deposited-clerk.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-116 — Copy made from original; admissibility in evidence"
   topic: code
@@ -195,15 +174,13 @@
   citation: "Tenn. Code Ann. § 10-7-116"
   path: docs/tn/code/tca-10-7-116-copy-from-original-evidence.md
   version_date: "2025-01-01"
-
 - url: ""
-  title: "Tenn. Code Ann. § 10-7-118 — Copies of such transcribed records; admissibility as evidence"
+  title: "Tenn. Code Ann. § 10-7-118 — Copies of transcribed records; admissibility as evidence"
   topic: code
   jurisdiction: TN
   citation: "Tenn. Code Ann. § 10-7-118"
   path: docs/tn/code/tca-10-7-118-copies-transcribed-records-evidence.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-119 — County legislative bodies authorized to have record books rebound"
   topic: code
@@ -211,7 +188,6 @@
   citation: "Tenn. Code Ann. § 10-7-119"
   path: docs/tn/code/tca-10-7-119-county-rebind-record-books.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-120 — Liability of register and clerks suspended during rebinding"
   topic: code
@@ -219,7 +195,6 @@
   citation: "Tenn. Code Ann. § 10-7-120"
   path: docs/tn/code/tca-10-7-120-liability-suspended-rebinding.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-121 — Government records kept on computer or removable computer storage media"
   topic: code
@@ -227,11 +202,66 @@
   citation: "Tenn. Code Ann. § 10-7-121"
   path: docs/tn/code/tca-10-7-121-records-on-computer-media.md
   version_date: "2025-01-01"
-
 - url: ""
   title: "Tenn. Code Ann. § 10-7-123 — Electronic access to county government information; fees; equal accessibility"
   topic: code
   jurisdiction: TN
   citation: "Tenn. Code Ann. § 10-7-123"
   path: docs/tn/code/tca-10-7-123-electronic-access-county-info.md
+  version_date: "2025-01-01"
+- url: ""
+  title: "TN bar distinction — Evidence Rule 404(b) outline"
+  topic: bar
+  jurisdiction: TN
+  citation: "Evidence Rule 404(b) — TN vs MBE distinctions"
+  path: docs/tn/bar/distinctions/evidence/tn-v-mbe-evidence-404b.md
+  version_date: ""
+- url: ""
+  title: "Tenn. Code Ann. § 10-7-503 — Public records; policies; injunction; destruction"
+  topic: sunshine
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 10-7-503"
+  path: docs/tn/code/tca-10-7-503-public-records-act.md
+  version_date: "2026-01-01"
+- url: ""
+  title: "Tenn. Code Ann. § 10-7-505 — Denial of access to records; judicial remedies"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 10-7-505"
+  path: docs/tn/code/tca-10-7-505-denial-of-access-remedy.md
+  version_date: "2025-01-01"
+- url: ""
+  title: "Tenn. Code Ann. § 10-7-506 — Copies, extracts, photographs; records with commercial value"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 10-7-506"
+  path: docs/tn/code/tca-10-7-506-inspection-and-commercial-value.md
+  version_date: "2025-01-01"
+- url: ""
+  title: "Tenn. Code Ann. § 10-7-507 — Conviction records for traffic and other public offenses"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 10-7-507"
+  path: docs/tn/code/tca-10-7-507-traffic-conviction-records.md
+  version_date: "2025-01-01"
+- url: ""
+  title: "Tenn. Code Ann. § 10-7-508 — Archival review of records; confidential records; misclassification"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 10-7-508"
+  path: docs/tn/code/tca-10-7-508-archival-access-and-retention.md
+  version_date: "2025-01-01"
+- url: ""
+  title: "Tenn. Code Ann. § 10-7-509 — Disposition of state records; records disposition authorizations"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 10-7-509"
+  path: docs/tn/code/tca-10-7-509-state-records-disposition.md
+  version_date: "2025-01-01"
+- url: ""
+  title: "Tenn. Code Ann. § 10-7-510 — Transfer of criminal case materials for historical purposes"
+  topic: code
+  jurisdiction: TN
+  citation: "Tenn. Code Ann. § 10-7-510"
+  path: docs/tn/code/tca-10-7-510-transfer-criminal-records-historical.md
   version_date: "2025-01-01"

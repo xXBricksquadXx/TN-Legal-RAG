@@ -2,7 +2,7 @@
 title: 'T.C.A. § 1-1-101 — Composition of commission; vacancies'
 jurisdiction: 'TN'
 topic: 'code'
-source_url: '' # paste Lexis / official URL if you want
+source_url: ''
 citation: 'Tenn. Code Ann. § 1-1-101'
 doc_id: 'tca-1-1-101'
 version_date: '2025-01-01'
@@ -19,7 +19,7 @@ The commission has five members:
 - a director of the office of legal services for the general assembly; and
 - two additional members appointed by the chief justice.
 
-Any vacancy in the **appointed** positions is filled by appointment from the chief justice.
+Any vacancy in the appointed positions is filled by appointment from the chief justice.
 
 ## Key practice points
 

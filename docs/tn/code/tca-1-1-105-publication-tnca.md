@@ -18,7 +18,7 @@ The commission is directed to plan and supervise everything needed to produce th
 
 ## Key practice points
 
-- Confirms T.C.A. as the **official** compilation of Tennessee statutes of a public and general nature.
+- Confirms T.C.A. as the official compilation of Tennessee statutes of a public and general nature.
 - The commission’s authority extends to electronic formats (databases), not just printed books.
 - Good anchor when dealing with contracts or procurement involving publication of the code.
 

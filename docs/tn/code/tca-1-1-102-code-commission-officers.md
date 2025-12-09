@@ -2,7 +2,7 @@
 title: 'T.C.A. § 1-1-102 — Chair; executive secretary'
 jurisdiction: 'TN'
 topic: 'code'
-source_url: '' # paste Lexis / official URL if you want
+source_url: ''
 citation: 'Tenn. Code Ann. § 1-1-102'
 doc_id: 'tca-1-1-102'
 version_date: '2025-01-01'
@@ -13,8 +13,8 @@ accessed: '2025-11-29'
 
 This section sets who runs the commission:
 
-- The **chief justice** serves as chair of the Tennessee code commission.
-- The **revisor of statutes** in the office of legal services for the general assembly serves as the commission’s executive secretary.
+- The chief justice serves as chair of the Tennessee code commission.
+- The revisor of statutes in the office of legal services for the general assembly serves as the commission’s executive secretary.
 
 ## Key practice points
 

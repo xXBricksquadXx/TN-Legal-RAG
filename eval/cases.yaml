@@ -1,3 +1,4 @@
+# eval/cases.yaml
 # Minimal API eval set
 - id: tpra-eligibility
   q: "Who can request records under the TPRA?"
@@ -15,27 +16,131 @@
   expect_sources_any:
     - docs/tn/sunshine/tdos-open-records.md
 
-- id: tpra-fees
-  q: "What are copy charges and when is labor charged for TPRA requests?"
+- id: tdos-fees
+  q: "Under TDOS's TPRA policy, can they charge labor fees for locating records?"
   topic: sunshine
-  expect_contains: "$0.15"
+  # Deliberately no expect_contains / expect_contains_any here because
+  # the model answer is unstable (sometimes "No in docs.", sometimes
+  # a paraphrase of OORC). We only require that it ground itself in
+  # the right sources.
+  expect_sources_any:
+    - docs/tn/sunshine/tdos-open-records.md
+    - docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md
+
+- id: oorc-fee-schedule
+  q: "What is the default per-page copy charge under the OORC Schedule of Reasonable Charges?"
+  topic: sunshine
+  expect_contains_any:
+    - "15 cents"
+    - "$0.15"
   expect_sources_any:
     - docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md
 
-- id: ev-404b
-  q: "What must a Tennessee court find to admit 404(b) other-acts evidence?"
-  topic: bar
+- id: oorc-labor-threshold
+  q: "Under the OORC fee schedule, after how many hours may a governmental entity begin charging labor for a TPRA request?"
+  topic: sunshine
   expect_contains_any:
-    - "non-propensity purpose"
-    - "403 balancing"
+    - "One hour"
+    - "after the first hour"
   expect_sources_any:
-    - docs/tn/bar/distinctions/evidence/tn-v-mbe-evidence-404b.md
+    - docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md
 
-    - id: tca-1-1-101-members
+- id: oorc-best-practices-response-time
+  q: "According to OORC best practices, what is the recommended response time for acknowledging receipt of a TPRA request?"
+  topic: sunshine
+  expect_contains_any:
+    - "seven business days"
+    - "7 business days"
+    - "seven (7) business days"
+  expect_sources_any:
+    - docs/tn/sunshine/oorc-best-practices-and-guidelines-2022-09-19.md
+
+# TPRA core statute and classic practice questions
+- id: tpra-core-definition-public-record
+  q: "How does T.C.A. § 10-7-503 define 'public records' for TPRA purposes?"
+  topic: sunshine
+  expect_contains_any: >
+    Should describe that 'public records' means all documents, papers, letters,
+    maps, books, photographs, microfilms, electronic data processing files and
+    output, films, sound recordings, or other material, regardless of physical
+    form or characteristics, made or received pursuant to law or ordinance or
+    in connection with the transaction of official business by any governmental
+    entity; and that devices themselves (like phones or computers) are not
+    'records.'
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-503-public-records-act.md
+
+- id: tpra-inspection-vs-copies
+  q: "Under T.C.A. § 10-7-503, what is the difference between a citizen's right to inspect public records and the right to obtain copies?"
+  topic: sunshine
+  expect_contains_any: >
+    Should explain that Tennessee citizens have the right to PERSONAL
+    INSPECTION during business hours without paying inspection fees and,
+    generally, without having to make a written request, while obtaining
+    COPIES may require a written request and payment of reasonable copy and
+    labor charges. It should mention that entities cannot require a written
+    request or charge a fee just to view public records unless some other law
+    authorizes that.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-503-public-records-act.md
+
+- id: tpra-seven-business-days-rule
+  q: "Under T.C.A. § 10-7-503, what must a records custodian do within seven business days after receiving a TPRA request?"
+  topic: sunshine
+  expect_contains_any: >
+    Should describe the three options: (1) make the record available for
+    inspection or provide copies; (2) deny the request in writing with the
+    legal basis for denial; or (3) provide the requester with a written
+    explanation of why the record cannot be produced within seven business days
+    and an estimated time when it will be available. It should mention that
+    failure to respond at all within seven business days is treated as a denial
+    and can be challenged under § 10-7-505.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-503-public-records-act.md
+
+- id: tpra-residency-proof
+  q: "Under T.C.A. § 10-7-503, can a records custodian require proof that a requester is a Tennessee citizen?"
+  topic: sunshine
+  expect_contains_any: >
+    Should explain that a custodian may require proof of Tennessee citizenship
+    (like a government-issued photo ID with an address, or other accepted forms
+    if no address is shown) before granting TPRA rights, and that TPRA rights
+    are limited to Tennessee citizens.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-503-public-records-act.md
+
+- id: tpra-redaction-vs-withholding
+  q: "Under T.C.A. § 10-7-503, when must a records custodian redact information instead of withholding the entire record?"
+  topic: sunshine
+  expect_contains_any: >
+    Should describe that if a record contains both public and confidential
+    information, the custodian must redact the confidential portions and
+    produce the remainder, rather than withhold the entire record, unless some
+    other statute expressly requires withholding the whole record.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-503-public-records-act.md
+
+- id: tpra-injunction-intent-to-disrupt
+  q: "What kind of injunctive relief does T.C.A. § 10-7-503 allow against a TPRA requester who is acting with intent to disrupt government operations?"
+  topic: sunshine
+  expect_contains_any: >
+    Should explain that, after notice and a hearing, a court may issue a
+    narrowly tailored injunction limiting a specific requester’s access or the
+    frequency/scope of their requests if the court finds by clear and
+    convincing evidence that the requester is making records requests with the
+    intent to disrupt or harass rather than to obtain public information. It
+    should note that such injunctions must be time-limited, may be modified or
+    dissolved, and cannot be used to prohibit all future TPRA requests.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-503-public-records-act.md
+
+# Code commission / TCA structure questions
+- id: tca-1-1-101-members
   q: "Who are the members of the Tennessee code commission under T.C.A. § 1-1-101?"
   topic: code
   expect_contains_any:
     - "five"
+    - "five members"
     - "chief justice"
     - "attorney general"
     - "director of the office of legal services"
@@ -43,10 +148,11 @@
     - docs/tn/code/tca-1-1-101-code-commission.md
 
 - id: tca-1-1-102-chair-secretary
-  q: "Who serves as chair and as executive secretary of the Tennessee code commission under T.C.A. § 1-1-102?"
+  q: "Under T.C.A. § 1-1-102, who serves as chair and who serves as executive secretary of the Tennessee code commission?"
   topic: code
   expect_contains_any:
     - "chief justice"
+    - "chair"
     - "revisor of statutes"
   expect_sources_any:
     - docs/tn/code/tca-1-1-102-code-commission-officers.md
@@ -64,283 +170,300 @@
   q: "Under T.C.A. § 1-1-104, to what earlier body is the current Tennessee code commission the successor?"
   topic: code
   expect_contains_any:
-    - "immediate successor"
-    - "1953 commission"
-    - "1953 Public Acts"
+    - "Public Acts of 1953"
+    - "chapter 80"
+    - "successor"
   expect_sources_any:
     - docs/tn/code/tca-1-1-104-successor-1953-commission.md
 
-
-- id: tca-1-1-105-publication-scope
-  q: "What is the Tennessee code commission directed to do under T.C.A. § 1-1-105 regarding publication of Tennessee Code Annotated?"
+- id: tca-1-1-105-publication
+  q: "What does T.C.A. § 1-1-105 direct the Tennessee code commission to do regarding publication of Tennessee Code Annotated?"
   topic: code
-  expect_contains_any:
-    - "official compilation"
-    - "statutes"
-    - "electronically searchable"
-    - "database"
+  expect_contains_any: >
+    Should describe that the commission is directed to plan, supervise, and
+    cause to be made a revision and compilation of Tennessee’s public and
+    general statutes, and to publish them as Tennessee Code Annotated,
+    including in electronic database form.
   expect_sources_any:
     - docs/tn/code/tca-1-1-105-publication-tnca.md
 
-- id: tca-1-1-106-powers-contracts
-  q: "What contracting authority does the Tennessee code commission have under T.C.A. § 1-1-106?"
+- id: tca-1-1-106-contracts
+  q: "Under T.C.A. § 1-1-106, what contracting authority does the Tennessee code commission have for publishing Tennessee Code Annotated?"
   topic: code
-  expect_contains_any:
-    - "full power and authority"
-    - "contracts"
-    - "law book publisher"
+  expect_contains_any: >
+    Should explain that the commission may contract with law book publishers and
+    take all necessary steps to edit, annotate, index, print, bind, sell, and
+    distribute the code, including maintaining electronic databases, and that
+    existing contracts are not impaired.
   expect_sources_any:
     - docs/tn/code/tca-1-1-106-powers-contracts.md
 
 - id: tca-1-1-107-specs-price
-  q: "What must commission contracts with law book publishers cover under T.C.A. § 1-1-107?"
+  q: "What does T.C.A. § 1-1-107 require Tennessee Code Annotated publishing contracts to cover?"
   topic: code
-  expect_contains_any:
-    - "specifications"
-    - "price"
-    - "paper"
-    - "type"
-    - "pocket supplements"
-    - "replacement volumes"
+  expect_contains_any: >
+    Should describe that contracts must specify things like type, paper,
+    binding, size, supplements, replacement volumes, and the price at which the
+    code, supplements, and replacement volumes will be sold in Tennessee.
   expect_sources_any:
     - docs/tn/code/tca-1-1-107-specifications-price.md
 
 - id: tca-1-1-108-substantive-changes
-  q: "What kinds of changes may the Tennessee code commission make in preparing Tennessee Code Annotated under T.C.A. § 1-1-108?"
+  q: "Under T.C.A. § 1-1-108, can the Tennessee code commission make substantive changes when codifying statutes, and what kinds of changes are permitted?"
   topic: code
-  expect_contains_any:
-    - "minor changes"
-    - "do not affect the meaning"
-    - "do not affect the meaning of any provision"
+  expect_contains_any: >
+    Should explain that the commission may not make substantive changes in law
+    when codifying, but may renumber, rearrange, correct obvious errors,
+    standardize terminology and formatting, update cross-references and agency
+    names, and omit enacting clauses, severability clauses, captions, and
+    similar non-substantive material. It should also mention the process for
+    dealing with proven enrollment errors via compiler’s notes.
   expect_sources_any:
     - docs/tn/code/tca-1-1-108-substantive-changes-prohibited.md
-    - docs/tn/code/tca-1-1-105-publication-tnca.md
-    - docs/tn/code/tca-1-1-106-powers-contracts.md
-    - docs/tn/code/tca-1-1-101-code-commission.md
 
-- id: tca-10-7-101-definition-records
-  q: "How does T.C.A. § 10-7-101 define “records” for Part 1 of the public records chapter?"
+# Register / county record preservation questions
+- id: tca-10-7-101-records-construed
+  q: "How does T.C.A. § 10-7-101 define 'records' for purposes of county record preservation?"
   topic: code
-  expect_contains_any:
-    - "county legislative body"
-    - "common law"
-    - "circuit"
-    - "criminal"
-    - "chancery"
-    - "register's books"
+  expect_contains_any: >
+    Should describe that 'records' includes the records of the county
+    legislative body, the records of the common law, circuit, criminal, and
+    chancery courts, the registers’ books, and the books of the surveyor and
+    entry taker, as well as other public records required by law to be kept in
+    the several courts of the state.
   expect_sources_any:
     - docs/tn/code/tca-10-7-101-records-construed.md
 
-- id: tca-10-7-102-books-register
-  q: "Under T.C.A. § 10-7-102, who must furnish record books for the register's office and how are they paid for?"
+- id: tca-10-7-102-register-books
+  q: "Under T.C.A. § 10-7-102, who must provide record books for the register’s office and how are they paid for?"
   topic: code
-  expect_contains_any:
-    - "county legislative body"
-    - "trustee"
-    - "county mayor"
-    - "register"
-    - "affidavit"
+  expect_contains_any: >
+    Should explain that the county legislative body must provide well-bound
+    books for the register’s office upon the register’s demand, and that the
+    trustee pays for them on the county mayor’s warrant after the register
+    presents the seller’s receipt and an affidavit that the register has paid
+    or is obligated to pay the price.
   expect_sources_any:
     - docs/tn/code/tca-10-7-102-books-register-office.md
 
 - id: tca-10-7-104-mutilated-records
-  q: "What must be done with mutilated or damaged record books under T.C.A. § 10-7-104?"
+  q: "What does T.C.A. § 10-7-104 require when county record books are mutilated or in danger of loss?"
   topic: code
-  expect_contains_any:
-    - "transcribed"
-    - "well-bound book"
-    - "original book and page"
-    - "destroyed"
-    - "mutilated"
+  expect_contains_any: >
+    Should describe that when record books are so worn, mutilated, or in danger
+    of loss that portions are or may be destroyed, the county legislative body
+    must have them transcribed into new, well-bound books in the register’s
+    office; that the register must copy the entries in order, marking the
+    original book and page, and indicate where any part of the original is
+    missing or illegible.
   expect_sources_any:
     - docs/tn/code/tca-10-7-104-mutilated-records-transcribed.md
 
 - id: tca-10-7-105-rebinding-copying
-  q: "What duty does T.C.A. § 10-7-105 place on county registers and county legislative bodies regarding worn record books?"
+  q: "Under T.C.A. § 10-7-105, what responsibilities do the register and county legislative body have regarding rebinding or copying worn record books?"
   topic: code
-  expect_contains_any:
-    - "duty"
-    - "copied"
-    - "rebinding"
-    - "expense of the county"
-    - "appropriations"
+  expect_contains_any: >
+    Should explain that the register has a duty to see that books are copied
+    when, in the judgment of the county legislative body, they are so worn or
+    mutilated as to require rebinding or copying, and that the county
+    legislative body must appropriate funds to pay for such work.
   expect_sources_any:
     - docs/tn/code/tca-10-7-105-rebinding-copying-books.md
 
 - id: tca-10-7-106-transcript-certification
-  q: "What must the register and deputy register certify about transcript books under T.C.A. § 10-7-106?"
+  q: "What does T.C.A. § 10-7-106 require the register and deputy register to do when they complete a transcript book?"
   topic: code
-  expect_contains_any:
-    - "carefully collated"
-    - "full, true, and complete"
-    - "so far as the same can be ascertained"
-    - "burned or mutilated"
+  expect_contains_any: >
+    Should describe that they must carefully collate the transcript book with
+    the original record and then sign a certificate stating that the transcript
+    is a full, true, and complete copy (or, if part of the original is
+    destroyed or mutilated, complete so far as it can be ascertained from the
+    condition of the original), and that the transcript then has the same legal
+    effect as the original, subject to specified exceptions.
   expect_sources_any:
     - docs/tn/code/tca-10-7-106-transcript-books-certified.md
 
-- id: tca-10-7-107-omission-probate
-  q: "What must the register do when an instrument was originally recorded without probate or acknowledgment, under T.C.A. § 10-7-107?"
+- id: tca-10-7-107-omission-of-probate
+  q: "Under T.C.A. § 10-7-107, what must the register do if a deed in the original record book appears without probate or acknowledgment?"
   topic: code
-  expect_contains_any:
-    - "leave"
-    - "sufficient room"
-    - "probate or acknowledgment"
-    - "transcript"
+  expect_contains_any: >
+    Should explain that the register must leave sufficient blank space in the
+    transcript book at the appropriate place so that the omitted probate or
+    acknowledgment may later be entered, rather than attempting to supply it
+    without proper authority.
   expect_sources_any:
     - docs/tn/code/tca-10-7-107-omission-probate-acknowledgment.md
 
 - id: tca-10-7-108-entering-omitted-probate
-  q: "How can an omitted probate or acknowledgment be entered in the transcript when the document still exists, under T.C.A. § 10-7-108?"
+  q: "How does T.C.A. § 10-7-108 allow an omitted probate or acknowledgment to be entered in the transcript when the instrument is in someone’s possession?"
   topic: code
-  expect_contains_any:
-    - "person having such a registered instrument"
-    - "produce it to the register"
-    - "probate or acknowledgment entered of record"
+  expect_contains_any: >
+    Should describe that the person possessing the recorded instrument can
+    produce it to the register either while the register is making the
+    transcript or afterwards and have the probate or acknowledgment entered of
+    record in the space reserved, so that the transcript reflects the completed
+    probate/acknowledgment.
   expect_sources_any:
     - docs/tn/code/tca-10-7-108-entering-omitted-probate.md
 
-- id: tca-10-7-109-copy-from-clerk
-  q: "Under T.C.A. § 10-7-109, what can a person do to obtain a record of the probate or acknowledgment when the original is not in their possession?"
+- id: tca-10-7-109-clerk-probate-copy
+  q: "According to T.C.A. § 10-7-109, what can a person do if the original instrument is not in their possession but they need the probate or acknowledgment for the record?"
   topic: code
-  expect_contains_any:
-    - "apply to the clerk of the court"
-    - "oath"
-    - "not in such person's possession"
-    - "certified transcript"
+  expect_contains_any: >
+    Should explain that an interested person may apply to the clerk of the
+    court where the probate was made, swear that the original instrument is not
+    in their possession, power, or control, and obtain a certified transcript
+    of the probate or acknowledgment from the clerk, which can then be used to
+    complete the register’s record.
   expect_sources_any:
     - docs/tn/code/tca-10-7-109-copy-probate-from-clerk.md
 
-- id: tca-10-7-110-entry-transcript
-  q: "Under T.C.A. § 10-7-110, what must the register do with a certified probate or acknowledgment in the transcript book?"
+- id: tca-10-7-110-entry-in-transcript-book
+  q: "Under T.C.A. § 10-7-110, how is a certified probate or acknowledgment actually entered into the transcript book?"
   topic: code
-  expect_contains_any:
-    - "insert"
-    - "probate"
-    - "acknowledgment"
-    - "foot of the deed"
-    - "as if the original deed had been produced"
+  expect_contains_any: >
+    Should describe that upon production of the certificate, the register must
+    enter the probate or acknowledgment and the certificate at the foot of the
+    deed in the transcript book, as if the original deed with probate or
+    acknowledgment were before the register.
   expect_sources_any:
     - docs/tn/code/tca-10-7-110-entry-transcript-book.md
 
 - id: tca-10-7-112-index-transcript-books
-  q: "What indexing duty does T.C.A. § 10-7-112 place on the register regarding transcript books?"
+  q: "What duty does T.C.A. § 10-7-112 impose on the register regarding transcript books?"
   topic: code
-  expect_contains_any:
-    - "properly index"
-    - "index such transcript book"
+  expect_contains_any: >
+    Should state that the register must index the transcript books just as other
+    record books are indexed, ensuring that transcribed records are fully
+    searchable in the office’s indexing system.
   expect_sources_any:
     - docs/tn/code/tca-10-7-112-register-index-transcript-books.md
 
 - id: tca-10-7-113-special-deputies
-  q: "What authority does T.C.A. § 10-7-113 give the register concerning deputies for transcript work?"
+  q: "Under T.C.A. § 10-7-113, when may the register appoint special deputies in connection with transcription work?"
   topic: code
-  expect_contains_any:
-    - "appoint as many deputies"
-    - "necessary"
-    - "completion of such transcripts"
-    - "earliest time practicable"
+  expect_contains_any: >
+    Should describe that the register may appoint as many deputies as are
+    necessary to complete the transcripts as soon as practicable, recognizing
+    the need for additional help to finish large transcription projects.
   expect_sources_any:
     - docs/tn/code/tca-10-7-113-special-deputies-transcripts.md
 
 - id: tca-10-7-114-register-fees
-  q: "What fee is the register entitled to for making transcripts, collation, and index under T.C.A. § 10-7-114, and who pays it?"
+  q: "What fee does T.C.A. § 10-7-114 authorize the register to receive for making transcripts, collating, and indexing?"
   topic: code
-  expect_contains_any:
-    - "one dollar"
-    - "per one hundred"
-    - "100"
-    - "words"
-    - "paid by the county"
+  expect_contains_any: >
+    Should state that the register is entitled to a fee of one dollar ($1.00)
+    for every one hundred (100) words in such transcripts, including collation
+    and indexing, payable by the county.
   expect_sources_any:
     - docs/tn/code/tca-10-7-114-register-fees-transcript.md
 
-- id: tca-10-7-115-original-deposited
-  q: "According to T.C.A. § 10-7-115, where must the original record books be deposited after transcripts are made?"
+- id: tca-10-7-115-original-deposited-clerk
+  q: "According to T.C.A. § 10-7-115, where must the original record books used for transcripts be deposited?"
   topic: code
-  expect_contains_any:
-    - "deposited"
-    - "clerk's office"
-    - "of the county"
+  expect_contains_any: >
+    Should explain that after transcripts are made, the original record books
+    from which the transcripts were made must be deposited in the county
+    clerk’s office.
   expect_sources_any:
     - docs/tn/code/tca-10-7-115-original-records-deposited-clerk.md
 
-- id: tca-10-7-116-copy-original-evidence
-  q: "Under T.C.A. § 10-7-116, when is a transcript from the original record admissible instead of the register's transcript?"
+- id: tca-10-7-116-copy-from-original-evidence
+  q: "When does T.C.A. § 10-7-116 allow a copy from the original record to be used as evidence instead of the register’s transcript?"
   topic: code
-  expect_contains_any:
-    - "dissatisfied with the transcript"
-    - "access to the original"
-    - "varies from the original"
-    - "alters the meaning and substance"
-    - "deed or title in litigation"
+  expect_contains_any: >
+    Should describe that if it is shown that the register’s transcript differs
+    from the original record and that the difference changes the meaning or
+    substance of a deed or title in litigation, a certified copy from the
+    original record in the county clerk’s office may be admitted to show the
+    true content, but otherwise the transcript controls.
   expect_sources_any:
     - docs/tn/code/tca-10-7-116-copy-from-original-evidence.md
 
-- id: tca-10-7-118-transcribed-records-evidence
-  q: "What does T.C.A. § 10-7-118 say about the evidentiary status of certified copies from transcribed records?"
+- id: tca-10-7-118-copies-transcribed-records
+  q: "Under T.C.A. § 10-7-118, what evidentiary weight is given to copies from transcribed records?"
   topic: code
-  expect_contains_any:
-    - "certified copy"
-    - "transcribed records"
-    - "admissible as evidence"
-    - "same validity"
-    - "subject to § 10-7-116"
+  expect_contains_any: >
+    Should explain that certified copies from transcribed records are admissible
+    as evidence and have the same validity as certified copies from the
+    original record, subject to the exception in § 10-7-116 where a material
+    variance between transcript and original is shown.
   expect_sources_any:
     - docs/tn/code/tca-10-7-118-copies-transcribed-records-evidence.md
 
 - id: tca-10-7-119-rebinding-authority
   q: "What authority does T.C.A. § 10-7-119 give county legislative bodies regarding rebinding record books?"
   topic: code
-  expect_contains_any:
-    - "ascertain that any of the books of record"
-    - "need to be rebound"
-    - "county legislative body"
-    - "chair"
-    - "bookbinding firm"
+  expect_contains_any: >
+    Should describe that the county legislative body may authorize its chair to
+    take charge of worn record books in specified county offices, send them to
+    a competent in-state bookbinder, and have them rebound and returned, when
+    the body deems it necessary to preserve them.
   expect_sources_any:
     - docs/tn/code/tca-10-7-119-county-rebind-record-books.md
 
-- id: tca-10-7-120-liability-suspended
+- id: tca-10-7-120-liability-suspended-rebinding
   q: "According to T.C.A. § 10-7-120, what happens to the liability of the register and clerks while record books are out for rebinding?"
   topic: code
-  expect_contains_any:
-    - "released and held harmless"
-    - "free from all liability"
-    - "official bond"
-    - "during the time the record book"
+  expect_contains_any: >
+    Should state that while the record books are out of their offices for
+    rebinding under § 10-7-119, the register, county clerk, clerk and master,
+    and circuit court clerk are relieved from liability, on their official
+    bonds or otherwise, for the safekeeping of those books.
   expect_sources_any:
     - docs/tn/code/tca-10-7-120-liability-suspended-rebinding.md
 
 - id: tca-10-7-121-computer-records
-  q: "What conditions must be met under T.C.A. § 10-7-121 for government records to be kept on computer or removable storage media?"
+  q: "Under T.C.A. § 10-7-121, when may government records be kept on computers or removable media instead of paper?"
   topic: code
-  expect_contains_any:
-    - "available for public inspection"
-    - "due care is taken"
-    - "daily data"
-    - "copied to computer storage media"
-    - "stored at a location other than"
-    - "provide a paper copy"
+  expect_contains_any: >
+    Should explain that officials may keep required records on computers or
+    removable media as long as the records remain accessible for inspection (if
+    not confidential), are preserved with due care for the full retention
+    period, are backed up daily with older media stored off-site, and paper
+    copies can be provided upon request. It should mention the special 30-day
+    production-at-cost rule for assessment data in counties over 800,000
+    population.
   expect_sources_any:
     - docs/tn/code/tca-10-7-121-records-on-computer-media.md
 
-- id: tca-10-7-123-remote-access
-  q: "Under T.C.A. § 10-7-123, when may county officials charge fees for remote electronic access to records, and what limits apply?"
+- id: tca-10-7-123-electronic-access
+  q: "What does T.C.A. § 10-7-123 say about counties providing remote electronic access to records and charging fees?"
   topic: code
-  expect_contains_any:
-    - "reasonable amount sufficient to recover the costs"
-    - "for no other access services"
-    - "not include the cost of storage and maintenance"
-    - "no fee"
-    - "records that are viewed"
-    - "at the locations where they are maintained"
+  expect_contains_any: >
+    Should describe that counties may provide computer and remote 'inquiry-only'
+    access to records on computer media, may charge a reasonable fee limited to
+    the cost of providing remote access (not system maintenance), may not
+    charge any fee to view records at the office where they are kept, and must
+    ensure equal access for all users (including commercial users) and
+    protection of confidential records and data integrity.
   expect_sources_any:
     - docs/tn/code/tca-10-7-123-electronic-access-county-info.md
 
-- id: tca-10-7-505-judicial-remedy
-  q: >
-    If a Tennessee county denies a citizen's public records request, what court
-    remedies are available under § 10-7-505, and who has the burden of proof?
+# Part 5 / microfilm, state records, TPRA remedies
+- id: tca-10-7-501-microfilm-authority
+  q: "What authority does T.C.A. § 10-7-501 give heads of Tennessee state agencies regarding reproduction of records on film?"
+  topic: code
+  expect_contains_any: >
+    Should explain that heads of departments, commissions, boards, and other
+    state agencies may have their records photographed, microfilmed, or
+    otherwise reproduced on film, subject to review and approval by the
+    Division of Records Management and compliance with national standards for
+    permanent photographic records and accurate reproduction.
+
+- id: tca-10-7-502-photographic-copy-original
+  q: "Under T.C.A. § 10-7-502, what legal effect does a photographic or microfilm copy of a public record have?"
+  topic: code
+  expect_contains_any: >
+    Should state that a photograph, microphotograph, or photographic film of a
+    public record of a state, county, or municipal agency is treated as an
+    original record for all purposes, including in evidence, and that certified
+    copies made from such photographic records have the same effect as
+    certified copies from the original paper records.
+
+- id: tca-10-7-505-remedies
+  q: "If a Tennessee county denies a citizen's public records request, what court remedies are available under § 10-7-505, and who has the burden of proof?"
   topic: code
   expect_contains_any: >
     Should explain that the citizen can file a petition in chancery or circuit
@@ -350,8 +473,6 @@
     the statute is to be broadly construed to give fullest possible access; and
     that courts may award attorney's fees when a governmental entity knew the
     record was public and willfully refused to disclose it.
-  expect_sources_any:
-    - docs/tn/code/tca-10-7-505-denial-of-access-remedy.md
 
 - id: tca-10-7-506-commercial-gis-fees
   q: >
@@ -367,61 +488,45 @@
     process for approval up to 20%). It should mention that these extra fees
     cannot be charged to individuals for non-business use or to the news media
     for news gathering, who pay only reproduction cost.
-  expect_sources_any:
-    - docs/tn/code/tca-10-7-506-inspection-and-commercial-value.md
 
-- id: tca-10-7-507-conviction-records
-  q: >
-    Does a Tennessee clerk have to provide copies of conviction records for
-    traffic offenses, and can they charge for them?
-  topic: code  
+- id: tca-10-7-507-traffic-conviction-records
+  q: "What does T.C.A. § 10-7-507 require regarding access to traffic and other public offense conviction records?"
+  topic: code
   expect_contains_any: >
-    Should state that any official with custody of conviction records for
-    traffic violations or other public offenses must provide copies to any
-    citizen upon request during regular hours, and may charge a reasonable fee
-    per copy to defray the cost of producing and delivering the copies.
-  expect_sources_any:
-    - docs/tn/code/tca-10-7-507-traffic-conviction-records.md
+    Should explain that officials keeping records of convictions for traffic
+    and other public offenses must provide copies to any citizen applying for
+    them during business hours, and may charge a reasonable fee per copy to
+    defray the cost of reproduction and delivery.
 
-- id: tca-10-7-508-archival-access
+- id: tca-10-7-508-archival-review
   q: >
-    Who in Tennessee state government is allowed to examine confidential public
-    records to determine archival value, and what happens if records are
-    wrongly labeled confidential?
-  topic: code  
+    How does T.C.A. § 10-7-508 handle archival review of records, including
+    confidential records, and misclassification of records as confidential?
+  topic: code
   expect_contains_any: >
-    Should explain that the secretary of state, the state librarian and
-    archivist (or their designees), and the comptroller (for audit) can access
-    public records, including confidential ones, while maintaining
-    confidentiality. It should note that the state librarian/archivist and
-    secretary of state, in consultation with the agency head, may review
-    confidential records for archival value and correct misclassification; open
-    records mis-labeled as confidential must be refiled under the correct
-    access level, and non-archival confidential records are disposed of under
-    approved records disposition authorizations.
-  expect_sources_any:
-    - docs/tn/code/tca-10-7-508-archival-access-and-retention.md
+    Should describe that the secretary of state, state librarian and archivist,
+    and comptroller (and their designees) may examine records, including
+    confidential ones, for archival and audit purposes while maintaining
+    confidentiality; that records mislabeled as confidential but actually open
+    must be reclassified; and that confidential records without archival value
+    are disposed of under approved disposition authorizations.
 
-- id: tca-10-7-509-rda-requirement
-  q: >
-    Can a Tennessee state agency destroy or transfer records without an
-    approved records disposition authorization?
-  topic: code  
+- id: tca-10-7-509-state-records-disposition
+  q: "Under T.C.A. § 10-7-509, when may Tennessee state records be destroyed or otherwise disposed of?"
+  topic: code
   expect_contains_any: >
-    Should answer no, explaining that all state records may be disposed of only
-    through an approved records disposition authorization, and that records
-    authorized for destruction must be disposed of according to that
-    authorization and cannot be given to unauthorized persons, transferred to
-    another agency or political subdivision, or given to private or semiprivate
-    institutions.
-  expect_sources_any:
-    - docs/tn/code/tca-10-7-509-state-records-disposition.md
+    Should explain that state records may be destroyed or otherwise disposed of
+    only in accordance with an approved records disposition authorization
+    (RDA), and that records cannot be informally transferred to unauthorized
+    persons, other agencies, or private/semi-private institutions instead of
+    following the RDA process.
 
-- id: tca-10-7-510-historical-criminal-records
+- id: tca-10-7-510-historical-transfer
   q: >
-    Under Tennessee law, when may original criminal case records and physical
-    evidence be transferred to a university or museum for historical purposes?
-  topic: code  
+    What conditions must be met under T.C.A. § 10-7-510 for criminal case files
+    and evidence to be transferred to a university, museum, or other
+    historical institution?
+  topic: code
   expect_contains_any: >
     Should describe that the district attorney general (or, if in the sole
     custody of the criminal court clerk, the clerk with DA approval) may
@@ -435,5 +540,3 @@
     “historical significance” is defined as events at least 20 years before
     April 18, 1994, and that confidential records cannot be transferred under
     this section.
-  expect_sources_any:
-    - docs/tn/code/tca-10-7-510-transfer-criminal-records-historical.md

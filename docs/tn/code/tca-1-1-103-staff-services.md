@@ -2,7 +2,7 @@
 title: 'T.C.A. § 1-1-103 — Staff services for commission'
 jurisdiction: 'TN'
 topic: 'code'
-source_url: '' # put Lexis / official URL if you want
+source_url: ''
 citation: 'Tenn. Code Ann. § 1-1-103'
 doc_id: 'tca-1-1-103'
 version_date: '2025-01-01'
@@ -18,7 +18,7 @@ The commission itself does not hire its own separate staff.
 ## Key practice points
 
 - The office of legal services is the exclusive provider of staff services.
-- When you need to contact “staff” for the commission, you’re really dealing with legislative legal services.
+- When you need to contact “staff” for the commission, you are dealing with legislative legal services.
 
 ## Statutory text
 

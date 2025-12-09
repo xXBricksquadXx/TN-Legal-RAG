@@ -13,13 +13,14 @@ accessed: '2025-11-30'
 
 This section authorizes government officials to keep required records on computer or removable storage media (including electronic formats) instead of bound books or paper, if certain conditions are met:
 
-- Records must remain available for public inspection unless confidential by law.
-- Due care must be taken to maintain public records during the required retention period.
-- All daily data must be copied to storage media daily, with media more than one week old stored off-site.
-- The official must be able to provide a paper copy of the information when needed or requested.
+- Records must remain **available for public inspection** unless confidential by law.
+- **Due care is taken** to maintain public records during the required retention period.
+- All **daily data** must be **copied to computer storage media** each day, and media more than one week old must be **stored at a location other than** the office where the records are used.
+- The official must be able to **provide a paper copy** of the information when needed or requested.
 - Officials are not required to sell or provide the physical media itself.
 
 In large counties (population > 800,000 by census), assessor-of-property computer data about assessments must be made available to the public at cost within 30 days of request.
+
 
 ## Key practice points
 
