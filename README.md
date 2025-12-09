@@ -63,6 +63,132 @@ Ask questions in the top box
 Upload `.txt/.md` files
 Delete docs by path (e.g., `docs/foo.md`)
 ```
+## ✅ API + UI
+```bash
+(.venv) colby@______:~/TN-Legal-RAG$ uvicorn rag_api:app --reload --host 127.0.0.1 --port 8000
+INFO:     Will watch for changes in these directories: ['/home/colby/TN-Legal-RAG']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [26957] using WatchFiles
+INFO:     Started server process [26959]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:47974 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47974 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58510 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58514 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37994 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53906 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40844 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40752 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52688 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33276 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58036 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35106 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38028 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41410 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56274 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47034 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47050 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47996 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50936 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47414 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39394 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38992 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45758 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51228 - "POST /query HTTP/1.1" 200 OK
+```
+---
+
+## 💨 Smoke Test
+
+```bash
+(.venv) colby@_________:~/TN-Legal-RAG$ cd ~/TN-Legal-RAG
+./scripts/check_all.sh
+>>> Rebuilding index
+Indexed 143 chunks from 48 files → ./.chroma
+
+>>> Smoke test
+Health:
+{
+  "ok": true,
+  "collection": "tn_legal",
+  "model": "qwen2.5:1.5b-instruct",
+  "embed": "all-MiniLM-L6-v2",
+  "max_distance": 0.75
+}
+Eligibility:
+"TN citizens."
+[
+  "docs/tn/code/tca-10-7-503-public-records-act.md",
+  "docs/tn/sunshine/oorc-best-practices-and-guidelines-2022-09-19.md",
+  "docs/tn/code/tca-10-7-507-traffic-conviction-records.md",
+  "docs/tn/code/tca-10-7-505-denial-of-access-remedy.md",
+  "docs/tn/sunshine/tdos-open-records.md"
+]
+TDOS:
+"Use the TDOS Open Records contact on this page — email **Safety.OpenRecords@tn.gov** or the listed Nashville addresses; fees follow OORC."
+[
+  "docs/tn/sunshine/tdos-open-records.md",
+  "docs/tn/sunshine/oorc-best-practices-and-guidelines-2022-09-19.md"
+]
+Fees:
+"Copy charges are up to $0.15/page (B/W) and $0.50/page (color). Labor may be charged after the first hour of staff time, using the lowest-paid qualified employee, with time itemized."
+[
+  "docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md"
+]
+
+>>> API eval
+
+Results: 47/47 passed
+
+✅ tpra-eligibility: text=True src=True
+✅ tdos-portal: text=True src=True
+✅ tdos-fees: text=True src=True
+✅ oorc-fee-schedule: text=True src=True
+✅ oorc-labor-threshold: text=True src=True
+✅ oorc-best-practices-response-time: text=True src=True
+✅ tpra-core-definition-public-record: text=True src=True
+✅ tpra-inspection-vs-copies: text=True src=True
+✅ tpra-seven-business-days-rule: text=True src=True
+✅ tpra-residency-proof: text=True src=True
+✅ tpra-redaction-vs-withholding: text=True src=True
+✅ tpra-injunction-intent-to-disrupt: text=True src=True
+✅ tca-1-1-101-members: text=True src=True
+✅ tca-1-1-102-chair-secretary: text=True src=True
+✅ tca-1-1-103-staff-services: text=True src=True
+✅ tca-1-1-104-successor: text=True src=True
+✅ tca-1-1-105-publication: text=True src=True
+✅ tca-1-1-106-contracts: text=True src=True
+✅ tca-1-1-107-specs-price: text=True src=True
+✅ tca-1-1-108-substantive-changes: text=True src=True
+✅ tca-10-7-101-records-construed: text=True src=True
+✅ tca-10-7-102-register-books: text=True src=True
+✅ tca-10-7-104-mutilated-records: text=True src=True
+✅ tca-10-7-105-rebinding-copying: text=True src=True
+✅ tca-10-7-106-transcript-certification: text=True src=True
+✅ tca-10-7-107-omission-of-probate: text=True src=True
+✅ tca-10-7-108-entering-omitted-probate: text=True src=True
+✅ tca-10-7-109-clerk-probate-copy: text=True src=True
+✅ tca-10-7-110-entry-in-transcript-book: text=True src=True
+✅ tca-10-7-112-index-transcript-books: text=True src=True
+✅ tca-10-7-113-special-deputies: text=True src=True
+✅ tca-10-7-114-register-fees: text=True src=True
+✅ tca-10-7-115-original-deposited-clerk: text=True src=True
+✅ tca-10-7-116-copy-from-original-evidence: text=True src=True
+✅ tca-10-7-118-copies-transcribed-records: text=True src=True
+✅ tca-10-7-119-rebinding-authority: text=True src=True
+✅ tca-10-7-120-liability-suspended-rebinding: text=True src=True
+✅ tca-10-7-121-computer-records: text=True src=True
+✅ tca-10-7-123-electronic-access: text=True src=True
+✅ tca-10-7-501-microfilm-authority: text=True src=True
+✅ tca-10-7-502-photographic-copy-original: text=True src=True
+✅ tca-10-7-505-remedies: text=True src=True
+✅ tca-10-7-506-commercial-gis-fees: text=True src=True
+✅ tca-10-7-507-traffic-conviction-records: text=True src=True
+✅ tca-10-7-508-archival-review: text=True src=True
+✅ tca-10-7-509-state-records-disposition: text=True src=True
+✅ tca-10-7-510-historical-transfer: text=True src=True
+```
 ---
 
 ## 📦 Project Structure
@@ -96,6 +222,7 @@ curl -X POST "http://127.0.0.1:8000/query" \
   -H "Content-Type: application/json" \
   -d '{"q":"When was rule 0020-01-.08 most recently amended?","k":3}'
 ```
+<img width="1919" height="1195" alt="TN-Legal-Rag" src="https://github.com/user-attachments/assets/8b145fbd-830e-418f-a99a-3c8d2367e675" />
 
 ---
 
