@@ -1,5 +1,6 @@
-# TN-Legal-RAG
+<img width="1536" height="1024" alt="TN-Legal-RAG" src="https://github.com/user-attachments/assets/f378d568-c1ee-4a50-879c-487105163652" />
 
+---
 Local, private RAG demo for Tennessee regulations using **FastAPI + ChromaDB + Ollama**.  
 Upload `.txt`/`.md` files, ask questions, and get grounded answers from your own corpus.
 
