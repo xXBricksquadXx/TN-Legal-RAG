@@ -6,3 +6,6 @@ __pycache__/
 .DS_Store
 .chroma/
 .chroma/
+source/
+.api.pid
+smoke.sh
