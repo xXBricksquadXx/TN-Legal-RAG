@@ -1,5 +1,6 @@
 # eval/cases.yaml
 # Minimal API eval set
+
 - id: tpra-eligibility
   q: "Who can request records under the TPRA?"
   topic: sunshine
@@ -19,10 +20,8 @@
 - id: tdos-fees
   q: "Under TDOS's TPRA policy, can they charge labor fees for locating records?"
   topic: sunshine
-  # Deliberately no expect_contains / expect_contains_any here because
-  # the model answer is unstable (sometimes "No in docs.", sometimes
-  # a paraphrase of OORC). We only require that it ground itself in
-  # the right sources.
+  # Deliberately no expect_contains / expect_contains_any here because the model answer is unstable.
+  # We only require that it ground itself in the right sources.
   expect_sources_any:
     - docs/tn/sunshine/tdos-open-records.md
     - docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md
@@ -473,13 +472,15 @@
     the statute is to be broadly construed to give fullest possible access; and
     that courts may award attorney's fees when a governmental entity knew the
     record was public and willfully refused to disclose it.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-505-denial-of-access-remedy.md
 
 - id: tca-10-7-506-commercial-gis-fees
   q: >
     When a Tennessee local government provides computer-generated parcel maps
     or GIS data that have commercial value, what extra fees may it charge and
     who is exempt from those fees?
-  topic: code  
+  topic: code
   expect_contains_any: >
     Should describe that, in addition to ordinary reproduction costs, the
     agency may charge reasonable development cost recovery fees tied to labor,
@@ -488,6 +489,8 @@
     process for approval up to 20%). It should mention that these extra fees
     cannot be charged to individuals for non-business use or to the news media
     for news gathering, who pay only reproduction cost.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-506-inspection-and-commercial-value.md
 
 - id: tca-10-7-507-traffic-conviction-records
   q: "What does T.C.A. § 10-7-507 require regarding access to traffic and other public offense conviction records?"
@@ -497,6 +500,8 @@
     and other public offenses must provide copies to any citizen applying for
     them during business hours, and may charge a reasonable fee per copy to
     defray the cost of reproduction and delivery.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-507-traffic-conviction-records.md
 
 - id: tca-10-7-508-archival-review
   q: >
@@ -510,6 +515,8 @@
     confidentiality; that records mislabeled as confidential but actually open
     must be reclassified; and that confidential records without archival value
     are disposed of under approved disposition authorizations.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-508-archival-access-and-retention.md
 
 - id: tca-10-7-509-state-records-disposition
   q: "Under T.C.A. § 10-7-509, when may Tennessee state records be destroyed or otherwise disposed of?"
@@ -520,6 +527,8 @@
     (RDA), and that records cannot be informally transferred to unauthorized
     persons, other agencies, or private/semi-private institutions instead of
     following the RDA process.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-509-state-records-disposition.md
 
 - id: tca-10-7-510-historical-transfer
   q: >
@@ -540,3 +549,54 @@
     “historical significance” is defined as events at least 20 years before
     April 18, 1994, and that confidential records cannot be transferred under
     this section.
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-510-transfer-criminal-records-historical.md
+
+# Targeted “strict grounding” checks for your new/updated docs
+- id: tca-10-7-515-register-can-refuse-recording
+  q: "Under § 10-7-515, can a register of deeds refuse to record a document because it contains personally identifying information?"
+  topic: code
+  expect_contains_any:
+    - "shall not refuse"
+    - "not refuse to record"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-515-pii-redaction-register-deeds.md
+
+- id: tca-10-7-513-dd214-confidential-period
+  q: "For how long is a recorded DD-214 or military discharge record confidential under § 10-7-513?"
+  topic: code
+  expect_contains_any:
+    - "seventy-five"
+    - "75"
+    - "years"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-513-military-discharge-record-confidential-redaction.md
+
+- id: tca-10-7-512-email-monitoring-policy
+  q: "What does § 10-7-512 require agencies to adopt regarding monitoring employee email systems?"
+  topic: code
+  expect_contains_any:
+    - "written policy"
+    - "monitoring"
+    - "public record"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-512-email-monitoring-policy.md
+
+- id: tca-10-7-516-security-systems-confidential
+  q: "Are security system records held by a governmental entity open to public inspection under § 10-7-516?"
+  topic: code
+  expect_contains_any:
+    - "confidential"
+    - "not be open"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-516-security-systems-confidential.md
+
+- id: tca-10-7-602-open-appointments-definition-agency
+  q: "Under the Open Appointments Act, what is an 'agency' and what entities are excluded?"
+  topic: code
+  expect_contains_any:
+    - "state-wide jurisdiction"
+    - "does not include"
+    - "ex officio"
+  expect_sources_any:
+    - docs/tn/code/tca-10-7-602-open-appointments-definitions.md
