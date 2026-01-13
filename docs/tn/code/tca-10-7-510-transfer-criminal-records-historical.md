@@ -1,6 +1,6 @@
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-510"
+title: "Tenn. Code Ann. § 10-7-510 — Transfer of criminal case materials for historical purposes"
 citation: "Tenn. Code Ann. § 10-7-510"
 part: "Title 10, Chapter 7, Part 5"
 topic: "Transfer of criminal case documents for historical purposes"
@@ -10,7 +10,7 @@ tags:
   - criminal
   - archives
   - historical-records
-last_updated: 2025-12-08
+last_updated: 2026-01-13
 ---
 
 # Tenn. Code Ann. § 10-7-510 — Transfer of criminal case materials to historical institutions
@@ -24,7 +24,7 @@ A **district attorney general** may permanently transfer custody and ownership o
 - Library, or
 - Other not-for-profit corporation whose primary purpose is preserving and displaying items of historical significance,
 
-if all of the following are true:
+**only if** all of the following are true:
 
 1. The receiving institution has **formally requested** the materials.
 2. In the DA’s opinion, the materials are of **historical significance**, and displaying them would enhance public understanding of a time or event.
@@ -43,13 +43,13 @@ if all of the following are true:
   - The **district attorney general** decides the date, time, and method of transfer.
   - After transfer, anyone wishing to view the materials must do so **at the receiving institution**, not from the court/DA.
 
-## Definition of “historical significance”
+## Definition of “historical significance” (explicit statutory anchor)
 
 - For this section, an event is of “historical significance” if the event giving rise to the materials **occurred at least 20 years before April 18, 1994**.
 
 ## Limitations
 
-- This section **does not apply** to records or documents made confidential by any law. Confidential materials remain subject to their own restrictions.
+- This section **does not apply** to records or documents made confidential by any law.
 
 ## Example questions this doc should help answer
 

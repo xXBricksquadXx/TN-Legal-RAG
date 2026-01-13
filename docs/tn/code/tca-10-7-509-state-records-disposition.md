@@ -1,35 +1,45 @@
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-509"
+title: "Tenn. Code Ann. § 10-7-509 — Disposition of state records; records disposition authorizations"
 citation: "Tenn. Code Ann. § 10-7-509"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Disposition of state records"
+topic: "How state records may be destroyed or disposed of (RDA required)"
 tags:
   - tn
   - public-records
   - records-management
   - retention
-last_updated: 2025-12-08
+  - rda
+last_updated: 2026-01-13
 ---
 
-# Tenn. Code Ann. § 10-7-509 — Disposition of records
+# Tenn. Code Ann. § 10-7-509 — Disposition of state records; records disposition authorizations
 
-## Plain-language rule
+## What this section does (plain English)
 
-- All **state records** may be disposed of **only** through an **approved records disposition authorization** (RDA).
-- Records that are authorized for destruction must:
-  - Be disposed of strictly according to the applicable RDA, and
-  - **Not** be:
-    - Given to any unauthorized person,
-    - Transferred to another agency or political subdivision, or
-    - Given to a private or semi-private institution.
+Tennessee state records may be destroyed or otherwise disposed of **only** under an approved **Records Disposition Authorization (RDA)** process. Records cannot be “disposed of” by informal transfer to unauthorized persons or institutions.
 
-## Practice notes
+## Core rule
 
-- This section is aimed at **state** records (not directly local), but it frames the rule that disposition is a **formal, controlled process** governed by RDAs reviewed by the public records commission.
-- It underpins the idea that agencies cannot “get rid of” records informally, including by handing them off to private parties outside an RDA.
+- State records may be destroyed or disposed of **only in accordance with** an approved **records disposition authorization (RDA)**.
+
+## No informal transfers as “disposal”
+
+- Records cannot be informally transferred to:
+  - Unauthorized persons,
+  - Other agencies, or
+  - Private / semi-private institutions,
+as a substitute for the RDA process.
+
+## Practical retrieval anchors (keywords)
+
+- “records disposition authorization”
+- “RDA”
+- “destroyed or disposed”
+- “no informal transfer”
+- “unauthorized persons”
 
 ## Example questions this doc should help answer
 
-- “Can a Tennessee state agency donate old files to a private group instead of destroying them?”
-- “Is destruction or transfer of state records allowed without an approved records disposition authorization?”
+- “When can Tennessee state records be destroyed?”
+- “Can an agency just give records to a private institution instead of following RDA?”

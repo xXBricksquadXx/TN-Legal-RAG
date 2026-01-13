@@ -1,60 +1,52 @@
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-505"
+title: "Tenn. Code Ann. § 10-7-505 — Denial of access to records; judicial remedies"
 citation: "Tenn. Code Ann. § 10-7-505"
-part: "Title 10, Chapter 7, Part 5"
-topic: "Denial of access; judicial remedies"
+part: "Title 10, Chapter 7"
+topic: "TPRA remedies for denial of access"
 tags:
   - tn
   - public-records
-  - enforcement
   - tpra
-last_updated: 2025-12-08
+  - remedies
+  - litigation
+last_updated: 2026-01-13
 ---
 
-# Tenn. Code Ann. § 10-7-505 — Denial of access; court procedures; fees
+# Tenn. Code Ann. § 10-7-505 — Denial of access to records; judicial remedies
 
-## Plain-language rule
+## What this section does (plain English)
 
-- If a Tennessee citizen is denied access to a public record under § 10-7-503 (in whole or in part), the citizen can file a **court petition** to challenge that denial.
-- Venue:
-  - For **county/municipal** records: chancery or circuit court (or other equity court) in the county where the records are located.
-  - For **state** records: chancery or circuit court in Davidson County; or in the county where the records are located; or in the petitioner's county of residence (any court in that county with equity jurisdiction).
-- The court should act **expeditiously**:
-  - On request, it issues a **show-cause order** requiring the custodian to appear.
-  - Formal written responses and normal response deadlines are not required.
-  - The court can review the records **in camera** (under seal) if needed.
+If a Tennessee governmental entity **denies** (or effectively denies) a citizen’s TPRA request, the citizen can file a **petition** in court to compel access.
 
-## Burden of proof and standard
+## Core remedy
 
-- The **burden is on the government** to justify nondisclosure.
-- The justification must be proved by a **preponderance of the evidence**.
+- A Tennessee citizen may file a **petition** in:
+  - **Chancery court** or **circuit court** (or another court exercising equity jurisdiction), in the appropriate county, to obtain access to public records.
 
-## Court powers and construction
+## Expedited handling
 
-- The court must issue **written findings of fact and conclusions of law**.
-- The court may use full **injunctive remedies** to enforce access.
-- The section must be **broadly construed** to give “the fullest possible public access” to public records.
+- The court is expected to proceed on an **expedited** basis (commonly via a show-cause style process).
 
-## Effect of judgment and appeals
+## Burden of proof
 
-- If the petitioner wins:
-  - The court shall order the records produced, **unless**:
-    1. A notice of appeal is timely filed; and
-    2. The court certifies there is a **substantial legal issue** that should be resolved by the appellate courts.
+- The **governmental entity** has the **burden of proof** to justify nondisclosure by a **preponderance of the evidence**.
 
-## Immunity and fee shifting
+## Construction + fees
 
-- A public official who releases records as required by this part is **not civilly or criminally liable** and is not responsible for damages caused by the release.
-- If the court finds the governmental entity (or its agent):
-  - **Knew the record was public**, and
-  - **Willfully refused** to disclose it,
-  - the court **may** assess all reasonable costs of obtaining the record, including **reasonable attorney’s fees**, against the nondisclosing entity.
-- In deciding willfulness, the court may consider any guidance the custodian received from the **Office of Open Records Counsel**.
+- The TPRA is to be **broadly construed** to give the public the **fullest possible access** to records.
+- Courts may award **attorney’s fees** when a governmental entity **knew** the record was public and **willfully refused** to disclose it.
+
+## Practical retrieval anchors (keywords)
+
+- “petition in chancery or circuit”
+- “expedited”
+- “burden of proof preponderance”
+- “attorney’s fees willfully refused”
+- “broadly construed fullest possible access”
 
 ## Example questions this doc should help answer
 
-- “Where do I file if a Tennessee county denies my TPRA request?”
-- “Who has the burden of proof when I sue over a records denial?”
-- “Can a Tennessee court award attorney’s fees for a willful TPRA violation, and under what standard?”
-- “Is a records custodian personally liable if they release records they’re legally required to disclose?”
+- “If my county denies my TPRA request, what court can I file in?”
+- “Who has the burden of proof under § 10-7-505?”
+- “When can attorney’s fees be awarded for a TPRA denial?”

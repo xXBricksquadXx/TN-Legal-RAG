@@ -12,79 +12,86 @@ set -euo pipefail
 #   4) Runs eval suite
 
 BASE="${1:-http://127.0.0.1:8000}"
-export BASE
 
-PIDFILE=".api.pid"
+HOST="${HOST:-127.0.0.1}"
+PORT="${PORT:-8000}"
 
-# Parse host/port from BASE (supports http://host:port)
-HOST="$(python -c 'import os,urllib.parse;u=urllib.parse.urlparse(os.environ["BASE"]);print(u.hostname or "127.0.0.1")')"
-PORT="$(python -c 'import os,urllib.parse;u=urllib.parse.urlparse(os.environ["BASE"]);print(u.port or (443 if u.scheme=="https" else 80))')"
+# If BASE is like http://host:port, derive HOST/PORT from it
+if [[ "$BASE" =~ ^https?://([^:/]+)(:([0-9]+))?(/.*)?$ ]]; then
+  HOST="${BASH_REMATCH[1]}"
+  if [[ -n "${BASH_REMATCH[3]:-}" ]]; then
+    PORT="${BASH_REMATCH[3]}"
+  fi
+fi
 
-kill_listeners() {
-  # Kill anything listening on PORT (best effort)
+API_PID=""
+
+cleanup() {
+  if [[ -n "${API_PID}" ]]; then
+    echo ">>> Stopping API (pid ${API_PID})"
+    kill "${API_PID}" 2>/dev/null || true
+    wait "${API_PID}" 2>/dev/null || true
+  fi
+}
+trap cleanup EXIT
+
+stop_port_if_running() {
+  local port="$1"
+  local pids=""
+
   if command -v lsof >/dev/null 2>&1; then
-    PIDS="$(lsof -t -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null || true)"
-    if [[ -n "${PIDS}" ]]; then
-      echo ">>> Killing existing listener(s) on :$PORT -> ${PIDS}"
-      kill ${PIDS} 2>/dev/null || true
-      sleep 0.5
-    fi
+    pids="$(lsof -ti tcp:"${port}" || true)"
+  elif command -v fuser >/dev/null 2>&1; then
+    # fuser prints like "8000/tcp: 12345"
+    pids="$(fuser -n tcp "${port}" 2>/dev/null || true)"
   fi
 
-  # Also kill tracked PID, if present
-  if [[ -f "$PIDFILE" ]]; then
-    OLD_PID="$(cat "$PIDFILE" 2>/dev/null || true)"
-    if [[ -n "${OLD_PID}" ]] && kill -0 "$OLD_PID" 2>/dev/null; then
-      echo ">>> Killing prior API pid ${OLD_PID}"
-      kill "$OLD_PID" 2>/dev/null || true
-      sleep 0.5
-    fi
-    rm -f "$PIDFILE"
+  if [[ -n "${pids}" ]]; then
+    echo ">>> Stopping existing process(es) on port ${port}: ${pids}"
+    kill ${pids} 2>/dev/null || true
+    sleep 0.5
+    kill -9 ${pids} 2>/dev/null || true
   fi
 }
 
 wait_for_health() {
-  echo ">>> Waiting for API health at ${BASE}/health"
-  for _ in $(seq 1 80); do
-    if curl -fsS "${BASE}/health" >/dev/null 2>&1; then
-      echo ">>> API is up"
+  local url="$1"
+  local tries="${2:-60}"
+  local sleep_s="${3:-0.5}"
+
+  if ! command -v curl >/dev/null 2>&1; then
+    echo "ERROR: curl is required for health checks."
+    exit 1
+  fi
+
+  for _ in $(seq 1 "${tries}"); do
+    if curl -fsS "${url}" >/dev/null 2>&1; then
       return 0
     fi
-    sleep 0.25
+    sleep "${sleep_s}"
   done
-  echo "ERROR: API did not become healthy at ${BASE}/health" >&2
+
+  echo "ERROR: API did not become healthy at ${url}"
   return 1
 }
-
-cleanup() {
-  if [[ -f "$PIDFILE" ]]; then
-    PID="$(cat "$PIDFILE" 2>/dev/null || true)"
-    if [[ -n "${PID}" ]] && kill -0 "$PID" 2>/dev/null; then
-      echo ">>> Stopping API (pid ${PID})"
-      kill "$PID" 2>/dev/null || true
-    fi
-    rm -f "$PIDFILE"
-  fi
-}
-trap cleanup EXIT
 
 echo ">>> Rebuilding index"
 python indexer.py
 
 echo
 echo ">>> Restarting API so it loads the fresh .chroma"
-kill_listeners
+stop_port_if_running "${PORT}"
 
-# Start API in background (no reload, deterministic)
-( uvicorn rag_api:app --host "$HOST" --port "$PORT" ) &
-API_PID=$!
-echo "$API_PID" > "$PIDFILE"
+echo ">>> Waiting for API health at ${BASE}/health"
+uvicorn rag_api:app --host "${HOST}" --port "${PORT}" >/tmp/tn_legal_rag_api.log 2>&1 &
+API_PID="$!"
 
-wait_for_health
+wait_for_health "${BASE}/health" 80 0.5
+echo ">>> API is up"
 
 echo
 echo ">>> Smoke test"
-scripts/smoke_rag.sh "$BASE"
+./scripts/smoke_rag.sh "${BASE}"
 
 echo
 echo ">>> API eval"

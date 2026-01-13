@@ -1,4 +1,4 @@
-# eval/sources.yaml
+# data/sources.yaml
 
 - url: https://www.tn.gov/safety/publicsafety/openrecords.html
   title: TN Dept. of Safety — Open Records (TPRA)
@@ -24,362 +24,378 @@
   path: docs/tn/sunshine/oorc-best-practices-and-guidelines-2022-09-19.md
   version_date: "2022-09-19"
 
-- url: ""
-  title: "Tenn. Code Ann. § 1-1-101 — Composition of commission; vacancies"
+- url: https://law.justia.com/codes/tennessee/title-1/chapter-1/part-1/section-1-1-101/
+  title: Tenn. Code Ann. § 1-1-101 — Composition of commission; vacancies
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 1-1-101"
+  citation: Tenn. Code Ann. § 1-1-101
   path: docs/tn/code/tca-1-1-101-code-commission.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 1-1-102 — Chair; executive secretary"
+- url: https://law.justia.com/codes/tennessee/title-1/chapter-1/part-1/section-1-1-102/
+  title: Tenn. Code Ann. § 1-1-102 — Chair; executive secretary
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 1-1-102"
+  citation: Tenn. Code Ann. § 1-1-102
   path: docs/tn/code/tca-1-1-102-code-commission-officers.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 1-1-103 — Staff services for commission"
+- url: https://law.justia.com/codes/tennessee/title-1/chapter-1/part-1/section-1-1-103/
+  title: Tenn. Code Ann. § 1-1-103 — Staff services for commission
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 1-1-103"
+  citation: Tenn. Code Ann. § 1-1-103
   path: docs/tn/code/tca-1-1-103-staff-services.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 1-1-104 — Successor to 1953 commission"
+- url: https://law.justia.com/codes/tennessee/title-1/chapter-1/part-1/section-1-1-104/
+  title: Tenn. Code Ann. § 1-1-104 — Successor to 1953 commission
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 1-1-104"
+  citation: Tenn. Code Ann. § 1-1-104
   path: docs/tn/code/tca-1-1-104-successor-1953-commission.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 1-1-105 — Publication of Tennessee Code Annotated"
+- url: https://law.justia.com/codes/tennessee/title-1/chapter-1/part-1/section-1-1-105/
+  title: Tenn. Code Ann. § 1-1-105 — Publication of Tennessee Code Annotated
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 1-1-105"
+  citation: Tenn. Code Ann. § 1-1-105
   path: docs/tn/code/tca-1-1-105-publication-tnca.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 1-1-106 — Powers of commission; contracts"
+- url: https://law.justia.com/codes/tennessee/title-1/chapter-1/part-1/section-1-1-106/
+  title: Tenn. Code Ann. § 1-1-106 — Powers of commission; contracts
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 1-1-106"
+  citation: Tenn. Code Ann. § 1-1-106
   path: docs/tn/code/tca-1-1-106-powers-contracts.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 1-1-107 — Specifications in contract; price of supplements and replacement volumes"
+- url: https://law.justia.com/codes/tennessee/title-1/chapter-1/part-1/section-1-1-107/
+  title: Tenn. Code Ann. § 1-1-107 — Specifications in contract; price of supplements and replacement volumes
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 1-1-107"
+  citation: Tenn. Code Ann. § 1-1-107
   path: docs/tn/code/tca-1-1-107-specifications-price.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 1-1-108 — Substantive changes in text prohibited; authorized changes; effect of enrollment error"
+- url: https://law.justia.com/codes/tennessee/title-1/chapter-1/part-1/section-1-1-108/
+  title: Tenn. Code Ann. § 1-1-108 — Substantive changes in text prohibited; authorized changes; effect of enrollment error
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 1-1-108"
+  citation: Tenn. Code Ann. § 1-1-108
   path: docs/tn/code/tca-1-1-108-substantive-changes-prohibited.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-101 — “Records” construed"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-101/
+  title: Tenn. Code Ann. § 10-7-101 — “Records” construed
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-101"
+  citation: Tenn. Code Ann. § 10-7-101
   path: docs/tn/code/tca-10-7-101-records-construed.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-102 — Books for register's office to be furnished by county"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-102/
+  title: Tenn. Code Ann. § 10-7-102 — Books for register's office to be furnished by county
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-102"
+  citation: Tenn. Code Ann. § 10-7-102
   path: docs/tn/code/tca-10-7-102-books-register-office.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-104 — Mutilated records to be transcribed; incomplete copies"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-104/
+  title: Tenn. Code Ann. § 10-7-104 — Mutilated records to be transcribed; incomplete copies
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-104"
+  citation: Tenn. Code Ann. § 10-7-104
   path: docs/tn/code/tca-10-7-104-mutilated-records-transcribed.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-105 — Rebinding or copying books at expense of county"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-105/
+  title: Tenn. Code Ann. § 10-7-105 — Rebinding or copying books at expense of county
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-105"
+  citation: Tenn. Code Ann. § 10-7-105
   path: docs/tn/code/tca-10-7-105-rebinding-copying-books.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-106 — Transcript books to be collated and certified to by register and deputy register"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-106/
+  title: Tenn. Code Ann. § 10-7-106 — Transcript books to be collated and certified to by register and deputy register
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-106"
+  citation: Tenn. Code Ann. § 10-7-106
   path: docs/tn/code/tca-10-7-106-transcript-books-certified.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-107 — Omission of probate or acknowledgment"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-107/
+  title: Tenn. Code Ann. § 10-7-107 — Omission of probate or acknowledgment
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-107"
+  citation: Tenn. Code Ann. § 10-7-107
   path: docs/tn/code/tca-10-7-107-omission-probate-acknowledgment.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-108 — Entering omitted probate or acknowledgment in transcript where document in existence"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-108/
+  title: Tenn. Code Ann. § 10-7-108 — Entering omitted probate or acknowledgment in transcript where document in existence
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-108"
+  citation: Tenn. Code Ann. § 10-7-108
   path: docs/tn/code/tca-10-7-108-entering-omitted-probate.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-109 — Copy of probate or acknowledgment made by clerk of court on demand"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-109/
+  title: Tenn. Code Ann. § 10-7-109 — Copy of probate or acknowledgment made by clerk of court on demand
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-109"
+  citation: Tenn. Code Ann. § 10-7-109
   path: docs/tn/code/tca-10-7-109-copy-probate-from-clerk.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-110 — Entry in transcript book"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-110/
+  title: Tenn. Code Ann. § 10-7-110 — Entry in transcript book
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-110"
+  citation: Tenn. Code Ann. § 10-7-110
   path: docs/tn/code/tca-10-7-110-entry-transcript-book.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-112 — Register to index transcript book or books"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-112/
+  title: Tenn. Code Ann. § 10-7-112 — Register to index transcript book or books
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-112"
+  citation: Tenn. Code Ann. § 10-7-112
   path: docs/tn/code/tca-10-7-112-register-index-transcript-books.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-113 — Special deputies; appointment by register necessitated"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-113/
+  title: Tenn. Code Ann. § 10-7-113 — Special deputies; appointment by register necessitated
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-113"
+  citation: Tenn. Code Ann. § 10-7-113
   path: docs/tn/code/tca-10-7-113-special-deputies-transcripts.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-114 — Register's fees"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-114/
+  title: Tenn. Code Ann. § 10-7-114 — Register's fees
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-114"
+  citation: Tenn. Code Ann. § 10-7-114
   path: docs/tn/code/tca-10-7-114-register-fees-transcript.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-115 — Original deposited in clerk's office"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-115/
+  title: Tenn. Code Ann. § 10-7-115 — Original deposited in clerk's office
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-115"
+  citation: Tenn. Code Ann. § 10-7-115
   path: docs/tn/code/tca-10-7-115-original-records-deposited-clerk.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-116 — Copy made from original; admissibility in evidence"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-116/
+  title: Tenn. Code Ann. § 10-7-116 — Copy made from original; admissibility in evidence
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-116"
+  citation: Tenn. Code Ann. § 10-7-116
   path: docs/tn/code/tca-10-7-116-copy-from-original-evidence.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-118 — Copies of transcribed records; admissibility as evidence"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-118/
+  title: Tenn. Code Ann. § 10-7-118 — Copies of transcribed records; admissibility as evidence
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-118"
+  citation: Tenn. Code Ann. § 10-7-118
   path: docs/tn/code/tca-10-7-118-copies-transcribed-records-evidence.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-119 — County legislative bodies authorized to have record books rebound"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-119/
+  title: Tenn. Code Ann. § 10-7-119 — County legislative bodies authorized to have record books rebound
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-119"
+  citation: Tenn. Code Ann. § 10-7-119
   path: docs/tn/code/tca-10-7-119-county-rebind-record-books.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-120 — Liability of register and clerks suspended during rebinding"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-120/
+  title: Tenn. Code Ann. § 10-7-120 — Liability of register and clerks suspended during rebinding
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-120"
+  citation: Tenn. Code Ann. § 10-7-120
   path: docs/tn/code/tca-10-7-120-liability-suspended-rebinding.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-121 — Government records kept on computer or removable computer storage media"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-121/
+  title: Tenn. Code Ann. § 10-7-121 — Government records kept on computer or removable computer storage media
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-121"
+  citation: Tenn. Code Ann. § 10-7-121
   path: docs/tn/code/tca-10-7-121-records-on-computer-media.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-123 — Electronic access to county government information; fees; equal accessibility"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-1/section-10-7-123/
+  title: Tenn. Code Ann. § 10-7-123 — Electronic access to county government information; fees; equal accessibility
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-123"
+  citation: Tenn. Code Ann. § 10-7-123
   path: docs/tn/code/tca-10-7-123-electronic-access-county-info.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
 - url: ""
-  title: "TN bar distinction — Evidence Rule 404(b) outline"
+  title: TN bar distinction — Evidence Rule 404(b) outline
   topic: bar
   jurisdiction: TN
-  citation: "Evidence Rule 404(b) — TN vs MBE distinctions"
+  citation: Evidence Rule 404(b) — TN vs MBE distinctions
   path: docs/tn/bar/distinctions/evidence/tn-v-mbe-evidence-404b.md
   version_date: ""
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-503 — Public records; policies; injunction; destruction"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-501/
+  title: Tenn. Code Ann. § 10-7-501 — Microfilm authority for state agencies
+  topic: code
+  jurisdiction: TN
+  citation: Tenn. Code Ann. § 10-7-501
+  path: docs/tn/code/tca-10-7-501-microfilm-authority.md
+  version_date: "2024-01-01"
+
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-502/
+  title: Tenn. Code Ann. § 10-7-502 — Photographic copy treated as original record
+  topic: code
+  jurisdiction: TN
+  citation: Tenn. Code Ann. § 10-7-502
+  path: docs/tn/code/tca-10-7-502-photographic-copy-original.md
+  version_date: "2024-01-01"
+
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-503/
+  title: Tenn. Code Ann. § 10-7-503 — Public records; policies; injunction; destruction
   topic: sunshine
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-503"
+  citation: Tenn. Code Ann. § 10-7-503
   path: docs/tn/code/tca-10-7-503-public-records-act.md
-  version_date: "2026-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-505 — Denial of access to records; judicial remedies"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-505/
+  title: Tenn. Code Ann. § 10-7-505 — Denial of access to records; judicial remedies
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-505"
+  citation: Tenn. Code Ann. § 10-7-505
   path: docs/tn/code/tca-10-7-505-denial-of-access-remedy.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-506 — Copies, extracts, photographs; records with commercial value"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-506/
+  title: Tenn. Code Ann. § 10-7-506 — Copies/extracts; records with commercial value
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-506"
+  citation: Tenn. Code Ann. § 10-7-506
   path: docs/tn/code/tca-10-7-506-inspection-and-commercial-value.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-507 — Conviction records for traffic and other public offenses"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-507/
+  title: Tenn. Code Ann. § 10-7-507 — Conviction records for traffic and other public offenses
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-507"
+  citation: Tenn. Code Ann. § 10-7-507
   path: docs/tn/code/tca-10-7-507-traffic-conviction-records.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-508 — Archival review of records; confidential records; misclassification"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-508/
+  title: Tenn. Code Ann. § 10-7-508 — Archival review of records; confidential records; misclassification
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-508"
+  citation: Tenn. Code Ann. § 10-7-508
   path: docs/tn/code/tca-10-7-508-archival-access-and-retention.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-509 — Disposition of state records; records disposition authorizations"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-509/
+  title: Tenn. Code Ann. § 10-7-509 — Disposition of state records; records disposition authorizations
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-509"
+  citation: Tenn. Code Ann. § 10-7-509
   path: docs/tn/code/tca-10-7-509-state-records-disposition.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-510 — Transfer of criminal case materials for historical purposes"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-510/
+  title: Tenn. Code Ann. § 10-7-510 — Transfer of criminal case materials for historical purposes
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-510"
+  citation: Tenn. Code Ann. § 10-7-510
   path: docs/tn/code/tca-10-7-510-transfer-criminal-records-historical.md
-  version_date: "2025-01-01"
+  version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-511 — Preservation of records of permanent value"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-511/
+  title: Tenn. Code Ann. § 10-7-511 — Preservation of records of permanent value
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-511"
+  citation: Tenn. Code Ann. § 10-7-511
   path: docs/tn/code/tca-10-7-511-preservation-records-permanent-value.md
   version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-512 — Electronic mail monitoring policy required"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-512/
+  title: Tenn. Code Ann. § 10-7-512 — Electronic mail monitoring policy required
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-512"
+  citation: Tenn. Code Ann. § 10-7-512
   path: docs/tn/code/tca-10-7-512-email-monitoring-policy.md
   version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-513 — Military discharge record confidentiality; removal/redaction"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-513/
+  title: Tenn. Code Ann. § 10-7-513 — Military discharge record confidentiality; removal/redaction
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-513"
+  citation: Tenn. Code Ann. § 10-7-513
   path: docs/tn/code/tca-10-7-513-military-discharge-record-confidential-redaction.md
   version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-514 — Military discharge record internet subscription requirement"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-514/
+  title: Tenn. Code Ann. § 10-7-514 — Military discharge record internet subscription requirement
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-514"
+  citation: Tenn. Code Ann. § 10-7-514
   path: docs/tn/code/tca-10-7-514-military-discharge-internet-subscription.md
   version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-515 — Personally identifying info; redaction by register of deeds"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-515/
+  title: Tenn. Code Ann. § 10-7-515 — Personally identifying info; redaction by register of deeds
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-515"
+  citation: Tenn. Code Ann. § 10-7-515
   path: docs/tn/code/tca-10-7-515-pii-redaction-register-deeds.md
   version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-516 — Security systems information confidential"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-516/
+  title: Tenn. Code Ann. § 10-7-516 — Security systems information confidential
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-516"
+  citation: Tenn. Code Ann. § 10-7-516
   path: docs/tn/code/tca-10-7-516-security-systems-confidential.md
   version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-517 — Referral of certain open-records-exception bills"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-5/section-10-7-517/
+  title: Tenn. Code Ann. § 10-7-517 — Referral of certain open-records-exception bills
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-517"
+  citation: Tenn. Code Ann. § 10-7-517
   path: docs/tn/code/tca-10-7-517-open-records-exception-bills-committee-referral.md
   version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-601 — Open Appointments Act short title"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-6/section-10-7-601/
+  title: Tenn. Code Ann. § 10-7-601 — Open Appointments Act short title
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-601"
+  citation: Tenn. Code Ann. § 10-7-601
   path: docs/tn/code/tca-10-7-601-open-appointments-act-short-title.md
   version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-602 — Open Appointments Act definitions"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-6/section-10-7-602/
+  title: Tenn. Code Ann. § 10-7-602 — Open Appointments Act definitions
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-602"
+  citation: Tenn. Code Ann. § 10-7-602
   path: docs/tn/code/tca-10-7-602-open-appointments-definitions.md
   version_date: "2024-01-01"
 
-- url: ""
-  title: "Tenn. Code Ann. § 10-7-603 — Open Appointments Act data provided to secretary of state"
+- url: https://law.justia.com/codes/tennessee/title-10/chapter-7/part-6/section-10-7-603/
+  title: Tenn. Code Ann. § 10-7-603 — Open Appointments Act data provided to secretary of state
   topic: code
   jurisdiction: TN
-  citation: "Tenn. Code Ann. § 10-7-603"
+  citation: Tenn. Code Ann. § 10-7-603
   path: docs/tn/code/tca-10-7-603-open-appointments-data-to-secretary.md
   version_date: "2024-01-01"

@@ -1,37 +1,28 @@
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-514"
+title: "Tenn. Code Ann. § 10-7-514 — Military discharge record internet subscription requirement"
 citation: "Tenn. Code Ann. § 10-7-514"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Military discharge records — internet viewing limited to approved subscription service"
+topic: "Internet viewing of recorded military discharge records; subscription service"
 tags:
   - tn
   - public-records
   - military
-  - dd214
-  - register-of-deeds
-  - internet-access
+  - dd-214
+  - internet
 last_updated: 2026-01-13
 ---
 
-# Tenn. Code Ann. § 10-7-514 — Military discharge record internet access via subscription only
+# Tenn. Code Ann. § 10-7-514 — Subscription service required to view military discharge record over internet
 
-## What this section requires (plain-English)
+## Rule in plain English
 
-A county register of deeds **may not** make recorded military discharge records viewable over the internet **unless** it is done through a **subscription service approved by the county register**.
+A county register must not make recorded military discharge records viewable over the internet except through a **subscription service** approved by the county register.
 
-## Operational use (county-ready)
-
-- Internet access to these records must be behind an **approved subscription service** (no open/public browsing).
-- Use this alongside § 10-7-513 (confidentiality and access rules).
-
-## Statutory text
+## Verbatim statutory text (Justia)
 
 A county register shall not cause a military discharge record recorded in the office of the county register to be viewed over the internet except through a subscription service approved by the county register.
 
-Acts 2003, ch. 292, § 1.
+## Example questions
 
-## Example questions this doc should help answer
-
-- “Can a register of deeds post DD-214 images publicly online?”
-- “Is a subscription portal required for online viewing of discharge records?”
+- “Can a county register post DD-214s online for free viewing?”

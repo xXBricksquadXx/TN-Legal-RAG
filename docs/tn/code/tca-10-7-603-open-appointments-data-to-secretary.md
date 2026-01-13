@@ -1,35 +1,24 @@
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-603"
+title: "Tenn. Code Ann. § 10-7-603 — Open Appointments Act data provided to secretary of state"
 citation: "Tenn. Code Ann. § 10-7-603"
 part: "Title 10, Chapter 7, Part 6"
-topic: "Open Appointments Act — agency information reported to Secretary of State"
+topic: "Agency data required to be provided to the secretary of state"
 tags:
   - tn
+  - public-appointments
   - open-appointments
-  - secretary-of-state
-  - boards-commissions
   - reporting
 last_updated: 2026-01-13
 ---
 
-# Tenn. Code Ann. § 10-7-603 — Data provided to the Secretary of State
+# Tenn. Code Ann. § 10-7-603 — Data provided secretary
 
-## What this section requires (plain-English)
+## Rule in plain English
 
-The chair of an existing agency (or the appointing authority for a newly created agency) must provide the Secretary of State, on Secretary-provided forms, a set of core facts about the agency—covering:
+The chair of an existing agency (or appointing authority for a newly created agency) must provide specific agency data to the secretary of state on forms prepared by the secretary.
 
-- identity and contact info,
-- creation authority and appointing authority,
-- powers and duties,
-- membership structure and eligibility restrictions,
-- term dates and any agency expiration date,
-- compensation and funding,
-- meeting schedule and time expectations,
-- roster of current members with contact info,
-- membership breakdown by county and legislative district, and (only if voluntarily provided) sex and race—excluding ex officio and popularly elected members.
-
-## Statutory text
+## Verbatim statutory text (Justia)
 
 The chair of an existing agency, or the appointing authority for the members of a newly created agency, shall provide the secretary of state, on forms prepared and distributed by the secretary of state, with the following data pertaining to that agency:
 
@@ -51,10 +40,6 @@ The chair of an existing agency, or the appointing authority for the members of 
 
 (9) A breakdown of the membership showing distribution by county and legislative district and, only if the member has voluntarily supplied the information, the sex and race of the members. Such breakdown shall not include such information on ex officio and popularly elected members.
 
-Acts 1992, ch. 766, § 4; 1993, ch. 162, § 2.
+## Example questions
 
-## Example questions this doc should help answer
-
-- “What must an agency report to the Secretary of State under the Open Appointments Act?”
-- “Does the roster include member addresses and phone numbers?”
-- “Is sex/race required information for the membership breakdown?”
+- “What information must an agency provide to the secretary of state under § 10-7-603?”

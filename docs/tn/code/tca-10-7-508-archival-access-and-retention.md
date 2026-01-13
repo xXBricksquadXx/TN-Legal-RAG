@@ -1,46 +1,52 @@
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-508"
+title: "Tenn. Code Ann. § 10-7-508 — Archival review of records; confidential records; misclassification"
 citation: "Tenn. Code Ann. § 10-7-508"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Access to records; archival review and retention"
+topic: "Archival/audit review; confidential records; correcting misclassification"
 tags:
   - tn
   - public-records
   - archives
-  - records-management
-last_updated: 2025-12-08
+  - retention
+  - confidentiality
+last_updated: 2026-01-13
 ---
 
-# Tenn. Code Ann. § 10-7-508 — Access for state officials; archival value; confidential records
+# Tenn. Code Ann. § 10-7-508 — Archival review; confidential records; misclassification
 
-## Access authority for key officials
+## What this section does (plain English)
 
-Regardless of whether records are open to the public, the following officials must be given access to **any public records or writings**:
+Certain state officials (and their designees) may examine records for **archival** and **audit** purposes, including records marked confidential—while maintaining confidentiality. It also addresses misclassification of records as confidential and proper disposal of confidential records without archival value.
 
-- Secretary of state (or designee),
-- State librarian and archivist,
-- Comptroller of the treasury (or designee) **for audit purposes**.
+## Archival + audit review
 
-They must keep **privileged or confidential information** they see inviolate and recognize any legal confidentiality applied to the record.
+- The **secretary of state**, the **state librarian and archivist**, and the **comptroller** (and their designees) may examine records for:
+  - Archival value, and/or
+  - Audit purposes.
 
-## Archival review of confidential records
+## Confidential records remain confidential
 
-- The **state librarian and archivist** (or a designated archivist) and the **secretary of state** (or a records analyst) may examine confidential public records in order to:
-  - Determine, in consultation with the **agency head**, whether the records have **archival value**, and
-  - Check whether records have been properly filed or designated as confidential.
-- If they conclude that some administrative or otherwise open records have been wrongly labeled “confidential,” those records must be **reclassified** to the appropriate access level.
-- Access for these appraisal purposes is to be built into the **retention schedules** and **records disposition authorizations** approved by the public records commission.
+- Access for archival/audit review does **not** make confidential records public.
+- Confidentiality must be maintained during the review.
 
-## Retention or disposal after appraisal
+## Misclassification correction
 
-- Records determined to have archival value are retained in line with:
-  - The public records commission’s rules for archival records, and
-  - The applicable records disposition authorizations.
-- Confidential records found **not** to be of archival value must be disposed of by authorized means, under approved disposition authorizations.
+- Records mislabeled as **confidential** but actually open must be **reclassified** appropriately.
+
+## Disposal of confidential records without archival value
+
+- Confidential records that have **no archival value** are disposed of under approved disposition authorizations (RDA process).
+
+## Practical retrieval anchors (keywords)
+
+- “archival review”
+- “confidential records”
+- “misclassification”
+- “reclassified”
+- “disposed under RDA”
 
 ## Example questions this doc should help answer
 
-- “Can the state archivist look at confidential agency files in Tennessee?”
-- “Who decides if a confidential record has archival value, and what happens if something is mislabeled as confidential?”
-- “How are non-archival confidential records supposed to be disposed of?”
+- “Can officials review confidential records for archival purposes?”
+- “What happens if a record was incorrectly marked confidential?”
