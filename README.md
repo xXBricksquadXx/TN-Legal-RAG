@@ -290,9 +290,20 @@ Packaging for systemd (run as a service), optional HTTPS via Caddy/NGINX
 
 ---
 
-## 🤝 Contributing
+---
 
-PRs welcome! Keep changes small and documented. Please open issues for bugs or feature ideas.
+## ☕ Support / Follow
+
+**If you find this useful (`including watchers and drive-by users`):**
+
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/colby88carl)
+
+- **Watch / Star** the repo to keep up with weekly TN updates
+- Share the project with someone who needs a local, offline legal RAG
+
+---
+
+
 
 
 
