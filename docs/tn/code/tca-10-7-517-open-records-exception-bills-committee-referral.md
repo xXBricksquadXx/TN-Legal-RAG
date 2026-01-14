@@ -3,7 +3,7 @@ jurisdiction: TN
 title: "Tenn. Code Ann. § 10-7-517 — Referral of certain open-records-exception bills; committee recommendation"
 citation: "Tenn. Code Ann. § 10-7-517"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Legislation creating exceptions to open records must be referred for review"
+topic: "code"
 tags:
   - tn
   - public-records

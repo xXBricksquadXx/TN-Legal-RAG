@@ -3,7 +3,7 @@ jurisdiction: TN
 title: "Tenn. Code Ann. § 10-7-603 — Open Appointments Act data provided to secretary of state"
 citation: "Tenn. Code Ann. § 10-7-603"
 part: "Title 10, Chapter 7, Part 6"
-topic: "Agency data required to be provided to the secretary of state"
+topic: "code"
 tags:
   - tn
   - public-appointments

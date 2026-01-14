@@ -3,7 +3,7 @@ jurisdiction: TN
 title: "Tenn. Code Ann. § 10-7-514 — Military discharge record internet subscription requirement"
 citation: "Tenn. Code Ann. § 10-7-514"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Internet viewing of recorded military discharge records; subscription service"
+topic: "code"
 tags:
   - tn
   - public-records

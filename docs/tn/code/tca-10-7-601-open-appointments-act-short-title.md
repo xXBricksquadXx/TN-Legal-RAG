@@ -3,7 +3,7 @@ jurisdiction: TN
 title: "Tenn. Code Ann. § 10-7-601 — Open Appointments Act short title"
 citation: "Tenn. Code Ann. § 10-7-601"
 part: "Title 10, Chapter 7, Part 6"
-topic: "Open Appointments Act short title"
+topic: "code"
 tags:
   - tn
   - public-appointments

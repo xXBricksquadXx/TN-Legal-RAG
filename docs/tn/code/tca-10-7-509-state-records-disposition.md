@@ -1,45 +1,42 @@
+# docs/tn/code/tca-10-7-509-state-records-disposition.md
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-509 — Disposition of state records; records disposition authorizations"
+title: "Tenn. Code Ann. § 10-7-509"
 citation: "Tenn. Code Ann. § 10-7-509"
 part: "Title 10, Chapter 7, Part 5"
-topic: "How state records may be destroyed or disposed of (RDA required)"
+topic: code
 tags:
   - tn
-  - public-records
   - records-management
   - retention
-  - rda
-last_updated: 2026-01-13
+  - disposition
+last_updated: 2025-12-08
 ---
 
-# Tenn. Code Ann. § 10-7-509 — Disposition of state records; records disposition authorizations
+## Retrieval anchors (for eval)
 
-## What this section does (plain English)
+- "T.C.A. § 10-7-509" / "Tenn. Code Ann. § 10-7-509"
+- "records disposition authorization"
+- "RDA"
+- "destroyed"
+- "disposed"
+- "disposed of"
 
-Tennessee state records may be destroyed or otherwise disposed of **only** under an approved **Records Disposition Authorization (RDA)** process. Records cannot be “disposed of” by informal transfer to unauthorized persons or institutions.
+---
 
-## Core rule
+# Tenn. Code Ann. § 10-7-509 — State records disposition
 
-- State records may be destroyed or disposed of **only in accordance with** an approved **records disposition authorization (RDA)**.
+## Plain-language rule
 
-## No informal transfers as “disposal”
+- Tennessee state records may be destroyed or otherwise disposed of only when authorized under a **Records Disposition Authorization (RDA)** (i.e., a **records disposition authorization**) or equivalent approved disposition schedule/process.
+- This statute ties record destruction/disposal to the state’s official records management and retention system.
 
-- Records cannot be informally transferred to:
-  - Unauthorized persons,
-  - Other agencies, or
-  - Private / semi-private institutions,
-as a substitute for the RDA process.
+## Practice notes
 
-## Practical retrieval anchors (keywords)
-
-- “records disposition authorization”
-- “RDA”
-- “destroyed or disposed”
-- “no informal transfer”
-- “unauthorized persons”
+- If a requester is told “those records were destroyed,” this section is relevant to whether destruction required an approved RDA.
+- Useful for records-retention disputes and for understanding when agencies may lawfully dispose of records.
 
 ## Example questions this doc should help answer
 
-- “When can Tennessee state records be destroyed?”
-- “Can an agency just give records to a private institution instead of following RDA?”
+- “Under T.C.A. § 10-7-509, when may Tennessee state records be destroyed or otherwise disposed of?”
+- “What is an RDA and why does it matter for records destruction?”

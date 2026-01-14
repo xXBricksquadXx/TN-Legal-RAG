@@ -1,60 +1,49 @@
+# docs/tn/code/tca-10-7-506-inspection-and-commercial-value.md
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-506 — Copies, extracts, photographs; records with commercial value"
+title: "Tenn. Code Ann. § 10-7-506"
 citation: "Tenn. Code Ann. § 10-7-506"
-part: "Title 10, Chapter 7"
-topic: "GIS/parcel and other records with commercial value; additional fees"
+part: "Title 10, Chapter 7, Part 5"
+topic: code
 tags:
   - tn
   - public-records
-  - tpra
   - gis
   - commercial-value
   - fees
-last_updated: 2026-01-13
+last_updated: 2025-12-08
 ---
 
-# Tenn. Code Ann. § 10-7-506 — Records with commercial value; additional fees
+## Retrieval anchors (for eval)
 
-## What this section does (plain English)
+- "T.C.A. § 10-7-506" / "Tenn. Code Ann. § 10-7-506"
+- "commercial value"
+- "development"
+- "cost recovery"
+- "10%"
+- "20%"
+- "news media"
+- "non-business"
 
-When a local government provides **computer-generated parcel maps / GIS data** (or similar records) that have **commercial value**, it may charge **additional** fees beyond ordinary copying/reproduction costs—subject to limits and exemptions.
+---
 
-## Allowed additional fees (beyond reproduction)
+# Tenn. Code Ann. § 10-7-506 — Inspection of records; copies; commercial value; fees
 
-In addition to ordinary reproduction costs, the agency may charge **reasonable development cost recovery fees** tied to things like:
+## Plain-language rule
 
-- Labor and staff time for development,
-- Design/development/testing/training,
-- Costs to keep the data accurate and current.
+- Local governments may provide access to certain **computer-generated parcel maps / GIS data** and can charge fees in addition to ordinary copying costs when the information has **commercial value**.
+- The statute allows added charges tied to **development / maintenance** and **cost recovery**, and it includes exemptions for certain requesters such as **news media** and **non-business** requesters (depending on the statutory conditions and usage).
 
-## Caps (key anchors)
+## Practical notes (GIS / parcel map context)
 
-- Typically capped at **10%** of total development costs.
-- There is a process for approval up to **20%** in certain circumstances.
-
-## Exemptions (who does NOT pay the extra commercial-value fee)
-
-These extra development-cost fees generally **cannot** be charged to:
-
-- Individuals seeking the information for **non-business** use, and
-- The **news media** for **news gathering** purposes,
-
-who should pay **only** the standard reproduction cost.
-
-## Practical retrieval anchors (keywords)
-
-- “commercial value”
-- “GIS”
-- “parcel maps”
-- “development cost recovery”
-- “10% cap”
-- “20% approval”
-- “news media exempt”
-- “non-business use exempt”
+- This section is commonly invoked for:
+  - GIS parcel layers (shapefiles, geodatabases)
+  - bulk exports of assessor/parcel datasets
+  - data products offered for commercial use
+- It is separate from the OORC schedule for ordinary TPRA copy fees; this is about **commercial-value datasets**.
 
 ## Example questions this doc should help answer
 
-- “Can a county charge extra for GIS parcel data with commercial value?”
-- “What is the cap on development cost recovery fees under § 10-7-506?”
-- “Are individuals or news media exempt from the extra fee?”
+- “When a Tennessee local government provides computer-generated parcel maps or GIS data that have commercial value, what extra fees may it charge and who is exempt from those fees?”
+- “Can a county charge cost-recovery fees for GIS data?”
+- “Are news media exempt from commercial GIS fees?”

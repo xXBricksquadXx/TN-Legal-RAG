@@ -3,7 +3,7 @@ jurisdiction: TN
 title: "Tenn. Code Ann. § 10-7-511 — Preservation of records of permanent value"
 citation: "Tenn. Code Ann. § 10-7-511"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Security microfilming program; preservation of permanent-value records"
+topic: "code"
 tags:
   - tn
   - public-records

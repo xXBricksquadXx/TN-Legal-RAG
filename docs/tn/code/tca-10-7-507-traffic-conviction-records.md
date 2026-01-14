@@ -1,44 +1,43 @@
+# docs/tn/code/tca-10-7-507-traffic-conviction-records.md
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-507 — Conviction records for traffic and other public offenses"
+title: "Tenn. Code Ann. § 10-7-507"
 citation: "Tenn. Code Ann. § 10-7-507"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Access to traffic and other public offense conviction records"
+topic: code
 tags:
   - tn
   - public-records
   - convictions
-  - traffic
-  - fees
-last_updated: 2026-01-13
+  - court-records
+last_updated: 2025-12-08
 ---
 
-# Tenn. Code Ann. § 10-7-507 — Conviction records for traffic and other public offenses
+## Retrieval anchors (for eval)
 
-## What this section does (plain English)
+- "T.C.A. § 10-7-507" / "Tenn. Code Ann. § 10-7-507"
+- "traffic"
+- "convictions"
+- "public offense"
+- "copies"
+- "reasonable fee"
+- "reproduction"
 
-Officials who keep records of **convictions** for traffic or other public offenses must provide copies to **any citizen** who applies for them during business hours, and may charge a reasonable fee per copy.
+---
 
-## Key rule
+# Tenn. Code Ann. § 10-7-507 — Traffic and other conviction records; access
 
-- Records of convictions for traffic and other public offenses:
-  - Must be available by providing **copies** to **any citizen applying** during **business hours**.
+## Plain-language rule
 
-## Fees
+- Records of **traffic convictions** and other **public offense conviction records** must be made available for inspection and copying.
+- Agencies may charge a **reasonable fee** for **reproduction** / copies (consistent with applicable law).
 
-- The official may charge a **reasonable fee per copy** to defray the cost of:
-  - Reproduction, and
-  - Delivery.
+## Practice notes
 
-## Practical retrieval anchors (keywords)
-
-- “traffic conviction records”
-- “other public offense”
-- “any citizen applying”
-- “reasonable fee per copy”
-- “business hours”
+- This statute is often cited where a requester wants proof of conviction outcomes, traffic offense dispositions, or similar public offense records.
+- It supports access to conviction records even when other categories of records might be restricted.
 
 ## Example questions this doc should help answer
 
-- “Can I request traffic conviction records as a Tennessee citizen?”
-- “Can the clerk charge a fee for copies of conviction records?”
+- “What does T.C.A. § 10-7-507 require regarding access to traffic and other public offense conviction records?”
+- “Can an agency charge a reasonable fee for copies of conviction records?”

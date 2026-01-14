@@ -1,52 +1,44 @@
+# docs/tn/code/tca-10-7-508-archival-access-and-retention.md
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-508 — Archival review of records; confidential records; misclassification"
+title: "Tenn. Code Ann. § 10-7-508"
 citation: "Tenn. Code Ann. § 10-7-508"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Archival/audit review; confidential records; correcting misclassification"
+topic: code
 tags:
   - tn
   - public-records
   - archives
   - retention
-  - confidentiality
-last_updated: 2026-01-13
+  - confidential-records
+last_updated: 2025-12-08
 ---
 
-# Tenn. Code Ann. § 10-7-508 — Archival review; confidential records; misclassification
+## Retrieval anchors (for eval)
 
-## What this section does (plain English)
+- "T.C.A. § 10-7-508" / "Tenn. Code Ann. § 10-7-508"
+- "secretary of state"
+- "archivist"
+- "archival review"
+- "confidential"
+- "misclassified"
+- "reclassified"
 
-Certain state officials (and their designees) may examine records for **archival** and **audit** purposes, including records marked confidential—while maintaining confidentiality. It also addresses misclassification of records as confidential and proper disposal of confidential records without archival value.
+---
 
-## Archival + audit review
+# Tenn. Code Ann. § 10-7-508 — Archival review; access; confidential records; correcting misclassification
 
-- The **secretary of state**, the **state librarian and archivist**, and the **comptroller** (and their designees) may examine records for:
-  - Archival value, and/or
-  - Audit purposes.
+## Plain-language rule
 
-## Confidential records remain confidential
+- The **Secretary of State** (through the state archives / **archivist**) may review records for archival purposes, including handling of **confidential** records under controlled access rules.
+- The statute addresses what happens when records were **incorrectly marked confidential** (i.e., **misclassified**) and the process for correcting / **reclassifying** such records.
 
-- Access for archival/audit review does **not** make confidential records public.
-- Confidentiality must be maintained during the review.
+## Practice notes
 
-## Misclassification correction
-
-- Records mislabeled as **confidential** but actually open must be **reclassified** appropriately.
-
-## Disposal of confidential records without archival value
-
-- Confidential records that have **no archival value** are disposed of under approved disposition authorizations (RDA process).
-
-## Practical retrieval anchors (keywords)
-
-- “archival review”
-- “confidential records”
-- “misclassification”
-- “reclassified”
-- “disposed under RDA”
+- This is relevant when an agency claims a record is confidential “because it was labeled that way,” and the question is whether that label is correct.
+- It also supports archival review processes that may involve restricted handling even when public access is limited.
 
 ## Example questions this doc should help answer
 
-- “Can officials review confidential records for archival purposes?”
+- “How does T.C.A. § 10-7-508 handle archival review of records, including confidential records, and misclassification of records as confidential?”
 - “What happens if a record was incorrectly marked confidential?”

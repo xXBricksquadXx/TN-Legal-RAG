@@ -15,6 +15,7 @@ BASE="${1:-http://127.0.0.1:8000}"
 
 HOST="${HOST:-127.0.0.1}"
 PORT="${PORT:-8000}"
+LOG_FILE="${LOG_FILE:-/tmp/tn_legal_rag_api.log}"
 
 # If BASE is like http://host:port, derive HOST/PORT from it
 if [[ "$BASE" =~ ^https?://([^:/]+)(:([0-9]+))?(/.*)?$ ]]; then
@@ -42,7 +43,6 @@ stop_port_if_running() {
   if command -v lsof >/dev/null 2>&1; then
     pids="$(lsof -ti tcp:"${port}" || true)"
   elif command -v fuser >/dev/null 2>&1; then
-    # fuser prints like "8000/tcp: 12345"
     pids="$(fuser -n tcp "${port}" 2>/dev/null || true)"
   fi
 
@@ -54,9 +54,14 @@ stop_port_if_running() {
   fi
 }
 
+tail_log() {
+  echo ">>> Tail ${LOG_FILE}:"
+  (tail -n 120 "${LOG_FILE}" 2>/dev/null || true)
+}
+
 wait_for_health() {
   local url="$1"
-  local tries="${2:-60}"
+  local tries="${2:-80}"
   local sleep_s="${3:-0.5}"
 
   if ! command -v curl >/dev/null 2>&1; then
@@ -65,6 +70,13 @@ wait_for_health() {
   fi
 
   for _ in $(seq 1 "${tries}"); do
+    # If uvicorn died, fail immediately and show logs
+    if [[ -n "${API_PID}" ]] && ! kill -0 "${API_PID}" 2>/dev/null; then
+      echo "ERROR: API process exited during startup."
+      tail_log
+      return 1
+    fi
+
     if curl -fsS "${url}" >/dev/null 2>&1; then
       return 0
     fi
@@ -72,6 +84,7 @@ wait_for_health() {
   done
 
   echo "ERROR: API did not become healthy at ${url}"
+  tail_log
   return 1
 }
 
@@ -82,17 +95,21 @@ echo
 echo ">>> Restarting API so it loads the fresh .chroma"
 stop_port_if_running "${PORT}"
 
-echo ">>> Waiting for API health at ${BASE}/health"
-uvicorn rag_api:app --host "${HOST}" --port "${PORT}" >/tmp/tn_legal_rag_api.log 2>&1 &
+: > "${LOG_FILE}"
+echo ">>> Starting uvicorn (log: ${LOG_FILE})"
+python -m uvicorn rag_api:app --host "${HOST}" --port "${PORT}" >"${LOG_FILE}" 2>&1 &
 API_PID="$!"
 
+echo ">>> Waiting for API health at ${BASE}/health"
 wait_for_health "${BASE}/health" 80 0.5
 echo ">>> API is up"
-
+curl -fsS "${BASE}/health" || true
 echo
+
 echo ">>> Smoke test"
 ./scripts/smoke_rag.sh "${BASE}"
 
 echo
 echo ">>> API eval"
-python scripts/eval_api.py eval/cases.yaml
+# Keep the eval scripts unchanged; they hit 127.0.0.1:8000 by default.
+python3 scripts/eval_api.py eval/cases.yaml

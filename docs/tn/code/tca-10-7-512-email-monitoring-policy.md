@@ -1,37 +1,42 @@
+# docs/tn/code/tca-10-7-512-email-monitoring-policy.md
 ---
 jurisdiction: TN
-title: "Tenn. Code Ann. § 10-7-512 — Electronic mail monitoring policy required"
+title: "Tenn. Code Ann. § 10-7-512"
 citation: "Tenn. Code Ann. § 10-7-512"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Monitoring employee email systems; written policy; public record notice"
+topic: code
 tags:
   - tn
   - public-records
   - email
   - monitoring
   - policy
-last_updated: 2026-01-13
+last_updated: 2025-12-08
 ---
-
-# Tenn. Code Ann. § 10-7-512 — Electronic mail communications systems; monitoring; policy required
-
-## Rule in plain English
-
-The state (or any agency/institution/political subdivision) that operates an **electronic mail communications system** must adopt a **written policy** addressing **monitoring** of employee email and must state that employee email **may be a public record** subject to public inspection.
-
-## Verbatim statutory text (Justia)
-
-(a) On or before July 1, 2000, the state or any agency, institution, or political subdivision thereof that operates or maintains an electronic mail communications system shall adopt a written policy on any monitoring of electronic mail communications and the circumstances under which it will be conducted.
-
-(b) The policy shall include a statement that correspondence of the employee in the form of electronic mail may be a public record under the public records law and may be subject to public inspection under this part.
 
 ## Retrieval anchors (for eval)
 
-- “shall adopt a written policy”
-- “monitoring of electronic mail communications”
-- “electronic mail may be a public record”
-- “subject to public inspection”
+- "T.C.A. § 10-7-512" / "Tenn. Code Ann. § 10-7-512"
+- "written policy"
+- "monitoring"
+- "public record"
+- "employee email systems"
+- "adopt"
 
-## Example questions
+---
+
+# Tenn. Code Ann. § 10-7-512 — Monitoring of employee email systems; required policy
+
+## Plain-language rule
+
+- Governmental entities must adopt a **written policy** addressing **monitoring** of employee email systems.
+- The policy typically clarifies notice/consent and that certain communications may be treated as a **public record** (subject to applicable law/exceptions).
+
+## Practice notes
+
+- This section is commonly cited when requesters seek agency email records and the agency references its monitoring/retention rules.
+- Pair with § 10-7-503 definitions and any applicable confidentiality statutes for exemptions.
+
+## Example questions this doc should help answer
 
 - “What does § 10-7-512 require agencies to adopt regarding monitoring employee email systems?”

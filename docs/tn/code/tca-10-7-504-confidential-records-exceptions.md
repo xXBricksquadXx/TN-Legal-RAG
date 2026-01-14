@@ -3,7 +3,7 @@ jurisdiction: TN
 title: "Tenn. Code Ann. § 10-7-504"
 citation: "Tenn. Code Ann. § 10-7-504"
 part: "Title 10, Chapter 7, Part 5"
-topic: "Confidential records and exceptions"
+topic: "code"
 tags:
   - tn
   - public-records
