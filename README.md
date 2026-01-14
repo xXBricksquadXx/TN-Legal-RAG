@@ -2,7 +2,7 @@
 
 <img width="1536" height="1024" alt="TN-Legal-RAG Hero" src="https://github.com/user-attachments/assets/f378d568-c1ee-4a50-879c-487105163652" />
 
-### Precision Retrieval for Tennessee Statutes & Regulations
+### **Precision Retrieval for Tennessee Statutes & Regulations**
 **TN-Legal-RAG** is a mission-focused, private RAG (Retrieval-Augmented Generation) system designed for legal professionals and researchers. It provides grounded, citeable answers from a localized corpus including the Tennessee Code Annotated (TCA), Administrative Rules, and specialized Evidence distinctions.
 
 ---
@@ -78,8 +78,11 @@ Access the dashboard at `http://127.0.0.1:8000`
 
 ## 🗺 Roadmap
 [ ] `Unified Normalizer`: Scripting to conform Justia, Lexis, and Supreme Court formatting into a single schema.
+
 [ ] `Supreme Court Opinion Integration`: Specialized chunking for long-form judicial opinions.
+
 [ ] `Hybrid Search`: Combining semantic vectors with BM25 keyword search for specific T.C.A. citations.
+
 [ ] `Priority Metadata`: Ranking statutes higher than guides in the retrieval chain.
 
 ---
