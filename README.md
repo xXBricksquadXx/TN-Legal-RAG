@@ -59,6 +59,10 @@ Access the dashboard at `http://127.0.0.1:8000`
 
 ---
 
+<img width="1919" height="1073" alt="image" src="https://github.com/user-attachments/assets/fed7704f-16dd-42d7-ac26-f21648a7263c" />
+
+---
+
 ## 🔌 API Endpoints
 
 - `GET /`: Glassmorphic User Interface.
