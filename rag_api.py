@@ -69,7 +69,7 @@ def home():
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label class="text-xs uppercase tracking-widest text-gray-400 mb-2 block">Ask the Corpus</label>
-                    <textarea id="query" rows="4" class="w-full p-4 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="e.g., What are the confidentiality exceptions for TBI?"></textarea>
+                    <textarea id="query" rows="4" class="w-full p-4 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="e.g., What are the confidentiality exceptions for TBI?" style="color: white;"></textarea>
                     <button onclick="ask()" class="mt-4 bg-white text-black font-bold py-2 px-6 rounded-lg hover:bg-gray-200 transition w-full">Search & Generate</button>
                 </div>
                 <div>
