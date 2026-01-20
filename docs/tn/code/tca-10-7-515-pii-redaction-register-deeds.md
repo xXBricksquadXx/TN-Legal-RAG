@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-515-PII-REDACTION-REGISTER-DEEDS
+topic: statute
+jurisdiction: TN
+---
 # FILE: docs/tn/code/tca-10-7-515-register-can-refuse-recording.md
 ---
 jurisdiction: TN

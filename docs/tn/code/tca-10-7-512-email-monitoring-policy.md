@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-512-EMAIL-MONITORING-POLICY
+topic: statute
+jurisdiction: TN
+---
 # docs/tn/code/tca-10-7-512-email-monitoring-policy.md
 ---
 jurisdiction: TN

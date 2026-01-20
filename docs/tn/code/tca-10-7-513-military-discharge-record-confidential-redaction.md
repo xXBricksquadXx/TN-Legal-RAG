@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-513-MILITARY-DISCHARGE-RECORD-CONFIDENTIAL-REDACTION
+topic: statute
+jurisdiction: TN
+---
 # docs/tn/code/tca-10-7-513-military-discharge-record-confidential-redaction.md
 ---
 jurisdiction: TN

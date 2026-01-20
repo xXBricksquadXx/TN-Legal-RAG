@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-508-ARCHIVAL-ACCESS-AND-RETENTION
+topic: statute
+jurisdiction: TN
+---
 # docs/tn/code/tca-10-7-508-archival-access-and-retention.md
 ---
 jurisdiction: TN

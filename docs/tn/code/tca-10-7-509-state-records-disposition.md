@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-509-STATE-RECORDS-DISPOSITION
+topic: statute
+jurisdiction: TN
+---
 # docs/tn/code/tca-10-7-509-state-records-disposition.md
 ---
 jurisdiction: TN

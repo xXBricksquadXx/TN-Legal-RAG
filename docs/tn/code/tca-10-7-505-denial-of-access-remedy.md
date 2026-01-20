@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-505-DENIAL-OF-ACCESS-REMEDY
+topic: statute
+jurisdiction: TN
+---
 # FILE: docs/tn/code/tca-10-7-505-remedies.md
 ---
 jurisdiction: TN

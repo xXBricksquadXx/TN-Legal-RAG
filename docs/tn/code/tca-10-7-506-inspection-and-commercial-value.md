@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-506-INSPECTION-AND-COMMERCIAL-VALUE
+topic: statute
+jurisdiction: TN
+---
 # docs/tn/code/tca-10-7-506-inspection-and-commercial-value.md
 ---
 jurisdiction: TN

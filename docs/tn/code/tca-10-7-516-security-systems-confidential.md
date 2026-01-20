@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-516-SECURITY-SYSTEMS-CONFIDENTIAL
+topic: statute
+jurisdiction: TN
+---
 # docs/tn/code/tca-10-7-516-security-systems-confidential.md
 ---
 jurisdiction: TN

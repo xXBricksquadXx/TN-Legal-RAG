@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-602-OPEN-APPOINTMENTS-DEFINITIONS
+topic: statute
+jurisdiction: TN
+---
 # docs/tn/code/tca-10-7-602-open-appointments-definitions.md
 ---
 jurisdiction: TN

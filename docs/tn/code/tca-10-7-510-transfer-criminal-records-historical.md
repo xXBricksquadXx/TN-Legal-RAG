@@ -1,3 +1,8 @@
+---
+title: TCA-10-7-510-TRANSFER-CRIMINAL-RECORDS-HISTORICAL
+topic: statute
+jurisdiction: TN
+---
 # docs/tn/code/tca-10-7-510-transfer-criminal-records-historical.md
 ---
 jurisdiction: TN
