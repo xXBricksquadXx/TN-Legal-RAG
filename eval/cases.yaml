@@ -1,4 +1,4 @@
-# eval/cases.yaml
+# Existing Baseline Cases
 - id: tca-records-act
   q: Who is the custodian of records under 10-7-503?
   topic: sunshine
@@ -15,7 +15,6 @@
   q: Are investigative files of the TBI confidential?
   topic: sunshine
   expect_contains_any: ["confidential", "TBI", "10-7-504"]
-  # Allowing the QuickRef as a valid hit since it cites the TBI exception
   expect_sources_any: 
     - "docs/tn/code/tca-10-7-504-confidential-records-exceptions.md"
     - "docs/tn/sunshine/public-records-act-quickref-2025.md"
@@ -25,3 +24,28 @@
   topic: budget
   expect_contains_any: ["billion", "General Fund"]
   expect_sources_any: ["docs/tn/budget/state-budget-2025-vol1.md"]
+
+# NEW Title 10 & Title 5 Cases
+- id: minority-representation
+  q: What is the requirement for minority representation on state boards?
+  topic: sunshine
+  expect_contains_any: ["conscientious effort", "proportion", "census"]
+  expect_sources_any: ["docs/tn/code/tca-10-7-607-minority-representation.md"]
+
+- id: county-quorum
+  q: What constitutes a quorum for the county legislative body?
+  topic: county_legislative
+  expect_contains_any: ["majority", "members", "5-5-108"]
+  expect_sources_any: ["docs/tn/code/tca-5-5-108-county-quorum.md"]
+
+- id: mayor-veto-budget
+  q: Can the county mayor veto specific items in the budget?
+  topic: county_executive
+  expect_contains_any: ["not be exercised", "specific items", "whole"]
+  expect_sources_any: ["docs/tn/code/tca-5-6-107-mayor-veto-powers.md"]
+
+- id: budget-deadline-dept
+  q: When must department heads submit their budget proposals to the mayor?
+  topic: county_finance
+  expect_contains_any: ["March 1", "5-12-208"]
+  expect_sources_any: ["docs/tn/code/tca-5-12-208-budget-submission.md"]
