@@ -2,10 +2,9 @@
 
 # Configuration
 STAGING_DIR="docs/staging"
-FINAL_DIR="docs/tn/code"
 VENV_PATH=".venv/bin/activate"
 
-echo ">>> Starting Promotion: Staging -> Production"
+echo ">>> Starting Folder-Aware Promotion"
 
 # 1. Check if Staging is empty
 if [ -z "$(ls -A $STAGING_DIR)" ]; then
@@ -13,9 +12,30 @@ if [ -z "$(ls -A $STAGING_DIR)" ]; then
    exit 0
 fi
 
-# 2. Move files from Staging to Final
-echo ">>> Moving files to $FINAL_DIR..."
-mv $STAGING_DIR/*.md $FINAL_DIR/
+# 2. Route files based on Metadata
+for file in "$STAGING_DIR"/*.md; do
+    [ -e "$file" ] || continue
+    
+    # Extract the 'topic' value from YAML frontmatter
+    TOPIC=$(grep "^topic:" "$file" | head -n 1 | awk '{print $2}' | tr -d "'\"")
+    
+    # Determine Destination Folder
+    case "$TOPIC" in
+        "opinions")
+            DEST="docs/tn/opinions"
+            ;;
+        "county_legislative"|"county_executive"|"county_finance")
+            DEST="docs/tn/county"
+            ;;
+        *)
+            DEST="docs/tn/code"
+            ;;
+    esac
+
+    mkdir -p "$DEST"
+    echo ">>> Promoting $(basename "$file") to $DEST"
+    mv "$file" "$DEST/"
+done
 
 # 3. Trigger the Indexer
 if [ -f "indexer.py" ]; then
@@ -23,9 +43,8 @@ if [ -f "indexer.py" ]; then
     source $VENV_PATH
     python3 indexer.py
 else
-    echo "!!! Error: indexer.py not found in current directory."
+    echo "!!! Error: indexer.py not found."
     exit 1
 fi
 
-echo ">>> Promotion Complete. Your Handbook is now updated."
-echo ">>> Run ./scripts/check_all.sh to verify the new 8/8 baseline."
+echo ">>> Promotion Complete. Run ./scripts/check_all.sh to verify."

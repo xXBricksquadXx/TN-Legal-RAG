@@ -25,7 +25,7 @@
   expect_contains_any: ["billion", "General Fund"]
   expect_sources_any: ["docs/tn/budget/state-budget-2025-vol1.md"]
 
-# NEW Title 10 & Title 5 Cases
+# NEW Title 10 & Title 5 Cases (The County Coverage)
 - id: minority-representation
   q: What is the requirement for minority representation on state boards?
   topic: sunshine
@@ -49,3 +49,34 @@
   topic: county_finance
   expect_contains_any: ["March 1", "5-12-208"]
   expect_sources_any: ["docs/tn/code/tca-5-12-208-budget-submission.md"]
+
+- id: arbitration-confirm-jurisdiction
+  q: Can a Tennessee court confirm an arbitration award if the contract specified arbitration in Pennsylvania?
+  topic: opinions
+  expect_contains_any: ["subject matter jurisdiction", "Uniform Arbitration Act", "Pennsylvania", "vacated"]
+  expect_sources_any: ["docs/tn/opinions/sc/berkeley_opinion.md"]
+
+# ADDED FOR 100% COUNTY 9 COVERAGE
+- id: county-vacancies
+  q: What is the public notice requirement for filling a vacancy in a county office?
+  topic: county_legislative
+  expect_contains_any: ["seven", "7 days", "newspaper", "general circulation"]
+  expect_sources_any: ["docs/tn/code/tca-5-5-111-filling-vacancies.md"]
+
+- id: mayor-ex-officio
+  q: Does the county mayor have voting power on committees?
+  topic: county_executive
+  expect_contains_any: ["nonvoting", "ex officio", "professional staff"]
+  expect_sources_any: ["docs/tn/code/tca-5-6-106-mayor-duties.md"]
+
+- id: redistricting-timeline
+  q: How often must county legislative bodies change the boundaries of districts?
+  topic: county_legislative
+  expect_contains_any: ["ten", "10 years", "federal census", "reapportionment"]
+  expect_sources_any: ["docs/tn/code/tca-5-1-111-reapportionment.md"]
+
+- id: finance-centralization
+  q: Can a county hospital be excluded from the centralized finance department?
+  topic: county_finance
+  expect_contains_any: ["two-thirds", "2/3", "exclude", "nursing homes"]
+  expect_sources_any: ["docs/tn/code/tca-5-21-103-finance-management.md"]
