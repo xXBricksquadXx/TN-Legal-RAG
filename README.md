@@ -35,10 +35,10 @@
 
 * **Fees**
   * Output: 
-    * `### Copy Charges:`
+    * `Copy Charges:`
     * `- B/W: $0.15/page`
     * `- Color: $0.50/page`
-    * `### Labor Charge:`
+    * `Labor Charge:`
     * `- May be charged after the first hour of staff time using the lowest-paid qualified employee.`
   * Sources:
     * `docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md`
