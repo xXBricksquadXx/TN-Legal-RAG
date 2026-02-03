@@ -85,3 +85,49 @@ cd TN-Legal-RAG
 # Create and activate venv
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+```
+
+### 2. Index the Corpus
+
+Drop your .md, .txt, or normalized legal documents into the `docs/ folder`. The indexer handles paragraph-aware chunking and metadata extraction.
+```bash
+python3 indexer.py
+```
+### 3. Launch Interface
+
+Start the hardened API and Browser UI
+```bash
+uvicorn rag_api:app --reload
+```
+Access the dashboard at `http://127.0.0.1:8000`
+---
+<img width="1161" height="543" alt="Screenshot 2026-02-03 094452" src="https://github.com/user-attachments/assets/08ac8bdf-43b9-44a0-b171-7a472dc42c8f" />
+
+### 🔌 API Endpoints
+  - GET /: Glassmorphic User Interface.
+  - GET /health: API status check (used by check_all.sh).
+  - POST /query: Full RAG generation (LLM-powered).
+  - POST /debug_query: Fast retrieval check (Context-only, no LLM cost).
+
+### 🔒 Professional Standards & Privacy
+  - 100% Local: No legal data or queries leave your machine.
+  - High-Fidelity Sources: Prioritizes statutory text (TCA) over secondary interpretations.
+  - Hallucination Defense: Includes a custom testing framework (/scripts) to verify TN-specific logic before committing new data. Every file includes a human-proofed Practitioner Summary to anchor the LLM.
+
+### 🗺 Roadmap
+
+[x] County Governance Ingest: Comprehensive Title 5 coverage. 
+
+[x] Supreme Court Opinion Integration: Initial support for 2025-2026 opinions. 
+
+[ ] Unified Normalizer: Scripting to conform Justia/Lexis formatting into a single schema. 
+
+[ ] Hybrid Search: Combining semantic vectors with BM25 keyword search for TCA citations.
+
+### ☕ Support / Follow
+
+ If you find this useful:
+  - Watch / Star the repo to keep up with weekly TN updates.
+  - Share the project with researchers who need local, offline legal RAG.
+
+
