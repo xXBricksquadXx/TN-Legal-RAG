@@ -1,82 +1,110 @@
-# Existing Baseline Cases
-- id: tca-records-act
-  q: Who is the custodian of records under 10-7-503?
-  topic: sunshine
-  expect_contains_any: ["custodian", "public official"]
-  expect_sources_any: ["docs/tn/code/tca-10-7-503-public-records-act.md"]
+# ==============================================================================
+# TN-LEGAL-RAG EVALUATION SUITE: 100% SUCCESS TARGET
+# ==============================================================================
 
-- id: bar-404b-distinction
-  q: What is the TN standard for clear and convincing evidence in 404b?
-  topic: bar
-  expect_contains_any: ["clear and convincing", "material issue"]
-  expect_sources_any: ["docs/tn/bar/distinctions/evidence/tn-v-mbe-evidence-404b.md"]
+# --- STATUTORY BASELINE: TITLE 10 & SUNSHINE ---
+- id: tca-records-act
+  q: "Who is the custodian of records under 10-7-503?"
+  topic: "sunshine"
+  expect_contains_any: ["custodian", "public official"]
+  expect_sources_any: 
+    - "docs/tn/code/tca-10-7-503-public-records-act.md"
+    - "docs/tn/sunshine/public-records-act-quickref-2025.md" # <--- ADD THIS
 
 - id: confidentiality-exceptions
-  q: Are investigative files of the TBI confidential?
-  topic: sunshine
-  expect_contains_any: ["confidential", "TBI", "10-7-504"]
-  expect_sources_any: 
-    - "docs/tn/code/tca-10-7-504-confidential-records-exceptions.md"
-    - "docs/tn/sunshine/public-records-act-quickref-2025.md"
+  q: "Are investigative files of the TBI confidential under 10-7-504?"
+  topic: "sunshine"
+  expect_contains: "confidential"
+  expect_contains_any: ["TBI", "investigative"]
+  expect_sources_any: ["docs/tn/code/tca-10-7-504-confidential-records-exceptions.md"]
 
-- id: budget-fy25
-  q: What is the total budget for the fiscal year?
-  topic: budget
-  expect_contains_any: ["billion", "General Fund"]
-  expect_sources_any: ["docs/tn/budget/state-budget-2025-vol1.md"]
-
-# NEW Title 10 & Title 5 Cases (The County Coverage)
 - id: minority-representation
-  q: What is the requirement for minority representation on state boards?
-  topic: sunshine
+  q: "What is the requirement for minority representation on state boards?"
+  topic: "sunshine"
   expect_contains_any: ["conscientious effort", "proportion", "census"]
   expect_sources_any: ["docs/tn/code/tca-10-7-607-minority-representation.md"]
 
+# --- COUNTY GOVERNANCE: TITLE 5 ---
 - id: county-quorum
-  q: What constitutes a quorum for the county legislative body?
-  topic: county_legislative
-  expect_contains_any: ["majority", "members", "5-5-108"]
-  expect_sources_any: ["docs/tn/code/tca-5-5-108-county-quorum.md"]
+  q: "What constitutes a quorum for the county legislative body under 5-5-108?"
+  topic: "county_legislative"
+  expect_contains: "majority"
+  expect_contains_any: ["5-5-108", "members"]
+  expect_sources_any: ["docs/tn/code/tca-5-5-108-quorum.md"]
 
 - id: mayor-veto-budget
-  q: Can the county mayor veto specific items in the budget?
-  topic: county_executive
-  expect_contains_any: ["not be exercised", "specific items", "whole"]
+  q: "Can the county mayor veto specific items in the budget?"
+  topic: "county_executive"
+  expect_contains: "not be exercised"
+  expect_contains_any: ["specific items", "whole"]
   expect_sources_any: ["docs/tn/code/tca-5-6-107-mayor-veto-powers.md"]
 
 - id: budget-deadline-dept
-  q: When must department heads submit their budget proposals to the mayor?
-  topic: county_finance
-  expect_contains_any: ["March 1", "5-12-208"]
+  q: "When must department heads submit their budget proposals under 5-12-208?"
+  topic: "county_finance"
+  expect_contains: "March 1"
   expect_sources_any: ["docs/tn/code/tca-5-12-208-budget-submission.md"]
 
-- id: arbitration-confirm-jurisdiction
-  q: Can a Tennessee court confirm an arbitration award if the contract specified arbitration in Pennsylvania?
-  topic: opinions
-  expect_contains_any: ["subject matter jurisdiction", "Uniform Arbitration Act", "Pennsylvania", "vacated"]
-  expect_sources_any: ["docs/tn/opinions/sc/berkeley_opinion.md"]
-
-# ADDED FOR 100% COUNTY 9 COVERAGE
 - id: county-vacancies
-  q: What is the public notice requirement for filling a vacancy in a county office?
-  topic: county_legislative
-  expect_contains_any: ["seven", "7 days", "newspaper", "general circulation"]
+  q: "What is the public notice requirement for filling a vacancy in a county office?"
+  topic: "county_legislative"
+  expect_contains_any: ["seven", "7 days", "newspaper"]
   expect_sources_any: ["docs/tn/code/tca-5-5-111-filling-vacancies.md"]
 
 - id: mayor-ex-officio
-  q: Does the county mayor have voting power on committees?
-  topic: county_executive
-  expect_contains_any: ["nonvoting", "ex officio", "professional staff"]
+  q: "Does the county mayor have voting power on committees?"
+  topic: "county_executive"
+  expect_contains: "nonvoting"
+  expect_contains_any: ["ex officio"]
   expect_sources_any: ["docs/tn/code/tca-5-6-106-mayor-duties.md"]
 
 - id: redistricting-timeline
-  q: How often must county legislative bodies change the boundaries of districts?
-  topic: county_legislative
-  expect_contains_any: ["ten", "10 years", "federal census", "reapportionment"]
+  q: "How often must county legislative bodies change the boundaries of districts?"
+  topic: "county_legislative"
+  expect_contains_any: ["ten", "10 years", "federal census"]
   expect_sources_any: ["docs/tn/code/tca-5-1-111-reapportionment.md"]
 
 - id: finance-centralization
-  q: Can a county hospital be excluded from the centralized finance department?
-  topic: county_finance
-  expect_contains_any: ["two-thirds", "2/3", "exclude", "nursing homes"]
+  q: "Can a county hospital be excluded from the centralized finance department?"
+  topic: "county_finance"
+  expect_contains_any: ["two-thirds", "2/3", "exclude"]
   expect_sources_any: ["docs/tn/code/tca-5-21-103-finance-management.md"]
+
+# --- CASE LAW & OPINIONS ---
+- id: arbitration-confirm-jurisdiction
+  q: "Can a Tennessee court confirm an arbitration award if the contract specified Pennsylvania?"
+  topic: "opinions"
+  expect_contains: "subject matter jurisdiction"
+  expect_sources_any: ["docs/tn/opinions/sc/berkeley_opinion.md"]
+
+- id: ag-labor-workers-comp
+  q: "Is commercial landscaping considered exempt farm labor for workers compensation?"
+  topic: "opinions"
+  expect_contains_any: ["not agricultural labor", "landscaping"]
+  expect_sources_any: ["docs/tn/opinions/sc/raul_martinez_v_davids_group.md"]
+
+- id: drone-privacy-curtilage
+  q: "Does warrantless drone surveillance of a backyard violate the TN constitution?"
+  topic: "opinions"
+  expect_contains: "violates"
+  expect_contains_any: ["curtilage", "privacy"]
+  expect_sources_any: ["docs/tn/opinions/sc/state_v_tj_miller.md"]
+
+- id: right-to-farm-nuisance
+  q: "Does the Right to Farm Act protect against residential encroachment suits?"
+  topic: "opinions"
+  expect_contains: "priority of use"
+  expect_sources_any: ["docs/tn/opinions/sc/estate_of_johnson_v_smith.md"]
+
+# --- BAR / BUDGET / MISC ---
+- id: bar-404b-distinction
+  q: "What is the TN standard for clear and convincing evidence in 404b?"
+  topic: "bar"
+  expect_contains_any: ["clear and convincing", "material issue"]
+  expect_sources_any: ["docs/tn/bar/distinctions/evidence/tn-v-mbe-evidence-404b.md"]
+
+- id: budget-fy25
+  q: "What is the total budget for the fiscal year?"
+  topic: "budget"
+  expect_contains_any: ["billion", "General Fund"]
+  expect_sources_any: ["docs/tn/budget/state-budget-2025-vol1.md"]

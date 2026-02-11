@@ -1,28 +1,43 @@
 import os
+import re
 import requests
 import chromadb
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import Optional, List
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, CrossEncoder
+from contextlib import asynccontextmanager
 
-app = FastAPI()
-
-# Config
+# --- Configuration ---
 DB_PATH = "./.chroma"
-COLLECTION = "tn_legal"
-EMBED_MODEL = "all-MiniLM-L6-v2"
+COLLECTION_NAME = "tn_legal"
+EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
+RERANK_MODEL_NAME = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 OLLAMA_URL = "http://localhost:11434/api/generate"
 
-# Load Models
-client = chromadb.PersistentClient(path=DB_PATH)
-model = SentenceTransformer(EMBED_MODEL)
+model = None
+rerank_model = None
+db_client = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global model, rerank_model, db_client
+    print(">>> Initializing Models and Vector DB...")
+    db_client = chromadb.PersistentClient(path=DB_PATH)
+    model = SentenceTransformer(EMBED_MODEL_NAME)
+    rerank_model = CrossEncoder(RERANK_MODEL_NAME)
+    print(">>> System Hot. Re-ranker online.")
+    yield
+    print(">>> Shutting down.")
+
+app = FastAPI(lifespan=lifespan)
 
 class QueryRequest(BaseModel):
     q: str
     topic: Optional[str] = None
-    k: int = 4
+    k: int = 20      # Default retrieval pool
+    top_n: int = 5   # Context window
     max_tokens: int = 512
 
 @app.get("/health")
@@ -43,7 +58,7 @@ def home():
             body { 
                 background: radial-gradient(circle at top left, #1e1e2e, #11111b);
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-                height: 100-vh;
+                height: 100vh;
                 display: flex; justify-content: center; align-items: center;
             }
             .glass {
@@ -91,13 +106,14 @@ def home():
                 const q = document.getElementById('query').value;
                 const out = document.getElementById('output');
                 const srcDiv = document.getElementById('sources');
-                out.innerHTML = "Processing...";
+                out.innerHTML = "Processing (Re-ranking in progress)...";
                 srcDiv.innerHTML = "";
 
+                // We don't need to send 'k' here anymore, the backend defaults handle it intelligently
                 const res = await fetch('/query', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({q: q, k: 4})
+                    body: JSON.stringify({q: q}) 
                 });
                 const data = await res.json();
                 out.innerHTML = data.answer || data.error;
@@ -117,21 +133,71 @@ def home():
 
 @app.post("/debug_query")
 def debug_query(req: QueryRequest):
-    coll = client.get_collection(COLLECTION)
-    q_emb = model.encode(req.q).tolist()
-    results = coll.query(query_embeddings=[q_emb], n_results=req.k)
-    return {
-        "sources": list(set(m['source'] for m in results['metadatas'][0])),
-        "raw": {"documents": results['documents'][0]}
-    }
+    try:
+        coll = db_client.get_collection(COLLECTION_NAME)
+        
+        # 1. Broaden the Net (Target TCA if present)
+        tca_match = re.search(r"(\d+-\d+-\d+)", req.q)
+        retrieval_limit = 60 if tca_match else 40 
+        
+        q_emb = model.encode(req.q).tolist()
+        
+        # 2. Semantic Retrieval
+        results = coll.query(
+            query_embeddings=[q_emb], 
+            n_results=retrieval_limit
+        )
+
+        docs = results['documents'][0] if results['documents'] else []
+        metas = results['metadatas'][0] if results['metadatas'] else []
+
+        if not docs:
+            return {"sources": [], "documents": [], "raw": {"documents": []}}
+
+        # 3. Re-Ranking
+        pairs = [[req.q, doc] for doc in docs]
+        scores = rerank_model.predict(pairs)
+        
+        ranked = sorted(zip(scores, docs, metas), key=lambda x: x[0], reverse=True)
+        
+        # 4. Final Selection
+        final_count = req.top_n if req.top_n <= len(ranked) else len(ranked)
+        top_ranked = ranked[:final_count]
+
+        return {
+            "sources": list(set(r[2]['source'] for r in top_ranked)),
+            "documents": [r[1] for r in top_ranked],
+            "raw": {
+                "documents": [r[1] for r in ranked] 
+            }
+        }
+    except Exception as e:
+        return {"error": str(e), "sources": [], "documents": [], "raw": {"documents": []}}
 
 @app.post("/query")
 def run_query(req: QueryRequest):
-    debug_data = debug_query(req)
-    context = "\n---\n".join(debug_data["raw"]["documents"])
-    prompt = f"Context:\n{context}\n\nQuestion: {req.q}\n\nAnswer concisely using the context."
-    r = requests.post(OLLAMA_URL, json={
-        "model": "qwen2.5:1.5b-instruct", "prompt": prompt, "stream": False,
-        "options": {"num_predict": req.max_tokens}
-    })
-    return {"answer": r.json().get("response", ""), "sources": debug_data["sources"]}
+    data = debug_query(req)
+    if "error" in data:
+        return {"answer": f"API Error: {data['error']}", "sources": []}
+        
+    context = "\n---\n".join(data["documents"])
+    
+    prompt = (
+        f"You are a Tennessee Legal Assistant. Ground your answer EXCLUSIVELY in the provided context.\n"
+        f"If the context mentions 'TPRA', it refers to the Tennessee Public Records Act.\n\n"
+        f"Context:\n{context}\n\n"
+        f"Question: {req.q}\n\n"
+        f"Answer:"
+    )
+    
+    try:
+        r = requests.post(OLLAMA_URL, json={
+            "model": "qwen2.5:1.5b-instruct", 
+            "prompt": prompt, 
+            "stream": False,
+            "options": {"num_predict": req.max_tokens, "temperature": 0.0}
+        })
+        r.raise_for_status()
+        return {"answer": r.json().get("response", ""), "sources": data["sources"]}
+    except Exception as e:
+        return {"answer": f"Ollama Connection Error: {str(e)}", "sources": data["sources"]}

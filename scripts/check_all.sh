@@ -61,7 +61,8 @@ tail_log() {
 
 wait_for_health() {
   local url="$1"
-  local tries="${2:-80}"
+  # INCREASED: 120 tries @ 0.5s = 60s total window for heavy model loading
+  local tries="${2:-120}" 
   local sleep_s="${3:-0.5}"
 
   if ! command -v curl >/dev/null 2>&1; then
@@ -69,17 +70,27 @@ wait_for_health() {
     exit 1
   fi
 
-  for _ in $(seq 1 "${tries}"); do
-    # If uvicorn died, fail immediately and show logs
+  echo ">>> Monitoring startup sequence..."
+  for i in $(seq 1 "${tries}"); do
+    # Check if uvicorn crashed immediately
     if [[ -n "${API_PID}" ]] && ! kill -0 "${API_PID}" 2>/dev/null; then
       echo "ERROR: API process exited during startup."
       tail_log
       return 1
     fi
 
+    # Check for health endpoint
     if curl -fsS "${url}" >/dev/null 2>&1; then
       return 0
     fi
+
+    # Adaptive feedback: Every 10 tries, pulse the log to show progress
+    if (( i % 10 == 0 )); then
+       echo ">>> Still waiting... (Attempt $i/$tries)"
+       # Optional: grep the log for "Initializing Models" to confirm life
+       grep -i "Initializing" "${LOG_FILE}" | tail -n 1 || true
+    fi
+
     sleep "${sleep_s}"
   done
 
