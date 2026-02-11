@@ -43,6 +43,12 @@
   * Sources: `docs/tn/sunshine/oorc-schedule-of-reasonable-charges.md`
 
 ---
+<div align="center">
+  <h3>🎥 Proof of Life: Supreme Court Retrieval</h3>
+  <video src="https://github.com/user-attachments/assets/55401a79-0445-4328-a99a-7843bbba1c15" width="100%" controls></video>
+</div>
+
+---
 
 ## Performance & Verification
 
