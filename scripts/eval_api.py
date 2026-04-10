@@ -4,14 +4,14 @@ import sys, time, argparse, requests, yaml, concurrent.futures
 API_QUERY = "http://127.0.0.1:8000/query"
 API_DEBUG = "http://127.0.0.1:8000/debug_query"
 
-# FAST mode uses /debug_query and checks retrieved context instead of calling the LLM.
 DEFAULT_FAST = True
 
 TIMEOUT_QUERY = 120
-TIMEOUT_DEBUG = 45
+# INCREASED: Give the Cross-Encoder room to breathe when running 8 concurrent workers
+TIMEOUT_DEBUG = 90 
 
-MAX_WORKERS_FAST = 8   # retrieval is cheap
-MAX_WORKERS_SLOW = 2   # LLM calls queue; higher usually makes it worse
+MAX_WORKERS_FAST = 8   
+MAX_WORKERS_SLOW = 2   
 
 def _lower(s):
     return (s or "").lower()
@@ -35,11 +35,6 @@ def _expect_src_ok(case, sources: list[str]) -> bool:
     return any(s in sources for s in expects)
 
 def run_case_fast(case):
-    """
-    FAST: call /debug_query, validate:
-      - sources contain one of expect_sources_any
-      - expected phrases appear in retrieved context (documents)
-    """
     payload = {
         "q": case["q"],
         "topic": case.get("topic"),
@@ -85,17 +80,12 @@ def run_case_fast(case):
     }
 
 def run_case_slow(case):
-    """
-    SLOW: call /query (LLM), validate:
-      - answer contains expected phrases
-      - sources contain one of expect_sources_any
-    """
     payload = {
         "q": case["q"],
         "topic": case.get("topic"),
         "jurisdiction": case.get("jurisdiction"),
         "k": case.get("k", 6),
-        "max_tokens": case.get("max_tokens", 96),  # lower by default to speed up
+        "max_tokens": case.get("max_tokens", 96), 
     }
     try:
         r = requests.post(API_QUERY, json=payload, timeout=TIMEOUT_QUERY)
@@ -167,7 +157,6 @@ def main():
             if not fast:
                 print(f"  answer: {r.get('answer')}")
             else:
-                # In FAST mode, failures are usually retrieval misses.
                 print("  note: FAST mode checks expected phrases in retrieved context, not LLM output.")
             print()
 

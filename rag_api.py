@@ -14,7 +14,9 @@ DB_PATH = "./.chroma"
 COLLECTION_NAME = "tn_legal"
 EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
 RERANK_MODEL_NAME = "cross-encoder/ms-marco-MiniLM-L-6-v2"
-OLLAMA_URL = "http://localhost:11434/api/generate"
+
+# 🎯 THE FIX: Hardcoded to the true Windows Gateway IP to bypass WSL localhost issues
+OLLAMA_URL = "http://172.27.48.1:11434/api/generate"
 
 model = None
 rerank_model = None
@@ -109,7 +111,6 @@ def home():
                 out.innerHTML = "Processing (Re-ranking in progress)...";
                 srcDiv.innerHTML = "";
 
-                // We don't need to send 'k' here anymore, the backend defaults handle it intelligently
                 const res = await fetch('/query', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},

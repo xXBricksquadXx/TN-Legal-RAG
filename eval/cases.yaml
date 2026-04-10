@@ -9,7 +9,7 @@
   expect_contains_any: ["custodian", "public official"]
   expect_sources_any: 
     - "docs/tn/code/tca-10-7-503-public-records-act.md"
-    - "docs/tn/sunshine/public-records-act-quickref-2025.md" # <--- ADD THIS
+    - "docs/tn/sunshine/public-records-act-quickref-2025.md"
 
 - id: confidentiality-exceptions
   q: "Are investigative files of the TBI confidential under 10-7-504?"
@@ -23,6 +23,49 @@
   topic: "sunshine"
   expect_contains_any: ["conscientious effort", "proportion", "census"]
   expect_sources_any: ["docs/tn/code/tca-10-7-607-minority-representation.md"]
+
+- id: toma-secret-ballots
+  q: "Can a county commission use secret ballots to vote on a controversial zoning resolution?"
+  topic: "sunshine"
+  expect_contains: "prohibited"
+  expect_contains_any: ["secret votes", "secret ballots"]
+  expect_sources_any: ["docs/tn/code/tca-8-44-104-minutes-recorded.md"]
+
+- id: toma-action-nullified
+  q: "What is the legal consequence if a board takes action at a meeting without giving adequate public notice under 8-44-105?"
+  topic: "sunshine"
+  expect_contains_any: ["void", "nullified", "no effect"]
+  expect_sources_any: ["docs/tn/code/tca-8-44-105-action-nullified.md"]
+
+- id: toma-enforcement-jurisdiction
+  q: "Which courts have jurisdiction to issue injunctions for Open Meetings Act violations?"
+  topic: "sunshine"
+  expect_contains_any: ["circuit", "chancery", "equity"]
+  expect_sources_any: ["docs/tn/code/tca-8-44-106-enforcement-jurisdiction.md"]
+
+- id: toma-electronic-meetings
+  q: "How many days does a governing body have to post a recording of an electronic meeting to its website?"
+  topic: "sunshine"
+  expect_contains_any: ["three", "3 business days"]
+  expect_sources_any: ["docs/tn/code/tca-8-44-108-participation-electronic-means.md"]
+
+- id: tpra-attorney-fees
+  q: "Can a court award attorney's fees if a county willfully denies a public records request?"
+  topic: "sunshine"
+  expect_contains_any: ["yes", "attorneys' fees", "reasonable costs"]
+  expect_sources_any: ["docs/tn/code/tca-10-7-505-denial-of-access.md"]
+
+- id: tpra-commercial-value-news
+  q: "Are news media required to pay commercial value development fees for GIS maps?"
+  topic: "sunshine"
+  expect_contains_any: ["exempt", "cost of reproduction", "news gathering"]
+  expect_sources_any: ["docs/tn/code/tca-10-7-506-inspect-public-records.md"]
+
+- id: tpra-oorc-duties
+  q: "Who establishes the schedule of reasonable charges for public records copies?"
+  topic: "sunshine"
+  expect_contains_any: ["office of open records counsel", "OORC"]
+  expect_sources_any: ["docs/tn/code/tca-8-4-604-office-of-open-records-counsel.md"]
 
 # --- COUNTY GOVERNANCE: TITLE 5 ---
 - id: county-quorum

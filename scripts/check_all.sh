@@ -1,23 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Usage:
-#   ./scripts/check_all.sh
-#   ./scripts/check_all.sh http://127.0.0.1:8000
-#
-# What it does:
-#   1) Rebuilds index (.chroma)
-#   2) Restarts FastAPI/uvicorn to ensure it loads the fresh index
-#   3) Runs smoke test
-#   4) Runs eval suite
-
 BASE="${1:-http://127.0.0.1:8000}"
-
 HOST="${HOST:-127.0.0.1}"
 PORT="${PORT:-8000}"
 LOG_FILE="${LOG_FILE:-/tmp/tn_legal_rag_api.log}"
 
-# If BASE is like http://host:port, derive HOST/PORT from it
 if [[ "$BASE" =~ ^https?://([^:/]+)(:([0-9]+))?(/.*)?$ ]]; then
   HOST="${BASH_REMATCH[1]}"
   if [[ -n "${BASH_REMATCH[3]:-}" ]]; then
@@ -61,7 +49,6 @@ tail_log() {
 
 wait_for_health() {
   local url="$1"
-  # INCREASED: 120 tries @ 0.5s = 60s total window for heavy model loading
   local tries="${2:-120}" 
   local sleep_s="${3:-0.5}"
 
@@ -72,22 +59,18 @@ wait_for_health() {
 
   echo ">>> Monitoring startup sequence..."
   for i in $(seq 1 "${tries}"); do
-    # Check if uvicorn crashed immediately
     if [[ -n "${API_PID}" ]] && ! kill -0 "${API_PID}" 2>/dev/null; then
       echo "ERROR: API process exited during startup."
       tail_log
       return 1
     fi
 
-    # Check for health endpoint
     if curl -fsS "${url}" >/dev/null 2>&1; then
       return 0
     fi
 
-    # Adaptive feedback: Every 10 tries, pulse the log to show progress
     if (( i % 10 == 0 )); then
        echo ">>> Still waiting... (Attempt $i/$tries)"
-       # Optional: grep the log for "Initializing Models" to confirm life
        grep -i "Initializing" "${LOG_FILE}" | tail -n 1 || true
     fi
 
@@ -100,7 +83,7 @@ wait_for_health() {
 }
 
 echo ">>> Rebuilding index"
-python indexer.py
+python3 indexer.py
 
 echo
 echo ">>> Restarting API so it loads the fresh .chroma"
@@ -108,11 +91,12 @@ stop_port_if_running "${PORT}"
 
 : > "${LOG_FILE}"
 echo ">>> Starting uvicorn (log: ${LOG_FILE})"
-python -m uvicorn rag_api:app --host "${HOST}" --port "${PORT}" >"${LOG_FILE}" 2>&1 &
+python3 -m uvicorn rag_api:app --host "${HOST}" --port "${PORT}" >"${LOG_FILE}" 2>&1 &
 API_PID="$!"
 
 echo ">>> Waiting for API health at ${BASE}/health"
-wait_for_health "${BASE}/health" 80 0.5
+# FIXED: Increased to 120 to match the function definition for the Cross-Encoder loading
+wait_for_health "${BASE}/health" 120 0.5
 echo ">>> API is up"
 curl -fsS "${BASE}/health" || true
 echo
@@ -122,5 +106,4 @@ echo ">>> Smoke test"
 
 echo
 echo ">>> API eval"
-# Keep the eval scripts unchanged; they hit 127.0.0.1:8000 by default.
 python3 scripts/eval_api.py eval/cases.yaml
