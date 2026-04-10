@@ -147,8 +147,6 @@ Run the full suite (Rebuild Index → Health Check → Smoke Test → Evals):
 ./scripts/check_all.sh
 ```
 
-<img width="1161" height="543" alt="Screenshot 2026-02-03 094452" src="https://github.com/user-attachments/assets/08ac8bdf-43b9-44a0-b171-7a472dc42c8f" />
-
 ---
 
 ## API Endpoints
