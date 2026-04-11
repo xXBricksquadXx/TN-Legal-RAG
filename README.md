@@ -91,7 +91,7 @@ ollama run qwen2.5:1.5b-instruct
 ```
 
 ### On WSL Ubuntu:
-Extract your true Windows Gateway IP and update OLLAMA_URL in rag_api.py:
+Extract your true Windows Gateway IP and update `OLLAMA_URL` in `rag_api.py`:
 
 ```bash
 WIN_IP=$(ip route show default | awk '{print $3}')
