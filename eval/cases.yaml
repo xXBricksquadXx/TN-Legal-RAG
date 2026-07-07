@@ -151,3 +151,24 @@
   topic: "budget"
   expect_contains_any: ["billion", "General Fund"]
   expect_sources_any: ["docs/tn/budget/state-budget-2025-vol1.md"]
+  
+  # --- NEW INGESTION VALIDATION (JULY 2026) ---
+- id: conflict-of-interest-officers
+  q: "What defines a direct interest in a public contract under 12-4-101?"
+  topic: "sunshine"
+  expect_contains_any: ["sole proprietor", "controlling interest", "unlawful", "directly interested"]
+  expect_sources_any: ["docs/tn/code/tca-12-4-101-personal-interest-of-officers-prohibited.md"]
+
+- id: griffin-suicide-notes
+  q: "Are handwritten suicide notes collected by police at a scene public records under Griffin?"
+  topic: "opinions"
+  expect_contains: "official business"
+  expect_contains_any: ["totality of the circumstances", "Griffin"]
+  expect_sources_any: ["docs/tn/opinions/sc/griffin_v_knoxville.md"]
+
+- id: gtla-intentional-torts
+  q: "Does a governmental entity retain immunity for intentional torts like libel or invasion of privacy under 29-20-205?"
+  topic: "county_admin"
+  expect_contains: "immunity"
+  expect_contains_any: ["except if the injury arises out of", "libel", "privacy"]
+  expect_sources_any: ["docs/tn/code/tca-29-20-205-governmental-tort-liability.md"]

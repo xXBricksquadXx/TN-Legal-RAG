@@ -7,7 +7,7 @@ from pathlib import Path
 # --- Configuration ---
 RAW_DIR = Path("docs/raw_imports")
 STAGING_DIR = Path("docs/staging")
-OLLAMA_URL = "http://172.27.48.1:11434/api/generate"
+OLLAMA_URL = "http://172.22.144.1:11434/api/generate"
 MODEL = "qwen2.5:1.5b-instruct"
 
 # Ensure directories exist
@@ -67,7 +67,7 @@ def process_file(file_path):
             "stream": False,
             # INCREASED: Give the LLM 3000 tokens so it doesn't truncate long statutes
             "options": {"temperature": 0.1, "num_predict": 3000}
-        }, timeout=120)
+        }, timeout=600)
         response.raise_for_status()
         
         md_content = response.json().get("response", "").strip()

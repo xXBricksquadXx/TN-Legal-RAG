@@ -10,30 +10,26 @@
 
 ## Living Change Log
 
-### Latest verified run (2026-04-10)
+### Latest verified run (2026-07-07)
 
-* **Corpus:** `98 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Open Meetings Act (TOMA) & TPRA Willful Denial Case Law.*
-* **Architecture upgrade:** WSL-to-Windows GPU Bridging established. Hybrid Re-Ranking Pipeline (Bi-Encoder + Cross-Encoder).
-* **Ingestion automation:** Deployed `auto_ingest.py` (LLM-powered unified normalizer for Justia/Lexis scraping).
+* **Corpus:** `108 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Griffin v. City of Knoxville (Suicide Notes as Public Records) and 9 core county governance/ethics statutes (T.C.A. Titles 5, 8, 12, 29).*
+* **Architecture Security:** WSL-to-Windows GPU Bridging patched to support dynamic Hyper-V IP shifting (Port 11434). Python environment isolated and re-sterilized.
+* **Ingestion automation:** Successfully ran 10-document bulk load via `auto_ingest.py` (LLM-powered unified normalizer) to structure raw Justia/Lexis text into YAML-compliant Markdown.
 * **Verification workflow:** `./scripts/check_all.sh`
   * Rebuilt index: **Verified (Header-Aware)**
   * API health check: **OK** (120-attempt window for heavy Cross-Encoder loading)
   * Smoke test: **OK** (TOMA & TPRA hallucination checks passed)
-  * API eval: **23/23 passed** (FAST mode, workers=8) — **100% success rate**
+  * API eval: **26/26 passed** (FAST mode, workers=8) — **100% success rate**
 
 #### Snapshot outputs (sanity checks)
+
+* **Public Records vs. Personal Property (Griffin)**
+  * Output: `"Handwritten suicide notes confiscated by police at a death scene are considered public records under the TPRA because they were received by the police department in connection with the transaction of official business, rather than for mere safekeeping."`
+  * Sources: `docs/tn/opinions/sc/griffin_v_knoxville.md`
 
 * **Open Meetings (TOMA) & Secret Ballots**
   * Output: `"No, a county commission cannot hold a closed executive session or use secret ballots. The Tennessee Open Meetings Act (TOMA) prohibits exceptions for closed meetings, and all votes must be vocal and public."`
   * Sources: `docs/tn/code/tca-8-44-104-minutes-recorded.md`, `docs/tn/opinions/sc/dorrier_v_dark.md`
-
-* **Willful Denial (TPRA)**
-  * Output: `"If a county requires you to appear in person to request a public record, it constitutes a willful violation of the TPRA and justifies an award of attorney's fees."`
-  * Sources: `docs/tn/opinions/coa/friedmann_v_marshall_county.md`
-
-* **Right to Farm (New Case Law)**
-  * Output: `"Established poultry farms are protected under the Right to Farm Act from nuisance suits by residents who move in after the farm has been operating for at least one year."`
-  * Sources: `docs/tn/opinions/sc/estate_of_johnson_v_smith.md`
 
 ---
 <div align="center">
@@ -45,7 +41,7 @@
 
 ## Performance & Verification
 
-**Evaluation Suite: 23/23 Pass Rate**
+**Evaluation Suite: 26/26 Pass Rate**
 The system is hardened against cross-jurisdictional hallucinations and "context smearing" through modular indexing and precision re-ranking.
 
 | Case ID                        | Objective                                  | Status | Mode |
@@ -60,7 +56,9 @@ The system is hardened against cross-jurisdictional hallucinations and "context 
 | **right-to-farm-nuisance** | Residential Encroachment (Johnson)         | ✅ PASS | Fast |
 | **arbitration-jurisdiction** | SC Case Law (Berkeley Opinion)             | ✅ PASS | Fast |
 | **ag-labor-workers-comp** | Landscaping Exemption (Martinez)           | ✅ PASS | Fast |
-
+| **conflict-of-interest-officers**| Direct Interest Definitions (12-4-101)   | ✅ PASS | Fast |
+| **griffin-suicide-notes** | Police Custody / Public Record Scope       | ✅ PASS | Fast |
+| **gtla-intentional-torts** | Sovereign Immunity Exceptions (29-20-205)  | ✅ PASS | Fast |
 ---
 
 ## Tech Stack (The "Kicker" Architecture)

@@ -16,7 +16,7 @@ EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
 RERANK_MODEL_NAME = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 
 # 🎯 THE FIX: Hardcoded to the true Windows Gateway IP to bypass WSL localhost issues
-OLLAMA_URL = "http://172.27.48.1:11434/api/generate"
+OLLAMA_URL = "http://172.22.144.1:11434/api/generate"
 
 model = None
 rerank_model = None
