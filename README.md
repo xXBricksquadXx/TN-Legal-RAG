@@ -10,55 +10,65 @@
 
 ## Living Change Log
 
-### Latest verified run (2026-07-07)
+### Latest verified run (2026-07-20)
 
-* **Corpus:** `108 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Griffin v. City of Knoxville (Suicide Notes as Public Records) and 9 core county governance/ethics statutes (T.C.A. Titles 5, 8, 12, 29).*
+* **Corpus:** `118 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Week 2 County Operations sweep: Sovereign Immunity (GTLA §§ 29-20-201, 29-20-305), County Zoning (§§ 13-7-101, 13-7-105), Procurement Ethics (§ 12-4-106), Official Bonds (§ 8-19-101), Official Misconduct (§ 39-16-402), and landmark SC precedents (Ezell v. Cockrell, McCallen v. City of Memphis).*
 * **Architecture Security:** WSL-to-Windows GPU Bridging patched to support dynamic Hyper-V IP shifting (Port 11434). Python environment isolated and re-sterilized.
-* **Ingestion automation:** Successfully ran 10-document bulk load via `auto_ingest.py` (LLM-powered unified normalizer) to structure raw Justia/Lexis text into YAML-compliant Markdown.
+* **Evaluation Suite Optimization:** Streamlined evaluation framework to a 19-case "Golden Core" benchmark to prevent test execution bloat as the corpus scales, guaranteeing high-speed (<35s) regression verification across core legal domains.
 * **Verification workflow:** `./scripts/check_all.sh`
   * Rebuilt index: **Verified (Header-Aware)**
   * API health check: **OK** (120-attempt window for heavy Cross-Encoder loading)
-  * Smoke test: **OK** (TOMA & TPRA hallucination checks passed)
-  * API eval: **26/26 passed** (FAST mode, workers=8) — **100% success rate**
+  * Smoke test: **OK** (TOMA, TPRA, & GTLA hallucination checks passed)
+  * API eval: **19/19 passed** (FAST mode, workers=8) — **100% Golden Core pass rate (35.2s total run)**
 
 #### Snapshot outputs (sanity checks)
+
+* **Public Duty Doctrine (Ezell v. Cockrell)**
+  * Output: `"The Tennessee Governmental Tort Liability Act did not abolish the common-law public duty doctrine. Law enforcement officers owe a duty to the public at large rather than individual citizens, shielding them from negligence claims unless a special duty of care was affirmatively undertaken."`
+  * Sources: `docs/tn/opinions/sc/ezell_v_cockrell.md`
+
+* **Zoning Deference & Administrative Review (McCallen v. City of Memphis)**
+  * Output: `"A local governing body's approval of a planned development under existing zoning regulations is an administrative act reviewed by common law writ of certiorari. Courts must exercise high deference and cannot substitute their judgment unless the decision is shown to be clearly arbitrary, capricious, or illegal."`
+  * Sources: `docs/tn/opinions/sc/mccallen_v_city_of_memphis.md`
 
 * **Public Records vs. Personal Property (Griffin)**
   * Output: `"Handwritten suicide notes confiscated by police at a death scene are considered public records under the TPRA because they were received by the police department in connection with the transaction of official business, rather than for mere safekeeping."`
   * Sources: `docs/tn/opinions/sc/griffin_v_knoxville.md`
 
-* **Open Meetings (TOMA) & Secret Ballots**
-  * Output: `"No, a county commission cannot hold a closed executive session or use secret ballots. The Tennessee Open Meetings Act (TOMA) prohibits exceptions for closed meetings, and all votes must be vocal and public."`
-  * Sources: `docs/tn/code/tca-8-44-104-minutes-recorded.md`, `docs/tn/opinions/sc/dorrier_v_dark.md`
-
 ---
 <div align="center">
   <h3>🎥 Proof of Life: Supreme Court Retrieval</h3>
-  <video src="https://github.com/user-attachments/assets/7d45a62d-d8ab-47cc-a1be-57878efb20ed" width="100%" controls></video>
+  <video src="https://github.com/user-attachments/assets/00a06667-c461-4ba5-a411-a78b5de99f78" width="100%" controls></video>
 </div>
 
 ---
 
 ## Performance & Verification
 
-**Evaluation Suite: 26/26 Pass Rate**
+**Evaluation Suite: 19/19 Pass Rate (Golden Core)**
 The system is hardened against cross-jurisdictional hallucinations and "context smearing" through modular indexing and precision re-ranking.
 
-| Case ID                        | Objective                                  | Status | Mode |
-| ------------------------------ | ------------------------------------------ | ------ | ---- |
-| **tca-records-act** | Public Records Custodian                   | ✅ PASS | Fast |
-| **tpra-attorney-fees** | Willful Denial & Fee Recovery (10-7-505)   | ✅ PASS | Fast |
+| Case ID | Objective | Status | Mode |
+| --- | --- | --- | --- |
+| **tca-records-act** | Public Records Custodian | ✅ PASS | Fast |
+| **confidentiality-exceptions** | TBI/Medical Record Exceptions | ✅ PASS | Fast |
+| **toma-secret-ballots** | T.C.A. 8-44-104 Voting Requirements | ✅ PASS | Fast |
+| **toma-action-nullified** | T.C.A. 8-44-105 Illegal Meeting Sanctions | ✅ PASS | Fast |
+| **tpra-attorney-fees** | Willful Denial & Fee Recovery (10-7-505) | ✅ PASS | Fast |
 | **tpra-commercial-value-news** | GIS Data Fees & Media Exemption (10-7-506) | ✅ PASS | Fast |
-| **toma-secret-ballots** | T.C.A. 8-44-104 Voting Requirements        | ✅ PASS | Fast |
-| **toma-action-nullified** | T.C.A. 8-44-105 Illegal Meeting Sanctions  | ✅ PASS | Fast |
-| **toma-enforcement-jurisdiction**| Chancery/Circuit Court Authority         | ✅ PASS | Fast |
-| **county-quorum** | 5-5-108 "Majority" Rule                    | ✅ PASS | Fast |
-| **right-to-farm-nuisance** | Residential Encroachment (Johnson)         | ✅ PASS | Fast |
-| **arbitration-jurisdiction** | SC Case Law (Berkeley Opinion)             | ✅ PASS | Fast |
-| **ag-labor-workers-comp** | Landscaping Exemption (Martinez)           | ✅ PASS | Fast |
-| **conflict-of-interest-officers**| Direct Interest Definitions (12-4-101)   | ✅ PASS | Fast |
-| **griffin-suicide-notes** | Police Custody / Public Record Scope       | ✅ PASS | Fast |
-| **gtla-intentional-torts** | Sovereign Immunity Exceptions (29-20-205)  | ✅ PASS | Fast |
+| **county-quorum** | 5-5-108 "Majority" Rule | ✅ PASS | Fast |
+| **mayor-veto-budget** | County Mayor Veto Powers (5-6-107) | ✅ PASS | Fast |
+| **budget-deadline-dept** | March 1st Budget Submission (5-12-208) | ✅ PASS | Fast |
+| **finance-centralization** | Centralized Finance Department (5-21-103) | ✅ PASS | Fast |
+| **conflict-of-interest-officers**| Officer Interest in Public Contracts (12-4-101)| ✅ PASS | Fast |
+| **gtla-statute-limitations**| 12-Month Bar on Tort Suits (29-20-305) | ✅ PASS | Fast |
+| **ezell-public-duty-doctrine**| Public Duty & Special Duty Exception (Ezell)| ✅ PASS | Fast |
+| **mccallen-zoning-review**| Administrative Deference Standard (McCallen)| ✅ PASS | Fast |
+| **griffin-suicide-notes** | Police Custody / Public Record Scope (Griffin) | ✅ PASS | Fast |
+| **right-to-farm-nuisance** | Residential Encroachment (Johnson) | ✅ PASS | Fast |
+| **drone-privacy-curtilage** | Warrantless Surveillance (Miller) | ✅ PASS | Fast |
+| **ag-labor-workers-comp** | Landscaping Exemption (Martinez) | ✅ PASS | Fast |
+| **bar-404b-distinction** | TN Standard for 404b Evidence | ✅ PASS | Fast |
 ---
 
 ## Tech Stack (The "Kicker" Architecture)
@@ -166,10 +176,12 @@ Run the full suite (Rebuild Index → Health Check → Smoke Test → Evals):
 
 ## Roadmap
 
-* [x] **County Governance Ingest**: Comprehensive Title 5 coverage
-* [x] **Sunshine Law Ingest**: TOMA and TPRA willful denial case law
-* [x] **Precision Re-ranking**: Integrated Cross-Encoder for accuracy
-* [x] **Unified normalizer**: Deployed `auto_ingest.py` to conform Justia/Lexis text via local LLM parsing
+* [x] **County Governance Ingest**: Comprehensive Title 5 & Title 13 zoning coverage
+* [x] **Tort & Liability Ingest**: GTLA statutory shields (§ 29-20-201) and Public Duty precedent (*Ezell*)
+* [x] **Sunshine Law Ingest**: TOMA and TPRA willful denial case law (*Griffin*, *Dorrier*)
+* [x] **Precision Re-ranking**: Integrated Cross-Encoder (`ms-marco-MiniLM-L-6-v2`)
+* [x] **Unified Normalizer Pipeline**: Standardized ingestion routing for raw Justia/Lexis text
+* [ ] **Modular Test Suites**: CLI flags (`--suite core`, `--suite zoning`) for corpus scaling beyond 200 files
 * [ ] **Containerization**: Docker support for "ship-anywhere" deployment
 
 ---

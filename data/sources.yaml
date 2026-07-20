@@ -38,3 +38,33 @@
 - title: TCA 8-4-604 (Office of Open Records Counsel)
   topic: sunshine
   path: docs/tn/code/tca-8-4-604-office-of-open-records-counsel.md
+- title: TCA 5-6-112 (County Attorney Appointment)
+  topic: county_executive
+  path: docs/tn/code/tca-5-6-112-county-attorney-appointment.md
+- title: TCA 8-19-101 (Official Bonds)
+  topic: county_finance
+  path: docs/tn/code/tca-8-19-101-official-bonds.md
+- title: TCA 12-4-106 (Conflicts of Interest)
+  topic: county_finance
+  path: docs/tn/code/tca-12-4-106-conflicts-of-interest.md
+- title: TCA 13-7-101 (Grant of Zoning Power)
+  topic: county_legislative
+  path: docs/tn/code/tca-13-7-101-grant-of-zoning-power.md
+- title: TCA 13-7-105 (Zoning Amendments Procedure)
+  topic: county_legislative
+  path: docs/tn/code/tca-13-7-105-zoning-amendments-procedure.md
+- title: TCA 29-20-201 (Immunity from Suit)
+  topic: county_admin
+  path: docs/tn/code/tca-29-20-201-immunity-from-suit.md
+- title: TCA 29-20-305 (Actions Procedure)
+  topic: county_admin
+  path: docs/tn/code/tca-29-20-305-actions-procedure.md
+- title: TCA 39-16-402 (Official Misconduct)
+  topic: county_admin
+  path: docs/tn/code/tca-39-16-402-official-misconduct.md
+- title: Ezell v. Cockrell
+  topic: opinions
+  path: docs/tn/opinions/sc/ezell_v_cockrell.md
+- title: McCallen v. City of Memphis
+  topic: opinions
+  path: docs/tn/opinions/sc/mccallen_v_city_of_memphis.md
