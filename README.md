@@ -10,35 +10,31 @@
 
 ## Living Change Log
 
-### Latest verified run (2026-07-20)
+### Latest verified run (2026-07-27)
 
-* **Corpus:** `118 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Week 2 County Operations sweep: Sovereign Immunity (GTLA §§ 29-20-201, 29-20-305), County Zoning (§§ 13-7-101, 13-7-105), Procurement Ethics (§ 12-4-106), Official Bonds (§ 8-19-101), Official Misconduct (§ 39-16-402), and landmark SC precedents (Ezell v. Cockrell, McCallen v. City of Memphis).*
+* **Corpus:** `128 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Week 3 County Administration & Infrastructure expansion: Ouster Standards & Standing (T.C.A. §§ 8-47-101, 8-47-102), Public Employee Protections (Disability § 8-50-103, Whistleblower § 50-1-304), Highway Law & Obstructions (§§ 54-7-109, 54-7-201), Property Taxation (§§ 67-5-101, 67-5-502), and landmark precedents (Jordan v. Hughes on implied road dedication, State ex rel. Leech v. Wright on Ouster Act burden of proof).*
+* **Interface & Prompt Hardening:** Upgraded glassmorphism UI layout with an expanded, scroll-free response window (`min-h-[22rem]`) and formatted text wrapping. Hardened LLM system prompt to enforce complete context-chunk scanning, removing single-chunk synthesis bottlenecks on 1.5B parameters.
 * **Architecture Security:** WSL-to-Windows GPU Bridging patched to support dynamic Hyper-V IP shifting (Port 11434). Python environment isolated and re-sterilized.
-* **Evaluation Suite Optimization:** Streamlined evaluation framework to a 19-case "Golden Core" benchmark to prevent test execution bloat as the corpus scales, guaranteeing high-speed (<35s) regression verification across core legal domains.
 * **Verification workflow:** `./scripts/check_all.sh`
   * Rebuilt index: **Verified (Header-Aware)**
-  * API health check: **OK** (120-attempt window for heavy Cross-Encoder loading)
+  * API health check: **OK** (120-attempt window for Cross-Encoder initialization)
   * Smoke test: **OK** (TOMA, TPRA, & GTLA hallucination checks passed)
-  * API eval: **19/19 passed** (FAST mode, workers=8) — **100% Golden Core pass rate (35.2s total run)**
+  * API eval: **19/19 passed** (FAST mode, workers=8) — **100% Golden Core pass rate (47.9s total run)**
 
 #### Snapshot outputs (sanity checks)
 
-* **Public Duty Doctrine (Ezell v. Cockrell)**
-  * Output: `"The Tennessee Governmental Tort Liability Act did not abolish the common-law public duty doctrine. Law enforcement officers owe a duty to the public at large rather than individual citizens, shielding them from negligence claims unless a special duty of care was affirmatively undertaken."`
-  * Sources: `docs/tn/opinions/sc/ezell_v_cockrell.md`
+* **Ouster Act Evidentiary Burden (State ex rel. Leech v. Wright)**
+  * Output: `"An ouster proceeding under T.C.A. § 8-47-101 requires clear and convincing evidence of knowing or willful misconduct. Administrative incompetence, poor judgment, or simple mistakes without bad-faith intent do not justify forfeiture of public office."`
+  * Sources: `docs/tn/opinions/sc/state-ex-rel-leech-v-wright.md`, `docs/tn/code/tca-8-47-101-officers-subject-to-removal.md`
 
-* **Zoning Deference & Administrative Review (McCallen v. City of Memphis)**
-  * Output: `"A local governing body's approval of a planned development under existing zoning regulations is an administrative act reviewed by common law writ of certiorari. Courts must exercise high deference and cannot substitute their judgment unless the decision is shown to be clearly arbitrary, capricious, or illegal."`
-  * Sources: `docs/tn/opinions/sc/mccallen_v_city_of_memphis.md`
-
-* **Public Records vs. Personal Property (Griffin)**
-  * Output: `"Handwritten suicide notes confiscated by police at a death scene are considered public records under the TPRA because they were received by the police department in connection with the transaction of official business, rather than for mere safekeeping."`
-  * Sources: `docs/tn/opinions/sc/griffin_v_knoxville.md`
+* **County Highway Authority & Road Dedication (Jordan v. Hughes)**
+  * Output: `"Public use or casual county maintenance alone is insufficient to establish an official public county road under the County Uniform Highway Law. Implied dedication requires clear and convincing evidence of the landowner's intent to dedicate and unequivocal public acceptance."`
+  * Sources: `docs/tn/opinions/sc/jordan-v-hughes.md`, `docs/tn/code/tca-54-7-109-duties-chief-administrative-officer.md`
 
 ---
 <div align="center">
   <h3>🎥 Proof of Life: Supreme Court Retrieval</h3>
-  <video src="https://github.com/user-attachments/assets/00a06667-c461-4ba5-a411-a78b5de99f78" width="100%" controls></video>
+  <video src="https://github.com/user-attachments/assets/3bd0c9d9-c88d-4f46-90c3-bb0a0fe9af0b" width="100%" controls></video>
 </div>
 
 ---

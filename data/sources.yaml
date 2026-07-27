@@ -68,3 +68,33 @@
 - title: McCallen v. City of Memphis
   topic: opinions
   path: docs/tn/opinions/sc/mccallen_v_city_of_memphis.md
+  - title: Jordan v. Hughes
+  topic: opinions
+  path: docs/tn/opinions/sc/jordan_v_hughes.md
+- title: State ex rel. Leech v. Wright
+  topic: opinions
+  path: docs/tn/opinions/sc/state_ex_rel_leech_v_wright.md
+- title: TCA 8-47-101 (Officers Subject to Removal)
+  topic: county_admin
+  path: docs/tn/code/tca-8-47-101-officers-subject-to-removal.md
+- title: TCA 8-47-102 (Institution of Ouster)
+  topic: county_admin
+  path: docs/tn/code/tca-8-47-102-standing-institution-ouster.md
+- title: TCA 8-50-103 (Tennessee Disability Act)
+  topic: county_admin
+  path: docs/tn/code/tca-8-50-103-employment-nondiscrimination.md
+- title: TCA 50-1-304 (Whistleblower Protection Act)
+  topic: county_admin
+  path: docs/tn/code/tca-50-1-304-whistleblower-protection.md
+- title: TCA 54-7-109 (Highway Chief Duties)
+  topic: county_admin
+  path: docs/tn/code/tca-54-7-109-duties-chief-administrative-officer.md
+- title: TCA 54-7-201 (Road Obstruction Penalties)
+  topic: county_admin
+  path: docs/tn/code/tca-54-7-201-obstruction-of-roads-bridges-ditches.md
+- title: TCA 67-5-101 (Property Subject to Tax)
+  topic: county_finance
+  path: docs/tn/code/tca-67-5-101-property-subject-to-tax.md
+- title: TCA 67-5-502 (Assessment Function & Jan 1 Date)
+  topic: county_finance
+  path: docs/tn/code/tca-67-5-502-place-and-function-of-assessment.md
