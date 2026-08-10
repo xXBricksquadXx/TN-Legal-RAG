@@ -10,31 +10,35 @@
 
 ## Living Change Log
 
-### Latest verified run (2026-07-27)
+### Latest verified run (2026-08-10)
 
-* **Corpus:** `128 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Week 3 County Administration & Infrastructure expansion: Ouster Standards & Standing (T.C.A. §§ 8-47-101, 8-47-102), Public Employee Protections (Disability § 8-50-103, Whistleblower § 50-1-304), Highway Law & Obstructions (§§ 54-7-109, 54-7-201), Property Taxation (§§ 67-5-101, 67-5-502), and landmark precedents (Jordan v. Hughes on implied road dedication, State ex rel. Leech v. Wright on Ouster Act burden of proof).*
+* **Corpus:** `138 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Law Enforcement & Finance package: Sheriff Duties (§ 8-8-201), Jail Medical Care (§ 41-4-115), GTLA Motor Vehicle Exception (§ 29-20-202), Competitive Bidding Thresholds (§ 12-3-1212), Booking Audits (§ 8-4-115), Tax Sales (§ 67-5-2501), Zoning Enforcement (§ 13-7-111), Shared Municipal Powers (§ 5-1-118), and SC precedents (Smith County Educ. Ass'n v. Anderson, Haynes v. Hamilton County).*
 * **Interface & Prompt Hardening:** Upgraded glassmorphism UI layout with an expanded, scroll-free response window (`min-h-[22rem]`) and formatted text wrapping. Hardened LLM system prompt to enforce complete context-chunk scanning, removing single-chunk synthesis bottlenecks on 1.5B parameters.
 * **Architecture Security:** WSL-to-Windows GPU Bridging patched to support dynamic Hyper-V IP shifting (Port 11434). Python environment isolated and re-sterilized.
 * **Verification workflow:** `./scripts/check_all.sh`
   * Rebuilt index: **Verified (Header-Aware)**
   * API health check: **OK** (120-attempt window for Cross-Encoder initialization)
   * Smoke test: **OK** (TOMA, TPRA, & GTLA hallucination checks passed)
-  * API eval: **19/19 passed** (FAST mode, workers=8) — **100% Golden Core pass rate (47.9s total run)**
+  * API eval: **19/19 passed** (FAST mode, workers=8) — **100% Golden Core pass rate**
 
 #### Snapshot outputs (sanity checks)
+
+* **High-Speed Pursuit Liability (Haynes v. Hamilton County)**
+  * Output: `"A police officer's decision to initiate or continue a high-speed chase can constitute negligent 'conduct' that serves as the proximate cause of injuries to an innocent third party. Under Haynes, the county does not retain absolute GTLA immunity if the officer's unreasonable pursuit triggers the suspect's dangerous flight."`
+  * Sources: `docs/tn/opinions/sc/haynes_v_hamilton_county.md`, `docs/tn/code/tca-29-20-202-negligent-operation-motor-vehicles.md`
+
+* **Attorney-Client Exception to TOMA (Smith County Educ. Ass'n v. Anderson)**
+  * Output: `"A county commission may meet privately behind closed doors with its legal counsel strictly to discuss pending or impending litigation without violating the Tennessee Open Meetings Act. However, any deliberation or decision-making regarding that litigation must occur in a public session."`
+  * Sources: `docs/tn/opinions/sc/smith_county_educ_v_anderson.md`, `docs/tn/code/tca-8-44-101-policy-declaration.md`
 
 * **Ouster Act Evidentiary Burden (State ex rel. Leech v. Wright)**
   * Output: `"An ouster proceeding under T.C.A. § 8-47-101 requires clear and convincing evidence of knowing or willful misconduct. Administrative incompetence, poor judgment, or simple mistakes without bad-faith intent do not justify forfeiture of public office."`
   * Sources: `docs/tn/opinions/sc/state-ex-rel-leech-v-wright.md`, `docs/tn/code/tca-8-47-101-officers-subject-to-removal.md`
 
-* **County Highway Authority & Road Dedication (Jordan v. Hughes)**
-  * Output: `"Public use or casual county maintenance alone is insufficient to establish an official public county road under the County Uniform Highway Law. Implied dedication requires clear and convincing evidence of the landowner's intent to dedicate and unequivocal public acceptance."`
-  * Sources: `docs/tn/opinions/sc/jordan-v-hughes.md`, `docs/tn/code/tca-54-7-109-duties-chief-administrative-officer.md`
-
 ---
 <div align="center">
   <h3>🎥 Proof of Life: Supreme Court Retrieval</h3>
-  <video src="https://github.com/user-attachments/assets/3bd0c9d9-c88d-4f46-90c3-bb0a0fe9af0b" width="100%" controls></video>
+  <video src="https://github.com/user-attachments/assets/f3575fab-3dde-4793-b6a6-c8c2cb207945" width="100%" controls></video>
 </div>
 
 ---

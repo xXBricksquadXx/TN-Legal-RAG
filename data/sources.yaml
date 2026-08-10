@@ -68,7 +68,7 @@
 - title: McCallen v. City of Memphis
   topic: opinions
   path: docs/tn/opinions/sc/mccallen_v_city_of_memphis.md
-  - title: Jordan v. Hughes
+- title: Jordan v. Hughes
   topic: opinions
   path: docs/tn/opinions/sc/jordan_v_hughes.md
 - title: State ex rel. Leech v. Wright
@@ -98,3 +98,33 @@
 - title: TCA 67-5-502 (Assessment Function & Jan 1 Date)
   topic: county_finance
   path: docs/tn/code/tca-67-5-502-place-and-function-of-assessment.md
+- title: TCA 8-8-201 (Duties of Sheriff)
+  topic: county_admin
+  path: docs/tn/code/tca-8-8-201-duties-of-sheriff.md
+- title: TCA 41-4-115 (Medical Care of Prisoners)
+  topic: county_admin
+  path: docs/tn/code/tca-41-4-115-medical-care-prisoners.md
+- title: TCA 29-20-202 (Negligent Operation of Motor Vehicles)
+  topic: county_admin
+  path: docs/tn/code/tca-29-20-202-negligent-operation-motor-vehicles.md
+- title: TCA 12-3-1212 (Bidding Threshold)
+  topic: county_finance
+  path: docs/tn/code/tca-12-3-1212-bidding-threshold.md
+- title: TCA 8-4-115 (Booking Procedures Audit)
+  topic: county_admin
+  path: docs/tn/code/tca-8-4-115-booking-procedures-audit.md
+- title: TCA 67-5-2501 (Tax Sales)
+  topic: county_finance
+  path: docs/tn/code/tca-67-5-2501-tax-sales.md
+- title: TCA 13-7-111 (Zoning Enforcement)
+  topic: county_legislative
+  path: docs/tn/code/tca-13-7-111-zoning-enforcement.md
+- title: TCA 5-1-118 (Shared Municipal Powers)
+  topic: county_legislative
+  path: docs/tn/code/tca-5-1-118-shared-municipal-powers.md
+- title: Smith County Educ. Ass'n v. Anderson
+  topic: opinions
+  path: docs/tn/opinions/sc/smith_county_educ_v_anderson.md
+- title: Haynes v. Hamilton County
+  topic: opinions
+  path: docs/tn/opinions/sc/haynes_v_hamilton_county.md
