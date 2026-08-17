@@ -128,3 +128,33 @@
 - title: Haynes v. Hamilton County
   topic: opinions
   path: docs/tn/opinions/sc/haynes_v_hamilton_county.md
+- title: TCA 8-8-302 (Suits Against Counties for Deputies)
+  topic: county_admin
+  path: docs/tn/code/tca-8-8-302-suits-against-counties-wrongs-deputies.md
+- title: TCA 12-4-119 (Boycott of Israel Certification)
+  topic: county_finance
+  path: docs/tn/code/tca-12-4-119-certification-boycott-israel.md
+- title: TCA 29-17-102 (Eminent Domain Public Use)
+  topic: county_legislative
+  path: docs/tn/code/tca-29-17-102-eminent-domain-public-use.md
+- title: TCA 29-16-123 (Inverse Condemnation)
+  topic: county_admin
+  path: docs/tn/code/tca-29-16-123-inverse-condemnation.md
+- title: TCA 29-20-203 (Unsafe Streets and Highways)
+  topic: county_admin
+  path: docs/tn/code/tca-29-20-203-unsafe-streets-highways.md
+- title: TCA 29-20-204 (Dangerous Structures)
+  topic: county_admin
+  path: docs/tn/code/tca-29-20-204-dangerous-structures.md
+- title: TCA 29-20-310 (Judgments and Limitations)
+  topic: county_admin
+  path: docs/tn/code/tca-29-20-310-judgments-limitations.md
+- title: TCA 5-23-103 (Base Personnel Policies)
+  topic: county_admin
+  path: docs/tn/code/tca-5-23-103-base-personnel-policies.md
+- title: Coln v. City of Savannah
+  topic: opinions
+  path: docs/tn/opinions/sc/coln_v_city_of_savannah.md
+- title: Edwards v. Hallsdale-Powell Utility Dist.
+  topic: opinions
+  path: docs/tn/opinions/sc/edwards_v_hallsdale_powell.md

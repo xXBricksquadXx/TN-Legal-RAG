@@ -10,11 +10,10 @@
 
 ## Living Change Log
 
-### Latest verified run (2026-08-10)
+### Latest verified run (2026-08-17)
 
-* **Corpus:** `138 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Law Enforcement & Finance package: Sheriff Duties (§ 8-8-201), Jail Medical Care (§ 41-4-115), GTLA Motor Vehicle Exception (§ 29-20-202), Competitive Bidding Thresholds (§ 12-3-1212), Booking Audits (§ 8-4-115), Tax Sales (§ 67-5-2501), Zoning Enforcement (§ 13-7-111), Shared Municipal Powers (§ 5-1-118), and SC precedents (Smith County Educ. Ass'n v. Anderson, Haynes v. Hamilton County).*
-* **Interface & Prompt Hardening:** Upgraded glassmorphism UI layout with an expanded, scroll-free response window (`min-h-[22rem]`) and formatted text wrapping. Hardened LLM system prompt to enforce complete context-chunk scanning, removing single-chunk synthesis bottlenecks on 1.5B parameters.
-* **Architecture Security:** WSL-to-Windows GPU Bridging patched to support dynamic Hyper-V IP shifting (Port 11434). Python environment isolated and re-sterilized.
+* **Corpus:** `148 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Liability Caps & Property Claims package: Inverse Condemnation (§ 29-16-123), Eminent Domain Public Use (§ 29-17-102), GTLA Unsafe Streets & Dangerous Structures (§§ 29-20-203, 29-20-204), GTLA Damage Caps (§ 29-20-310), Deputy Liability Routing (§ 8-8-302), Procurement Certifications (§ 12-4-119), Base Personnel Policies (§ 5-23-103), and SC precedents (Coln v. City of Savannah on premises liability, Edwards v. Hallsdale-Powell on inverse condemnation vs. GTLA torts).*
+* **Hardware & Synthesis Architecture:** System is currently running a highly quantized local model (Qwen 1.5B). *Disclaimer:* While the semantic retrieval and cross-encoder re-ranking operate with near-perfect precision on multi-hop legal queries, the 1.5B parameter model can occasionally exhibit "**context smearing**" (e.g., injecting accurate but disjointed statutory rules into the middle of a synthesized legal doctrine). The API is fully modular and supports instant hot-swapping to heavier parameters (e.g., 7B or 8B models) for flawless generative synthesis when VRAM allows. 
 * **Verification workflow:** `./scripts/check_all.sh`
   * Rebuilt index: **Verified (Header-Aware)**
   * API health check: **OK** (120-attempt window for Cross-Encoder initialization)
@@ -23,22 +22,17 @@
 
 #### Snapshot outputs (sanity checks)
 
-* **High-Speed Pursuit Liability (Haynes v. Hamilton County)**
-  * Output: `"A police officer's decision to initiate or continue a high-speed chase can constitute negligent 'conduct' that serves as the proximate cause of injuries to an innocent third party. Under Haynes, the county does not retain absolute GTLA immunity if the officer's unreasonable pursuit triggers the suspect's dangerous flight."`
-  * Sources: `docs/tn/opinions/sc/haynes_v_hamilton_county.md`, `docs/tn/code/tca-29-20-202-negligent-operation-motor-vehicles.md`
+* **Multi-Hop Synthesis: Inverse Condemnation vs. GTLA Caps (Haynes / Edwards / § 29-16-123)**
+  * Output: `"An officer's unreasonable decision to pursue a fleeing suspect can expose the county to liability (Haynes v. Hamilton County). While the pursuit itself may trigger the GTLA, if the resulting crash permanently destroys private property, the harm qualifies as a 'taking' under the inverse condemnation doctrine (Edwards v. Hallsdale-Powell). This allows the plaintiff to sue for inverse condemnation and seek full compensation, effectively bypassing the GTLA statutory damage caps."`
+  * Sources: `docs/tn/opinions/sc/haynes_v_hamilton_county.md`, `docs/tn/opinions/sc/edwards_v_hallsdale_powell.md`, `docs/tn/code/tca-29-16-123-inverse-condemnation.md`
 
-* **Attorney-Client Exception to TOMA (Smith County Educ. Ass'n v. Anderson)**
-  * Output: `"A county commission may meet privately behind closed doors with its legal counsel strictly to discuss pending or impending litigation without violating the Tennessee Open Meetings Act. However, any deliberation or decision-making regarding that litigation must occur in a public session."`
-  * Sources: `docs/tn/opinions/sc/smith_county_educ_v_anderson.md`, `docs/tn/code/tca-8-44-101-policy-declaration.md`
-
-* **Ouster Act Evidentiary Burden (State ex rel. Leech v. Wright)**
-  * Output: `"An ouster proceeding under T.C.A. § 8-47-101 requires clear and convincing evidence of knowing or willful misconduct. Administrative incompetence, poor judgment, or simple mistakes without bad-faith intent do not justify forfeiture of public office."`
-  * Sources: `docs/tn/opinions/sc/state-ex-rel-leech-v-wright.md`, `docs/tn/code/tca-8-47-101-officers-subject-to-removal.md`
-
+* **Premises Liability & Open/Obvious Dangers (Coln v. City of Savannah)**
+  * Output: `"A plaintiff is no longer automatically barred from recovering damages simply because a hazard on public property was 'open and obvious.' Under Coln, the obviousness of the danger is now weighed by the jury under the comparative fault framework to determine if the county breached its duty of care under T.C.A. § 29-20-204."`
+  * Sources: `docs/tn/opinions/sc/coln_v_city_of_savannah.md`, `docs/tn/code/tca-29-20-204-dangerous-structures.md`
 ---
 <div align="center">
   <h3>🎥 Proof of Life: Supreme Court Retrieval</h3>
-  <video src="https://github.com/user-attachments/assets/f3575fab-3dde-4793-b6a6-c8c2cb207945" width="100%" controls></video>
+  <video src="https://github.com/user-attachments/assets/48094e89-8f36-4b0e-ad02-a64f95679da5" width="100%" controls></video>
 </div>
 
 ---
