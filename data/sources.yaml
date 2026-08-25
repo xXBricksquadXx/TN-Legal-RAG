@@ -158,3 +158,33 @@
 - title: Edwards v. Hallsdale-Powell Utility Dist.
   topic: opinions
   path: docs/tn/opinions/sc/edwards_v_hallsdale_powell.md
+- title: TCA 5-1-115 (Removal of Vegetation and Debris)
+  topic: county_admin
+  path: docs/tn/code/tca-5-1-115-removal-vegetation-debris.md
+- title: TCA 29-20-107 (GTLA Definition of Employee)
+  topic: county_admin
+  path: docs/tn/code/tca-29-20-107-employee-defined.md
+- title: TCA 29-20-403 (Liability Insurance Limits)
+  topic: county_finance
+  path: docs/tn/code/tca-29-20-403-liability-insurance-limits.md
+- title: TCA 54-7-202 (Private Use of Equipment Prohibited)
+  topic: county_admin
+  path: docs/tn/code/tca-54-7-202-private-use-equipment-prohibited.md
+- title: TCA 54-10-102 (Power Over Roads)
+  topic: county_legislative
+  path: docs/tn/code/tca-54-10-102-power-to-build-maintain-roads.md
+- title: TCA 54-10-104 (Classes and Width of Public Roads)
+  topic: county_admin
+  path: docs/tn/code/tca-54-10-104-classes-width-public-roads.md
+- title: TCA 55-8-110 (Traffic-Control Signals)
+  topic: county_admin
+  path: docs/tn/code/tca-55-8-110-traffic-control-signals.md
+- title: TCA 55-8-132 (Approach of Emergency Vehicles)
+  topic: county_admin
+  path: docs/tn/code/tca-55-8-132-approach-emergency-vehicles.md
+- title: Bowers v. City of Chattanooga
+  topic: opinions
+  path: docs/tn/opinions/sc/bowers_v_city_of_chattanooga.md
+- title: Washington v. Robertson County
+  topic: opinions
+  path: docs/tn/opinions/sc/washington_v_robertson_county.md 

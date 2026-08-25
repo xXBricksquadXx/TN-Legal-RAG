@@ -10,9 +10,9 @@
 
 ## Living Change Log
 
-### Latest verified run (2026-08-17)
+### Latest verified run (2026-08-25)
 
-* **Corpus:** `148 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Liability Caps & Property Claims package: Inverse Condemnation (§ 29-16-123), Eminent Domain Public Use (§ 29-17-102), GTLA Unsafe Streets & Dangerous Structures (§§ 29-20-203, 29-20-204), GTLA Damage Caps (§ 29-20-310), Deputy Liability Routing (§ 8-8-302), Procurement Certifications (§ 12-4-119), Base Personnel Policies (§ 5-23-103), and SC precedents (Coln v. City of Savannah on premises liability, Edwards v. Hallsdale-Powell on inverse condemnation vs. GTLA torts).*
+* **Corpus:** `158 files` indexed via **Modular Chunking** (`python3 indexer.py`) — *Added Operational Liability & Civil Rights package: Nuisance Abatement/Vegetation (§ 5-1-115), GTLA Employee Definition (§ 29-20-107), Liability Insurance Limits (§ 29-20-403), Private Equipment Use Prohibition (§ 54-7-202), Power Over Roads (§ 54-10-102), Road Widths (§ 54-10-104), Traffic Signals (§ 55-8-110), Move Over Law (§ 55-8-132), and SC precedents (Bowers v. City of Chattanooga on the discretionary function test, Washington v. Robertson County on vicarious liability for malicious harassment).*
 * **Hardware & Synthesis Architecture:** System is currently running a highly quantized local model (Qwen 1.5B). *Disclaimer:* While the semantic retrieval and cross-encoder re-ranking operate with near-perfect precision on multi-hop legal queries, the 1.5B parameter model can occasionally exhibit "**context smearing**" (e.g., injecting accurate but disjointed statutory rules into the middle of a synthesized legal doctrine). The API is fully modular and supports instant hot-swapping to heavier parameters (e.g., 7B or 8B models) for flawless generative synthesis when VRAM allows. 
 * **Verification workflow:** `./scripts/check_all.sh`
   * Rebuilt index: **Verified (Header-Aware)**
@@ -22,17 +22,17 @@
 
 #### Snapshot outputs (sanity checks)
 
-* **Multi-Hop Synthesis: Inverse Condemnation vs. GTLA Caps (Haynes / Edwards / § 29-16-123)**
-  * Output: `"An officer's unreasonable decision to pursue a fleeing suspect can expose the county to liability (Haynes v. Hamilton County). While the pursuit itself may trigger the GTLA, if the resulting crash permanently destroys private property, the harm qualifies as a 'taking' under the inverse condemnation doctrine (Edwards v. Hallsdale-Powell). This allows the plaintiff to sue for inverse condemnation and seek full compensation, effectively bypassing the GTLA statutory damage caps."`
-  * Sources: `docs/tn/opinions/sc/haynes_v_hamilton_county.md`, `docs/tn/opinions/sc/edwards_v_hallsdale_powell.md`, `docs/tn/code/tca-29-16-123-inverse-condemnation.md`
+* **Civil Rights Intimidation & Vicarious Liability (Washington v. Robertson County)**
+  * Output: `"A county is not immune from civil lawsuits regarding malicious harassment committed by its employees. Under Washington v. Robertson County, the elements of civil malicious harassment are derived from the criminal offense of civil rights intimidation. A county can be held vicariously liable under the doctrine of respondeat superior for the malicious harassment committed by a deputy acting under the color of office within the course and scope of their employment."`
+  * Sources: `docs/tn/opinions/sc/washington_v_robertson_county.md`, `docs/tn/code/tca-8-8-302-suits-against-counties-wrongs-deputies.md`
 
-* **Premises Liability & Open/Obvious Dangers (Coln v. City of Savannah)**
-  * Output: `"A plaintiff is no longer automatically barred from recovering damages simply because a hazard on public property was 'open and obvious.' Under Coln, the obviousness of the danger is now weighed by the jury under the comparative fault framework to determine if the county breached its duty of care under T.C.A. § 29-20-204."`
-  * Sources: `docs/tn/opinions/sc/coln_v_city_of_savannah.md`, `docs/tn/code/tca-29-20-204-dangerous-structures.md`
+* **Operational vs. Discretionary Immunity (Bowers v. City of Chattanooga)**
+  * Output: `"Under the GTLA's planning-operational test, high-level policy and planning decisions are shielded by discretionary immunity. However, the day-to-day operational execution of those policies is not immune from suit."`
+  * Sources: `docs/tn/opinions/sc/bowers_v_city_of_chattanooga.md`
 ---
 <div align="center">
   <h3>🎥 Proof of Life: Supreme Court Retrieval</h3>
-  <video src="https://github.com/user-attachments/assets/48094e89-8f36-4b0e-ad02-a64f95679da5" width="100%" controls></video>
+  <video src="https://github.com/user-attachments/assets/e212fabe-2dfa-416a-bf53-9dc5cda44f0a" width="100%" controls></video>
 </div>
 
 ---

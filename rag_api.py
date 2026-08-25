@@ -100,11 +100,11 @@ def home():
         </div>
 
         <script>
-            // Simple markdown formatter helper (converts **text** to <strong> and fixes list bullets)
-            function formatMarkdown(text) {
+           function formatMarkdown(text) {
                 if (!text) return "";
                 return text
                     .replace(/\\*\\*(.*?)\\*\\*/g, '<strong class="text-white font-semibold">$1</strong>')
+                    .replace(/\\*(.*?)\\*/g, '<i class="text-gray-300">$1</i>')
                     .replace(/^- (.*)/gm, '• $1');
             }
 
